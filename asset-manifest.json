@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/pg-web/static/css/main.0683290d.chunk.css",
+    "main.js": "/pg-web/static/js/main.ce7268b7.chunk.js",
+    "main.js.map": "/pg-web/static/js/main.ce7268b7.chunk.js.map",
+    "runtime-main.js": "/pg-web/static/js/runtime-main.677f96d2.js",
+    "runtime-main.js.map": "/pg-web/static/js/runtime-main.677f96d2.js.map",
+    "static/js/2.574192ac.chunk.js": "/pg-web/static/js/2.574192ac.chunk.js",
+    "static/js/2.574192ac.chunk.js.map": "/pg-web/static/js/2.574192ac.chunk.js.map",
+    "index.html": "/pg-web/index.html",
+    "precache-manifest.c2fca9ffdff7ffb42aa09c47e11572bb.js": "/pg-web/precache-manifest.c2fca9ffdff7ffb42aa09c47e11572bb.js",
+    "service-worker.js": "/pg-web/service-worker.js",
+    "static/css/main.0683290d.chunk.css.map": "/pg-web/static/css/main.0683290d.chunk.css.map",
+    "static/js/2.574192ac.chunk.js.LICENSE": "/pg-web/static/js/2.574192ac.chunk.js.LICENSE",
+    "static/media/App.css": "/pg-web/static/media/pg-background.b5f18203.png",
+    "static/media/pg-icon.svg": "/pg-web/static/media/pg-icon.e035a70d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.677f96d2.js",
+    "static/js/2.574192ac.chunk.js",
+    "static/css/main.0683290d.chunk.css",
+    "static/js/main.ce7268b7.chunk.js"
+  ]
+}
