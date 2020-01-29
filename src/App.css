@@ -1,11 +1,20 @@
 .app {
   text-align: center;
-  background-color: #778b44;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url("./assets/pg-background.png");
+
+  transition: all ease-in-out 300ms;
+
+  background-color: #696969;
+}
+
+.app.is-online {
+  background-color: #778b44;
 }
 
 .app-logo {
