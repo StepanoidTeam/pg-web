@@ -1,34 +1,23 @@
-.App {
+.app {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-pulse infinite 1s ease-in-out alternate;
-  }
-}
-
-.App-header {
   background-color: #778b44;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-@keyframes App-logo-pulse {
+.app-logo {
+  animation: pulse infinite 1s ease-in-out alternate;
+}
+
+@keyframes pulse {
   from {
     transform: scale(0.9);
     opacity: 0.8;

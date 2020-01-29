@@ -1,13 +1,11 @@
 import React from "react";
-import logo from "./pg-icon.svg";
+import logo from "./assets/pg-icon.svg";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+    <div className="app">
+      <img src={logo} className="app-logo" alt="logo" />
     </div>
   );
 }
