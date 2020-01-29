@@ -1,4 +1,4 @@
-const apiUrl = "http://pg-api.azurewebsites.net/api/";
+const apiUrl = "https://pg-api.azurewebsites.net/api/";
 
 export async function getVersion() {
   return fetch(`${apiUrl}/version`)
