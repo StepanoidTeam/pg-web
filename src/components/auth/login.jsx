@@ -1,27 +1,42 @@
 import React from "react";
 import Input from "../common/input";
+import { logIn } from "../../services/auth.service";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      login: "kekster2000",
+      username: "kekster2000",
       password: "qwerty123"
     };
   }
 
+  logIn = () => {
+    const { username, password } = this.state;
+
+    logIn({ username, password })
+      .then(data => {
+        console.log("login ok", data);
+
+        this.props.history.push("/rooms");
+      })
+      .catch(error => {
+        console.warn("login failed", error);
+      });
+  };
+
   render() {
-    const { login, password } = this.state;
+    const { username, password } = this.state;
 
     return (
       <div className="form flex-column">
         <Input
           label="username"
-          value={login}
+          value={username}
           helperText="username should be strong enough"
           icon="face"
-          onChange={login => this.setState({ login })}
+          onChange={username => this.setState({ username })}
         />
         <Input
           label="password"
@@ -31,7 +46,10 @@ export default class Login extends React.Component {
           onChange={password => this.setState({ password })}
         />
 
-        <button className="button flex-row align-center justify-center">
+        <button
+          className="button flex-row align-center justify-center"
+          onClick={this.logIn}
+        >
           <span>log in</span>
           <i className="material-icons">arrow_forward</i>
         </button>
