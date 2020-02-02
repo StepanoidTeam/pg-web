@@ -1,28 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { $apiVersion } from "../services/version.service";
 
-import { getVersion } from "../services/version.service";
+export default class VersionHolder extends React.Component {
+  constructor(props) {
+    super(props);
+    $apiVersion
+      .then(version => {
+        console.log(version);
+        this.setState({ version });
+      })
+      .catch(err => {
+        console.log("err", err);
+        this.setState({ hasError: err });
+      });
 
-export default function VersionHolder() {
-  const [hasError, setErrors] = useState(false);
-  const [version, setVersion] = useState(false);
-
-  async function fetchData() {
-    getVersion()
-      .then(version => setVersion(version))
-      .catch(err => setErrors(err));
+    this.state = {
+      hasError: null,
+      version: null
+    };
   }
 
-  useEffect(() => {
-    fetchData();
-  });
+  render() {
+    const { version, hasError } = this.state;
 
-  getVersion();
+    return (
+      <div style={{ color: "white" }}>
+        {version ? <span>api ver: {version}</span> : "loading..."}
 
-  return (
-    <div style={{ color: "white" }}>
-      {version ? <span>api ver: {version}</span> : "loading..."}
-
-      {hasError ? <span>Has error: {JSON.stringify(hasError)}</span> : null}
-    </div>
-  );
+        {hasError ? <span>Has error: {JSON.stringify(hasError)}</span> : null}
+      </div>
+    );
+  }
 }
