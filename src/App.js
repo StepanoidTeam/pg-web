@@ -4,13 +4,13 @@ import cx from "classnames";
 import logo from "./assets/pg-icon.svg";
 import "./App.css";
 import VersionHolder from "./components/version-holder";
-import { getVersion } from "./services/version.service";
+import { $apiVersion } from "./services/version.service";
 
 export default function App() {
   const [isOnline, setOnline] = useState(false);
 
   useEffect(() => {
-    getVersion().then(() => setOnline(true));
+    $apiVersion.then(() => setOnline(true));
   });
 
   return (

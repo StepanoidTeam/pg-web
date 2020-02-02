@@ -1,7 +1,22 @@
-const apiUrl = "https://pg-api.azurewebsites.net/api/";
+import { apiUrl } from "../config";
 
-export async function getVersion() {
-  return fetch(`${apiUrl}/version`)
-    .then(data => data.json())
-    .then(data => data.data.version);
+async function apiRequest(endpoint, ...rest) {
+  const response = await fetch(`${apiUrl}/${endpoint}`);
+
+  try {
+    const json = await response.json();
+    return json.data;
+  } catch (error) {
+    console.warn("error", error);
+
+    return Promise.reject(error);
+  }
 }
+
+//api method
+export function getVersion() {
+  return apiRequest("version").then(data => data.version);
+}
+
+//singletone?
+export const $apiVersion = getVersion();
