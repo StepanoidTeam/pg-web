@@ -4,3 +4,37 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+@import "./flex.css";
+@import "./box-model.css";
+@import "./components/common/button.css";
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  /* width: 320px; */
+
+  /* card/bg */
+  background: #645c51;
+  /* input/label-bg */
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  /* card/shadow */
+  box-shadow: 0px 0px 6px #000000;
+  border-radius: 10px;
+}
