@@ -19,13 +19,13 @@ export default class Input extends React.Component {
 
     return (
       <label
-        className={cx("input mb-2 cursor-pointer", {
+        className={cx("input cursor-pointer", {
           "is-focused": isFocused,
           "is-empty": isEmpty
         })}
       >
         <div className="input-block flex-row justify-between">
-          <div className="text-block flex-column  w-100">
+          <div className="text-block flex-column  w-100 px-2">
             <div className="label-text">{label}</div>
 
             <input
@@ -39,13 +39,13 @@ export default class Input extends React.Component {
             />
           </div>
           {icon && (
-            <i className="input-icon material-icons flex-row align-center">
+            <i className="input-icon material-icons flex-row align-center mx-2">
               {icon}
             </i>
           )}
         </div>
         <hr className="m-0" />
-        <div className="input-helper flex-row">
+        <div className="input-helper flex-row ml-2">
           <span>{helperText}</span>
         </div>
       </label>

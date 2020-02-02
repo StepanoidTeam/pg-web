@@ -15,12 +15,10 @@
 
 .text-block {
   position: relative;
-  padding: 0px 12px;
   justify-content: center;
 }
 
 .input-icon {
-  padding: 0 12px;
   color: white;
   opacity: var(--opacity-disabled);
 }
