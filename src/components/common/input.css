@@ -1,13 +1,11 @@
 .input {
   /*  */
 
-  --color-focus: #25c139;
+  --color-focus: #f1c857;
   --opacity-disabled: 0.6;
 }
 
 .input-block {
-  display: flex;
-
   width: 280px;
   height: 56px;
 
@@ -21,6 +19,12 @@
   justify-content: center;
 }
 
+.input-icon {
+  padding: 0 12px;
+  color: white;
+  opacity: var(--opacity-disabled);
+}
+
 .input hr {
   border: none;
   height: 2px;
@@ -30,7 +34,7 @@
 .label-text {
   position: absolute;
   font-size: 12px;
-  line-height: 20px;
+  line-height: 16px;
 
   display: flex;
   align-items: flex-end;
@@ -64,7 +68,7 @@
 .input hr,
 .input-helper {
   opacity: var(--opacity-disabled);
-  transition: 100ms ease-in-out all;
+  transition: 150ms ease-in-out all;
 }
 
 .input-helper {
@@ -74,7 +78,7 @@
 .input .label-text {
   transform: translate(0, -100%);
   font-size: 12px;
-  transition: 100ms ease-in-out all;
+  transition: 150ms ease-in-out all;
 }
 
 .input.is-empty:not(.is-focused) .label-text {

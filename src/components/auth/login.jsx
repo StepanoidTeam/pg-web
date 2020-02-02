@@ -20,12 +20,14 @@ export default class Login extends React.Component {
           label="username"
           value={login}
           helperText="username should be strong enough"
+          icon="face"
           onChange={login => this.setState({ login })}
         />
         <Input
           label="password"
           value={password}
           helperText="keep password simple"
+          icon="lock"
           onChange={password => this.setState({ password })}
         />
 

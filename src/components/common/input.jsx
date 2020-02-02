@@ -13,7 +13,7 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const { label, value, helperText, onChange } = this.props;
+    const { label, value, helperText, icon, onChange } = this.props;
     const { isFocused } = this.state;
     const isEmpty = value.length === 0;
 
@@ -24,8 +24,8 @@ export default class Input extends React.Component {
           "is-empty": isEmpty
         })}
       >
-        <div className="input-block">
-          <div className="text-block flex-column">
+        <div className="input-block flex-row justify-between">
+          <div className="text-block flex-column  w-100">
             <div className="label-text">{label}</div>
 
             <input
@@ -38,6 +38,11 @@ export default class Input extends React.Component {
               onBlur={() => this.setState({ isFocused: false })}
             />
           </div>
+          {icon && (
+            <i className="input-icon material-icons flex-row align-center">
+              {icon}
+            </i>
+          )}
         </div>
         <hr className="m-0" />
         <div className="input-helper flex-row">
