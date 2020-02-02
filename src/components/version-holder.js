@@ -1,6 +1,8 @@
 import React from "react";
 import { $apiVersion } from "../services/version.service";
 
+import "./version-holder.css";
+
 export default class VersionHolder extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ export default class VersionHolder extends React.Component {
     const { version, hasError, isLoading } = this.state;
 
     return (
-      <div style={{ color: "white" }}>
+      <div className="version-holder">
         {isLoading && <span>loading...</span>}
         {!isLoading && version && <span>api ver: {version}</span>}
 
