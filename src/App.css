@@ -22,7 +22,7 @@
   pointer-events: none;
 }
 
-.app-logo {
+.is-pulse {
   animation: pulse infinite 1s ease-in-out alternate;
 }
 

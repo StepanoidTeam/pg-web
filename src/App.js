@@ -15,7 +15,11 @@ export default function App() {
 
   return (
     <div className={cx("app", { "is-online": isOnline })}>
-      <img src={logo} className="app-logo" alt="logo" />
+      <img
+        src={logo}
+        className={cx("app-logo", { "is-pulse": !isOnline })}
+        alt="logo"
+      />
 
       <VersionHolder />
     </div>
