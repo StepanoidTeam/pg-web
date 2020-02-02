@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import cx from "classnames";
 
 import logo from "./assets/pg-icon.svg";
-import "./App.css";
 import VersionHolder from "./components/version-holder";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import { $apiVersion } from "./services/version.service";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
+import { AuthRoute } from "./components/auth/auth-route";
+
+import "./App.css";
 
 export default function App() {
   const [isOnline, setOnline] = useState(false);
 
   useEffect(() => {
-    $apiVersion.then(() => setOnline(true));
-  });
+    $apiVersion.then(() => setOnline(true)).then(() => {});
+  }, []);
 
   return (
     <Router>
@@ -33,6 +35,9 @@ export default function App() {
             <li>
               <Link to="/">Dashboard</Link>
             </li>
+            <li>
+              <Link to="/rooms">rooms</Link>
+            </li>
           </ul>
 
           {/*
@@ -49,6 +54,7 @@ export default function App() {
             <Route path="/register">
               <Register />
             </Route>
+            <AuthRoute path="/rooms">rooms here</AuthRoute>
             <Route path="/">
               <img
                 src={logo}
