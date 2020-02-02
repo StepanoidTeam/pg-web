@@ -11,6 +11,11 @@ body {
     sans-serif;
 }
 
+a,
+a:visited {
+  color: #72d8ff;
+}
+
 .h-100 {
   height: 100%;
 }
