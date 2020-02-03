@@ -1,35 +1,35 @@
 .input {
-  /*  */
-
+  --color-default: white;
+  --color-blur: rgba(255, 255, 255, 0.6);
   --color-focus: #f1c857;
-  --opacity-disabled: 0.6;
+  --color-error: #ff4f4f;
+
+  width: 280px;
 }
 
-.input-block {
-  width: 280px;
+.input-body {
   height: 56px;
 
   background: rgba(0, 0, 0, 0.2);
   border-radius: 5px 5px 0px 0px;
 }
 
-.text-block {
-  position: relative;
-  justify-content: center;
+.input-icon {
+  color: var(--color-blur);
 }
 
-.input-icon {
-  color: white;
-  opacity: var(--opacity-disabled);
+.error-icon {
+  color: var(--color-error);
 }
 
 .input hr {
   border: none;
   height: 2px;
-  background-color: white;
+
+  background-color: var(--color-blur);
 }
 
-.label-text {
+.input-label {
   position: absolute;
   font-size: 12px;
   line-height: 16px;
@@ -38,13 +38,12 @@
   align-items: flex-end;
   text-transform: capitalize;
 
-  color: white;
-  opacity: var(--opacity-disabled);
+  color: var(--color-default);
 }
 
 .input-value {
   font-size: 16px;
-  color: white;
+  color: var(--color-default);
   border: none;
   background: none;
   outline: none;
@@ -52,45 +51,57 @@
   height: 20px;
 }
 
-.input-helper {
+.input-footer {
   height: 20px;
   font-size: 12px;
-  color: white;
+  min-width: 0;
+}
+
+.helper-text {
+  color: var(--color-blur);
+}
+
+.error-text {
+  color: var(--color-error);
 }
 
 /* BLUR */
-.input .label-text {
-  opacity: var(--opacity-disabled);
+.input .input-label {
+  color: var(--color-blur);
 }
 
 .input hr,
-.input-helper {
-  opacity: var(--opacity-disabled);
+.input-footer {
   transition: 150ms ease-in-out all;
 }
 
-.input-helper {
-}
-
 /* EMPTY */
-.input .label-text {
+.input .input-label {
   transform: translate(0, -100%);
   font-size: 12px;
   transition: 150ms ease-in-out all;
 }
 
-.input.is-empty:not(.is-focused) .label-text {
+.input.is-empty:not(.is-focused) .input-label {
   transform: translate(0, 0);
   font-size: 16px;
 }
 /* FOCUS */
+
 .input.is-focused hr {
   background-color: var(--color-focus);
-  opacity: 1;
 }
 
-.input.is-focused .label-text {
+.input.is-focused .input-label {
   color: var(--color-focus);
+}
 
-  opacity: 1;
+/* ERROR */
+
+.input.has-error .input-label {
+  color: var(--color-error);
+}
+
+.input.has-error hr {
+  background-color: var(--color-error);
 }

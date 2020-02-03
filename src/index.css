@@ -28,6 +28,16 @@ a:visited {
   cursor: pointer;
 }
 
+.position-relative {
+  position: relative;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .form {
   display: flex;
   flex-direction: column;
