@@ -39,6 +39,25 @@ export function logIn({ username, password }) {
     });
 }
 
+export function register({ username, password }) {
+  return apiRequest("auth/register", {
+    // todo(vmyshko): make common
+    headers: {
+      "Content-type": "application/json"
+    },
+    method: "POST",
+    body: JSON.stringify({ username, password })
+  })
+    .then(data => {
+      storeUserAuth(data);
+
+      return data;
+    })
+    .catch(error => {
+      throw error;
+    });
+}
+
 function getStatus() {
   const { AuthToken } = authState;
   return apiRequest("auth/status", {
