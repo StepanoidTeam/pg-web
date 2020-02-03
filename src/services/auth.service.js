@@ -58,7 +58,7 @@ export function register({ username, password }) {
     });
 }
 
-function getStatus() {
+export function getStatus() {
   const { AuthToken } = authState;
   return apiRequest("auth/status", {
     // todo(vmyshko): make common

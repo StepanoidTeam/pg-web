@@ -7,11 +7,12 @@ import {
 } from "react-router-dom";
 import cx from "classnames";
 
-import VersionHolder from "./components/version-holder";
 import { $apiVersion } from "./services/version.service";
+import { AuthRoute } from "./components/auth/auth-route";
+import VersionHolder from "./components/version-holder";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
-import { AuthRoute } from "./components/auth/auth-route";
+import Status from "./components/auth/status";
 
 import "./App.css";
 
@@ -26,6 +27,8 @@ export default function App() {
     <Router>
       <div className={cx("app", { "is-online": isOnline })}>
         <VersionHolder />
+
+        <Status />
 
         <Switch>
           <Route exact path="/login">
