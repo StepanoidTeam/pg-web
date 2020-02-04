@@ -3,8 +3,10 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 
 import Input from "../common/input";
 import { register } from "../../services/auth.service";
+import { useGlobal } from "../../use-global";
 
 export default function Register() {
+  const [{}, { setUserData }] = useGlobal();
   const [username, setUsername] = useState("jailbot007");
   const [password, setPassword] = useState("kek123");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -16,6 +18,7 @@ export default function Register() {
   const onRegister = () => {
     register({ username, password })
       .then(data => {
+        setUserData(data);
         console.log("register ok:", data);
         history.replace(from);
       })

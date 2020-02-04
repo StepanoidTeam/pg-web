@@ -3,23 +3,6 @@ import { apiRequest } from "./api-request";
 //helper
 //const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-export const authState = {
-  AuthToken: null,
-  isAuthenticated: false
-};
-
-function storeUserAuth({ AuthToken }) {
-  authState.AuthToken = AuthToken;
-  authState.isAuthenticated = true;
-  document.cookie = `AuthToken=${AuthToken}`;
-}
-
-function clearUserAuth() {
-  authState.AuthToken = null;
-  authState.isAuthenticated = false;
-  document.cookie = `AuthToken=`;
-}
-
 export function logIn({ username, password }) {
   return apiRequest("auth/login", {
     // todo(vmyshko): make common
@@ -28,15 +11,7 @@ export function logIn({ username, password }) {
     },
     method: "POST",
     body: JSON.stringify({ username, password })
-  })
-    .then(data => {
-      storeUserAuth(data);
-
-      return data;
-    })
-    .catch(error => {
-      throw error;
-    });
+  });
 }
 
 export function register({ username, password }) {
@@ -47,19 +22,10 @@ export function register({ username, password }) {
     },
     method: "POST",
     body: JSON.stringify({ username, password })
-  })
-    .then(data => {
-      storeUserAuth(data);
-
-      return data;
-    })
-    .catch(error => {
-      throw error;
-    });
+  });
 }
 
-export function getStatus() {
-  const { AuthToken } = authState;
+export function getStatus(AuthToken) {
   return apiRequest("auth/status", {
     // todo(vmyshko): make common
     headers: {

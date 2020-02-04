@@ -3,8 +3,10 @@ import { useHistory, useLocation, Link } from "react-router-dom";
 
 import Input from "../common/input";
 import { logIn } from "../../services/auth.service";
+import { useGlobal } from "../../use-global";
 
 export default function Login() {
+  const [{}, { setUserData }] = useGlobal();
   const [username, setUsername] = useState("kekster2000");
   const [password, setPassword] = useState("qwerty123");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -16,6 +18,7 @@ export default function Login() {
   const onLogIn = () => {
     logIn({ username, password })
       .then(data => {
+        setUserData(data);
         console.log("login ok", data);
         history.replace(from);
       })

@@ -1,26 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import React, { useEffect } from "react";
 
 import { getStatus } from "../../services/auth.service";
 
 import "./status.css";
+import { useGlobal } from "../../use-global";
 
 export default function Status() {
-  const [statusText, setStatusText] = useState("loading...");
+  const [
+    { AuthToken, counter, isAuthenticated, user },
+    { addToCounter, setUserData, clearUserData }
+  ] = useGlobal();
 
   useEffect(() => {
-    console.log("status hook");
-    getStatus()
-      .then(data => {
-        console.log(data);
+    getStatus(AuthToken)
+      .then(setUserData)
+      .catch(clearUserData);
+  }, [AuthToken]);
 
-        setStatusText("logged");
-      })
-      .catch(data => {
-        console.log(data);
-        setStatusText("unauthorized");
-      });
-  }, []);
+  console.log(isAuthenticated, user);
 
-  return <div className="status">{statusText}</div>;
+  return (
+    <div className="status flex-column align-end">
+      {isAuthenticated && (
+        <button className="button px-3" onClick={clearUserData}>
+          log out
+        </button>
+      )}
+      {isAuthenticated && <span>{user.Name}</span>}
+      <span>{AuthToken}</span>
+
+      {/* //debug */}
+      <button className="button px-3" onClick={() => addToCounter(1)}>
+        +{counter} to global
+      </button>
+    </div>
+  );
 }

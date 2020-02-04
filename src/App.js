@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,12 +15,13 @@ import Register from "./components/auth/register";
 import Status from "./components/auth/status";
 
 import "./App.css";
+import { useGlobal } from "./use-global";
 
 export default function App() {
-  const [isOnline, setOnline] = useState(false);
+  const [{ isOnline }, { setOnline }] = useGlobal();
 
   useEffect(() => {
-    $apiVersion.then(() => setOnline(true));
+    $apiVersion.then(data => setOnline(true));
   }, []);
 
   return (
