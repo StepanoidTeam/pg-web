@@ -1,7 +1,11 @@
 :root {
-  --num0: 0;
-  --num1: 5px;
-  --num2: 10px;
+  --num-step: 5px;
+  --num0: calc(var(--num-step) * 0);
+  --num1: calc(var(--num-step) * 1);
+  --num2: calc(var(--num-step) * 2);
+  --num3: calc(var(--num-step) * 3);
+  --num4: calc(var(--num-step) * 4);
+  --num5: calc(var(--num-step) * 5);
 }
 /* PADDING */
 .p-0 {
