@@ -10,7 +10,7 @@ export default class CookieService {
   }
 
   static get(key) {
-    const cookies = document.cookie.split(";").map(val => val.split("="));
+    const cookies = document.cookie.split("; ").map(val => val.split("="));
 
     const [, value] = cookies.find(([ckey, value]) => ckey === key) || [, null];
 
@@ -23,7 +23,7 @@ export default class CookieService {
   }
 
   static clear() {
-    const cookies = document.cookie.split(";").map(val => val.split("="));
+    const cookies = document.cookie.split("; ").map(val => val.split("="));
 
     cookies.forEach(([key]) => CookieService.delete(key));
   }
