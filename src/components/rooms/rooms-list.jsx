@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useGlobal } from "../../use-global";
 import { getRoomList } from "../../services/room.service";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import "./rooms.css";
 
@@ -13,11 +13,12 @@ export default function RoomList() {
   const [rooms, setRooms] = useState([]);
 
   const onRoomCreate = () => {
-    console.log("not impl");
+    history.push(`/rooms/new`);
   };
 
   const onRoomJoin = id => {
-    history.push(`/rooms/${id}`);
+    // todo(vmyshko): get rid of # in game object ids (izya)
+    history.push(`/rooms/${encodeURIComponent(id)}`);
   };
 
   useEffect(() => {
