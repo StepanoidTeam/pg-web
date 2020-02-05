@@ -47,7 +47,7 @@ export default function App() {
           {/* GAME */}
           {/* // todo(vmyshko): add intermediate page that would define where to redirect user */}
           <Route path="/">
-            <Redirect to={isAuthenticated ? "/rooms" : "/login"} />
+            <Redirect to="/rooms" />
           </Route>
         </Switch>
       </div>
