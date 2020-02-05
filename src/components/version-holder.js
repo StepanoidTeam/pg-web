@@ -3,14 +3,15 @@ import { $apiVersion } from "../services/version.service";
 
 import "./version-holder.css";
 
+const { version: webVersion } = require("../../package.json");
 export default class VersionHolder extends React.Component {
   constructor(props) {
     super(props);
 
     $apiVersion
-      .then(version => {
-        console.log(version);
-        this.setState({ version });
+      .then(apiVersion => {
+        console.log(apiVersion);
+        this.setState({ apiVersion });
       })
       .catch(err => {
         console.log("err", err);
@@ -23,17 +24,19 @@ export default class VersionHolder extends React.Component {
     this.state = {
       isLoading: true,
       hasError: null,
-      version: null
+      apiVersion: null,
+      webVersion
     };
   }
 
   render() {
-    const { version, hasError, isLoading } = this.state;
+    const { apiVersion, hasError, isLoading } = this.state;
 
     return (
-      <div className="version-holder">
+      <div className="version-holder flex-column m-1">
+        {<span>web: {webVersion}</span>}
         {isLoading && <span>loading...</span>}
-        {!isLoading && version && <span>api ver: {version}</span>}
+        {!isLoading && apiVersion && <span>api: {apiVersion}</span>}
 
         {hasError ? <span>Has error: {JSON.stringify(hasError)}</span> : null}
       </div>

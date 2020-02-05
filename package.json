@@ -3,6 +3,14 @@
   "homepage": "https://stepanoidteam.github.io/pg-web",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "deploy": "gh-pages -d build -m deployment",
+    "predeploy": "npm version patch -f && npm run build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -14,14 +22,6 @@
     "react-scripts": "3.3.0",
     "source-map-explorer": "^2.2.2",
     "use-global-hook": "^0.1.12"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app",
