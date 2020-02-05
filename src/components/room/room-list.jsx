@@ -7,7 +7,7 @@ import { useGlobal } from "../../use-global";
 import { getRoomList } from "../../services/room.service";
 
 export default function RoomList() {
-  const [{ AuthToken }, {}] = useGlobal();
+  const [{ authToken }, {}] = useGlobal();
 
   const [rooms, setRooms] = useState([]);
 
@@ -20,7 +20,7 @@ export default function RoomList() {
   const onRoomJoin = () => {};
 
   useEffect(() => {
-    getRoomList(AuthToken).then(rooms => {
+    getRoomList(authToken).then(rooms => {
       setRooms(rooms);
     });
   }, []);

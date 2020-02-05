@@ -6,7 +6,7 @@ import CookieService from "./services/cookie.service";
 const initialState = {
   isOnline: false,
   //todo: get token from cookie?
-  AuthToken: CookieService.get("authToken"),
+  authToken: CookieService.get("authToken"),
   isAuthenticated: false,
   user: null,
   counter: 0
@@ -24,17 +24,18 @@ const actions = {
     });
   },
   //user-data
-  setUserData(store, { AuthToken, Id, Name }) {
+  setUserData(store, { AuthToken: authToken, Id: id, Name: name }) {
     store.setState({
-      AuthToken,
-      user: { Id, Name },
+      authToken,
+      user: { id, name },
       isAuthenticated: true
     });
-    CookieService.set("authToken", AuthToken);
+
+    CookieService.set("authToken", authToken);
   },
   clearUserData(store) {
     store.setState({
-      AuthToken: null,
+      authToken: null,
       user: null,
       isAuthenticated: false
     });

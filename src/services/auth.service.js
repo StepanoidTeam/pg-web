@@ -22,13 +22,13 @@ export function register({ username, password }) {
   });
 }
 
-export function getStatus(AuthToken) {
+export function getStatus(authToken) {
   return (
     apiRequest("auth/status", {
       // todo(vmyshko): make common
       headers: {
         "Content-type": "application/json",
-        authToken: AuthToken
+        authToken
       },
       method: "POST",
       body: JSON.stringify({

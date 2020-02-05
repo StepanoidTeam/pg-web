@@ -7,13 +7,14 @@ import { useGlobal } from "../../use-global";
 
 export default function Status() {
   const [
-    { AuthToken, isAuthenticated, user },
+    { authToken, isAuthenticated, user },
     { setUserData, clearUserData }
   ] = useGlobal();
 
   useEffect(() => {
-    AuthToken &&
-      getStatus(AuthToken)
+    authToken &&
+      !isAuthenticated &&
+      getStatus(authToken)
         .then(setUserData)
         .catch(clearUserData);
   }, []);
@@ -22,8 +23,8 @@ export default function Status() {
     <div className="status flex-column align-end p-1">
       {isAuthenticated ? (
         <div className="flex-row align-center">
-          <span>{user.Name}</span>
-          <span style={{ color: "black" }}>{user.Id}</span>
+          <span>{user.name}</span>
+          <span style={{ color: "black" }}>{user.id}</span>
           <button
             className="button flex-row align-center px-3"
             onClick={clearUserData}
