@@ -16,9 +16,10 @@ import Status from "./components/auth/status";
 
 import "./App.css";
 import { useGlobal } from "./use-global";
+import { AnonRoute } from "./components/auth/anon-route";
 
 export default function App() {
-  const [{ isOnline }, { setOnline }] = useGlobal();
+  const [{ isOnline, isAuthenticated }, { setOnline }] = useGlobal();
 
   useEffect(() => {
     $apiVersion.then(data => setOnline(true));
@@ -28,19 +29,22 @@ export default function App() {
     <Router>
       <div className={cx("app", { "is-online": isOnline })}>
         <VersionHolder />
-
         <Status />
 
         <Switch>
-          <Route exact path="/login">
+          {/* AUTH */}
+          <AnonRoute path="/login">
             <Login />
-          </Route>
-          <Route path="/register">
+          </AnonRoute>
+          <AnonRoute path="/register">
             <Register />
-          </Route>
+          </AnonRoute>
+          {/* ROOMS */}
           <AuthRoute path="/rooms">rooms here</AuthRoute>
+          {/* GAME */}
+          {/* // todo(vmyshko): add intermediate page that would define where to redirect user */}
           <Route path="/">
-            <Redirect to="/rooms" />
+            <Redirect to={isAuthenticated ? "/rooms" : "/login"} />
           </Route>
         </Switch>
       </div>
