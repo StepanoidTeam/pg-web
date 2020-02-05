@@ -1,5 +1,6 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+@import "./reset.css";
 @import "./flex.css";
 @import "./box-model.css";
 @import "./components/common/button.css";
