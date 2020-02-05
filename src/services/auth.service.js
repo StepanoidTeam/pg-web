@@ -26,18 +26,24 @@ export function register({ username, password }) {
 }
 
 export function getStatus(AuthToken) {
-  return apiRequest("auth/status", {
-    // todo(vmyshko): make common
-    headers: {
-      "Content-type": "application/json"
-    },
-    method: "POST",
-    body: JSON.stringify({ AuthToken })
-  })
-    .then(data => {
-      return data;
+  return (
+    apiRequest("auth/status", {
+      // todo(vmyshko): make common
+      headers: {
+        "Content-type": "application/json",
+        authToken: AuthToken
+      },
+      method: "POST",
+      body: JSON.stringify({
+        gameRoomId: true,
+        lastActivityTime: true,
+        isOnline: true,
+        authToken: true,
+        id: true,
+        name: true
+      })
     })
-    .catch(error => {
-      throw error;
-    });
+      // todo(vmyshko): izya to fix this data.data
+      .then(data => data.data)
+  );
 }
