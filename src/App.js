@@ -17,7 +17,7 @@ import Status from "./components/auth/status";
 import "./App.css";
 import { useGlobal } from "./use-global";
 import { AnonRoute } from "./components/auth/anon-route";
-import RoomList from "./components/rooms/rooms";
+import RoomsRouter from "./components/rooms/rooms-router";
 
 export default function App() {
   const [{ isOnline, isAuthenticated }, { setOnline }] = useGlobal();
@@ -42,7 +42,7 @@ export default function App() {
           </AnonRoute>
           {/* ROOMS */}
           <AuthRoute path="/rooms">
-            <RoomList />
+            <RoomsRouter />
           </AuthRoute>
           {/* GAME */}
           {/* // todo(vmyshko): add intermediate page that would define where to redirect user */}

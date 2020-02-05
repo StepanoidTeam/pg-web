@@ -23,8 +23,11 @@ export default function Status() {
     <div className="status flex-column align-end p-1">
       {isAuthenticated ? (
         <div className="flex-row align-center">
-          <span>{user.name}</span>
-          <span style={{ color: "black" }}>{user.id}</span>
+          <div className="flex-row align-center mx-2">
+            <i className="material-icons px-1">face</i>
+            <span>{user.name}</span>
+          </div>
+
           <button
             className="button flex-row align-center px-3"
             onClick={clearUserData}
