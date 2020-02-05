@@ -1,8 +1,5 @@
 import { apiRequest } from "./api-request";
 
-//helper
-//const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 export function logIn({ username, password }) {
   return apiRequest("auth/login", {
     // todo(vmyshko): make common

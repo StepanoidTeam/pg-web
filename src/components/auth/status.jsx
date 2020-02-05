@@ -24,8 +24,12 @@ export default function Status() {
         <div className="flex-row align-center">
           <span>{user.Name}</span>
           <span style={{ color: "black" }}>{user.Id}</span>
-          <button className="button px-3" onClick={clearUserData}>
-            log out
+          <button
+            className="button flex-row align-center px-3"
+            onClick={clearUserData}
+          >
+            <span> log out</span>
+            <i className="material-icons">exit_to_app</i>
           </button>
         </div>
       ) : (
