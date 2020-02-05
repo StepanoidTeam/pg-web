@@ -17,7 +17,7 @@ import Status from "./components/auth/status";
 import "./App.css";
 import { useGlobal } from "./use-global";
 import { AnonRoute } from "./components/auth/anon-route";
-import RoomList from "./components/room/rooms";
+import RoomList from "./components/rooms/rooms";
 
 export default function App() {
   const [{ isOnline, isAuthenticated }, { setOnline }] = useGlobal();
