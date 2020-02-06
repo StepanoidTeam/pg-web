@@ -1,0 +1,39 @@
+.city-icon {
+  display: inline-block;
+  --size: 32px;
+  width: var(--size);
+  height: var(--size);
+  background-image: url("./../../assets/city-icons_64.png");
+  background-size: auto 32px;
+}
+
+.city-icon.color-0 {
+  background-position: calc(32px * 0) 0px;
+}
+.city-icon.color-1 {
+  background-position: calc(32px * 1) 0px;
+}
+.city-icon.color-2 {
+  background-position: calc(32px * 2) 0px;
+}
+.city-icon.color-3 {
+  background-position: calc(32px * 3) 0px;
+}
+.city-icon.color-4 {
+  background-position: calc(32px * 4) 0px;
+}
+.city-icon.color-5 {
+  background-position: calc(32px * 5) 0px;
+}
+.city-icon.color-6 {
+  background-position: calc(32px * 6) 0px;
+}
+.city-icon.color-7 {
+  background-position: calc(32px * 7) 0px;
+}
+.city-icon.color-8 {
+  background-position: calc(32px * 8) 0px;
+}
+.city-icon.color-9 {
+  background-position: calc(32px * 9) 0px;
+}
