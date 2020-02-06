@@ -11,3 +11,27 @@ export function getGameStatus(authToken) {
     //body: JSON.stringify({ roomId })
   });
 }
+
+export function changeColor(authToken, userId) {
+  return apiRequest("game/changeColor", {
+    // todo(vmyshko): make common
+    headers: {
+      "Content-type": "application/json",
+      authToken
+    },
+    method: "POST",
+    body: JSON.stringify({ userId })
+  });
+}
+
+export function toggleReady(authToken, state = true) {
+  return apiRequest("game/toggleReady", {
+    // todo(vmyshko): make common
+    headers: {
+      "Content-type": "application/json",
+      authToken
+    },
+    method: "POST",
+    body: JSON.stringify({ state })
+  });
+}

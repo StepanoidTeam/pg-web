@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getGameStatus } from "../../services/game.service";
-import { useGlobal } from "../../use-global";
+import { useParams, useHistory } from "react-router-dom";
 
-const colors = [
-  "red",
-  "green",
-  "yellow",
-  "blue"
-  //...
-];
+import {
+  getGameStatus,
+  changeColor,
+  toggleReady
+} from "../../services/game.service";
+import { useGlobal } from "../../use-global";
+import { leaveRoom } from "../../services/room.service";
 
 export default function CurrentRoom() {
   const { _roomId } = useParams();
+  const history = useHistory();
   const roomId = decodeURIComponent(_roomId);
 
   const [{ authToken, rooms, game }, { setPlayerBoards }] = useGlobal();
@@ -28,12 +27,29 @@ export default function CurrentRoom() {
 
   if (!currentRoom) return null;
 
-  const onLeave = () => {};
-  const onChangeColor = () => {};
-  const onToggleReady = () => {};
+  const onLeave = () => {
+    leaveRoom(authToken).then(() => {
+      history.push("/rooms");
+    });
+  };
+
+  const onChangeColor = userId => {
+    //change for yourself or for another if admin?
+    //seems it always change mine, no matter what userid was sent
+    changeColor(authToken, userId).then(() => {
+      //refresh
+    });
+  };
+  const onToggleReady = userId => {
+    //todo: just check for current
+    //todo:save current state and toggle on/off
+    toggleReady(authToken, true).then(() => {
+      //refresh
+    });
+  };
   const onGameStart = () => {};
   const onAddBot = () => {};
-  const onKick = () => {};
+  const onKick = playerId => {};
 
   return (
     <div className="form flex-column p-2">
@@ -52,21 +68,40 @@ export default function CurrentRoom() {
             className="list-item flex-row align-center p-2 m-1"
             key={board.Id}
           >
-            <div className="player-name fill-left">
-              <span onClick={onChangeColor}>{board.Color}</span>
-              <span>{board.Name}</span>
+            <div className="player-name flex-row fill-left align-center">
+              <i
+                className={`city-icon color-${board.Color} cursor-pointer`}
+                onClick={() => onChangeColor(board.Id)}
+              />
+              <span className="px-2">{board.Name}</span>
             </div>
-            <i className="material-icons" onClick={onToggleReady}>
+
+            <i
+              className="material-icons cursor-pointer mx-2"
+              onClick={() => onKick(board.Id)}
+            >
+              delete
+            </i>
+            <i
+              className="material-icons cursor-pointer mx-1"
+              onClick={() => onToggleReady(board.Id)}
+            >
               {board.IsDone ? "thumb_up" : "thumb_down"}
             </i>
           </li>
         ))}
       </ul>
       <div className="flex-row align-center">
-        <button className="button mx-1">leave</button>
+        <button className="button mx-1" onClick={onLeave}>
+          leave
+        </button>
         <div className="fill-left"></div>
-        <button className="button mx-1">add bot</button>
-        <button className="button mx-1">start game</button>
+        <button className="button mx-1" onClick={onAddBot}>
+          add bot
+        </button>
+        <button className="button mx-1" onClick={onGameStart}>
+          start game
+        </button>
       </div>
     </div>
   );
