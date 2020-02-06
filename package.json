@@ -1,7 +1,7 @@
 {
   "name": "pg-web",
   "homepage": "https://stepanoidteam.github.io/pg-web",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
