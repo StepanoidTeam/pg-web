@@ -4,8 +4,10 @@ import { getStatus } from "../../services/auth.service";
 
 import "./status.css";
 import { useGlobal } from "../../use-global";
+import { useHistory } from "react-router-dom";
 
 export default function Status() {
+  const history = useHistory();
   const [
     { authToken, isAuthenticated, user },
     { setUserData, clearUserData }
@@ -15,7 +17,14 @@ export default function Status() {
     authToken &&
       !isAuthenticated &&
       getStatus(authToken)
-        .then(setUserData)
+        .then(data => {
+          setUserData(data);
+
+          //if user in room - redirect
+          if (data.GameRoomId) {
+            history.push(`rooms/${encodeURIComponent(data.GameRoomId)}`);
+          }
+        })
         .catch(clearUserData);
   }, []);
 
