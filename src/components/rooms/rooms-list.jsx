@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 import { useGlobal } from "../../use-global";
-import { getRoomList } from "../../services/room.service";
+import { getRoomList, joinRoom } from "../../services/room.service";
 import { useHistory } from "react-router-dom";
 
 import "./rooms.css";
 
 export default function RoomList() {
   const history = useHistory();
-  const [{ authToken }, {}] = useGlobal();
-
-  const [rooms, setRooms] = useState([]);
+  const [{ authToken, rooms }, { setRooms }] = useGlobal();
 
   const onRoomCreate = () => {
     history.push(`/rooms/new`);
   };
 
-  const onRoomJoin = id => {
-    // todo(vmyshko): get rid of # in game object ids (izya)
-    history.push(`/rooms/${encodeURIComponent(id)}`);
+  const onRoomJoin = roomId => {
+    joinRoom(authToken, roomId).then(data => {
+      // todo(vmyshko): get rid of # in game object ids (izya)
+      history.push(`/rooms/${encodeURIComponent(roomId)}`);
+    });
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function RoomList() {
               className="list-item flex-row align-center p-2 m-1"
               key={room.Id}
             >
-              <span className="room-name">{room.Name}</span>
+              <span className="room-name fill-left">{room.Name}</span>
 
               <div className="flex-row align-center">
                 <i className="material-icons">group</i>
