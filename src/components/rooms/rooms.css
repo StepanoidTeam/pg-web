@@ -1,29 +1,15 @@
 .rooms.form {
   max-height: 80vh;
   overflow: hidden;
-  color: white;
 }
 
+.player-list,
 .room-list {
   width: 320px;
-
-  overflow-y: auto;
-  border: 2px solid #00000050;
 }
 
-.list {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-}
-
-.list-item {
-  box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid #000000;
-  border-radius: 2px;
-}
-
-.room-name {
+/* todo(vmyshko): provide better naming, move to flex.css */
+.fill-left {
   flex: 1 1 auto;
   text-align: left;
 }
