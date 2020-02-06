@@ -9,7 +9,13 @@ const initialState = {
   authToken: CookieService.get("authToken"),
   isAuthenticated: false,
   user: null,
-  counter: 0
+  counter: 0,
+  rooms: [],
+  //game
+  game: {
+    GameRoomId: null,
+    playerBoards: []
+  }
 };
 
 const actions = {
@@ -24,11 +30,15 @@ const actions = {
     });
   },
   //user-data
-  setUserData(store, { AuthToken: authToken, Id: id, Name: name }) {
+  setUserData(store, { AuthToken: authToken, Id: id, Name: name, GameRoomId }) {
     store.setState({
       authToken,
       user: { id, name },
-      isAuthenticated: true
+      isAuthenticated: true,
+      game: {
+        ...store.state.game,
+        GameRoomId
+      }
     });
 
     CookieService.set("authToken", authToken);
@@ -40,8 +50,29 @@ const actions = {
       isAuthenticated: false
     });
     CookieService.delete("authToken");
+  },
+  //rooms
+  setRooms(store, rooms) {
+    store.setState({
+      rooms
+    });
+  },
+  // {
+  //   "EntityType": "GameRoom",
+  //   "Id": "r#789da1e8",
+  //   "Name": "Austria 2017",
+  //   "IsInGame": false,
+  //   "UserCount": 2
+  // },
+  //game
+  setPlayerBoards(store, playerBoards) {
+    store.setState({
+      game: {
+        ...store.state.game,
+        playerBoards
+      }
+    });
   }
-  //
 };
 
 export const useGlobal = globalHook(React, initialState, actions);
