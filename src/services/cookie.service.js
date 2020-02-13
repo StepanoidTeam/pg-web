@@ -3,16 +3,19 @@ export default class CookieService {
 
   static set(key, value, expireDays = 1) {
     const expirationDate = new Date(
-      Date.now() + expireDays * CookieService.msDay
+      Date.now() + expireDays * CookieService.msDay,
     );
 
     document.cookie = `${key}=${value};expires=${expirationDate.toUTCString()};path=/`;
   }
 
   static get(key) {
-    const cookies = document.cookie.split("; ").map(val => val.split("="));
+    const cookies = document.cookie.split('; ').map(val => val.split('='));
 
-    const [, value] = cookies.find(([ckey, value]) => ckey === key) || [, null];
+    const [, value] = cookies.find(([ckey, value]) => ckey === key) || [
+      null,
+      null,
+    ];
 
     return value;
   }
@@ -23,7 +26,7 @@ export default class CookieService {
   }
 
   static clear() {
-    const cookies = document.cookie.split("; ").map(val => val.split("="));
+    const cookies = document.cookie.split('; ').map(val => val.split('='));
 
     cookies.forEach(([key]) => CookieService.delete(key));
   }

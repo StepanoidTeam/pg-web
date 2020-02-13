@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useGlobal } from "../../use-global";
-import { getRoomList, joinRoom } from "../../services/room.service";
-import { useHistory } from "react-router-dom";
+import { useGlobal } from '../../use-global';
+import { getRoomList, joinRoom } from '../../services/room.service';
+import { useHistory } from 'react-router-dom';
 
-import "./rooms.css";
+import './rooms.css';
 
 export default function RoomList() {
   const history = useHistory();

@@ -1,13 +1,8 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useRouteMatch
-} from "react-router-dom";
+import React from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
-import RoomsList from "./rooms-list";
-import CurrentRoom from "./current-room";
+import RoomsList from './rooms-list';
+import CurrentRoom from './current-room';
 
 export default function RoomsIndex() {
   const { path } = useRouteMatch();
