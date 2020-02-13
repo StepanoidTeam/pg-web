@@ -1,34 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-} from "react-router-dom";
-import cx from "classnames";
+  Redirect,
+} from 'react-router-dom';
+import cx from 'classnames';
 
-import { $apiVersion } from "./services/version.service";
-import { AuthRoute } from "./components/auth/auth-route";
-import VersionHolder from "./components/version-holder";
-import Login from "./components/auth/login";
-import Register from "./components/auth/register";
-import Status from "./components/auth/status";
+import { AuthRoute } from './components/auth/auth-route';
+import VersionHolder from './components/version-holder';
+import Login from './components/auth/login';
+import Register from './components/auth/register';
+import Status from './components/auth/status';
 
-import "./App.css";
-import { useGlobal } from "./use-global";
-import { AnonRoute } from "./components/auth/anon-route";
-import RoomsRouter from "./components/rooms/rooms-router";
+import { useGlobal } from './use-global';
+import { AnonRoute } from './components/auth/anon-route';
+import RoomsRouter from './components/rooms/rooms-router';
+
+import './App.css';
+import { ws } from './services/web-socket';
 
 export default function App() {
-  const [{ isOnline, isAuthenticated }, { setOnline }] = useGlobal();
+  const [{ isOnline, authToken }, {}] = useGlobal();
 
   useEffect(() => {
-    $apiVersion.then(data => setOnline(true));
-  }, []);
+    if (!isOnline) return;
+
+    ws.connect(authToken);
+  }, [isOnline]);
 
   return (
     <Router>
-      <div className={cx("app", { "is-online": isOnline })}>
+      <div className={cx('app', { 'is-online': isOnline })}>
         <VersionHolder />
         <Status />
 
