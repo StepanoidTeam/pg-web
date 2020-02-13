@@ -5,6 +5,7 @@ import CookieService from "./services/cookie.service";
 
 const initialState = {
   isOnline: false,
+  apiVersion: null,
   //todo: get token from cookie?
   authToken: CookieService.get("authToken"),
   isAuthenticated: false,
@@ -19,9 +20,12 @@ const initialState = {
 };
 
 const actions = {
-  //online
+  //common
   setOnline(store, status = true) {
     store.setState({ isOnline: status });
+  },
+  setApiVersion(store, apiVersion) {
+    store.setState({ apiVersion });
   },
   //debug
   addToCounter(store, value) {
