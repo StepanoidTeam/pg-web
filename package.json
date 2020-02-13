@@ -4,7 +4,7 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "deploy": "gh-pages -d build -m deployment",
     "predeploy": "npm version patch -f && npm run build",
     "build": "react-scripts build",
