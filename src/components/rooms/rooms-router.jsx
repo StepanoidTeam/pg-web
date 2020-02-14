@@ -3,6 +3,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import RoomsList from './rooms-list';
 import CurrentRoom from './current-room';
+import NewRoom from './new-room';
 
 export default function RoomsIndex() {
   const { path } = useRouteMatch();
@@ -13,7 +14,7 @@ export default function RoomsIndex() {
         <RoomsList />
       </Route>
       <Route path={`${path}/new`}>
-        <div className="form">new room here</div>
+        <NewRoom />
       </Route>
       <Route path={`${path}/:_roomId`}>
         <CurrentRoom />
