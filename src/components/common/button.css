@@ -13,3 +13,9 @@
   text-transform: capitalize;
   cursor: pointer;
 }
+
+.button[disabled] {
+  color: #555;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}

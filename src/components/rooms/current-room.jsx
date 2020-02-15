@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-
 import { sortBy } from 'lodash';
 
 import {
@@ -42,10 +41,10 @@ export default function CurrentRoom() {
       //refresh
     });
   };
-  const onToggleReady = userId => {
+  const onToggleReady = (userId, isReady = true) => {
     //todo: just check for current
     //todo:save current state and toggle on/off
-    toggleReady(authToken, true).then(() => {
+    toggleReady(authToken, isReady).then(() => {
       //refresh
     });
   };
@@ -54,6 +53,8 @@ export default function CurrentRoom() {
   const onKick = playerId => {};
 
   const boardsSorted = sortBy(playerBoards, 'Id');
+
+  const allReady = boardsSorted.every(b => b.IsDone);
 
   return (
     <div className="form flex-column p-2">
@@ -88,7 +89,10 @@ export default function CurrentRoom() {
             </i>
             <i
               className="material-icons cursor-pointer mx-1"
-              onClick={() => onToggleReady(board.Id)}
+              style={{
+                color: board.IsDone ? 'gold' : 'gray',
+              }}
+              onClick={() => onToggleReady(board.Id, !board.IsDone)}
             >
               {board.IsDone ? 'thumb_up' : 'thumb_down'}
             </i>
@@ -103,7 +107,11 @@ export default function CurrentRoom() {
         <button className="button mx-1" onClick={onAddBot}>
           add bot
         </button>
-        <button className="button mx-1" onClick={onGameStart}>
+        <button
+          className={'button mx-1'}
+          disabled={!allReady}
+          onClick={onGameStart}
+        >
           start game
         </button>
       </div>
