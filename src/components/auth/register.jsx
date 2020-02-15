@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 
-import Input from "../common/input";
-import { register } from "../../services/auth.service";
-import { useGlobal } from "../../use-global";
+import Input from '../common/input';
+import { register } from '../../services/auth.service';
+import { useGlobal } from '../../use-global';
 
 export default function Register() {
   const [{}, { setUserData }] = useGlobal();
-  const [username, setUsername] = useState("jailbot007");
-  const [password, setPassword] = useState("kek123");
+  const [username, setUsername] = useState('jailbot007');
+  const [password, setPassword] = useState('kek123');
   const [errorMessage, setErrorMessage] = useState(null);
   const history = useHistory();
   const location = useLocation();
 
-  const { from } = location.state || { from: { pathname: "/" } };
+  const { from } = location.state || { from: { pathname: '/' } };
 
   const onRegister = () => {
     register({ username, password })
       .then(data => {
         setUserData(data);
-        console.log("register ok:", data);
+        console.debug('register ok:', data);
         history.replace(from);
       })
       .catch(error => {
-        console.warn("register failed:", error.message);
+        console.warn('register failed:', error.message);
         setErrorMessage(error.message);
       });
   };
