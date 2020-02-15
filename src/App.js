@@ -21,12 +21,13 @@ import './App.css';
 import { ws } from './services/web-socket';
 
 export default function App() {
-  const [{ isOnline, authToken }, {}] = useGlobal();
+  const global = useGlobal();
+  const [{ isOnline }, {}] = global;
 
   useEffect(() => {
     if (!isOnline) return;
 
-    ws.connect(authToken);
+    ws.connect(global);
   }, [isOnline]);
 
   return (
