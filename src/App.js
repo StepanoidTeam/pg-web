@@ -25,7 +25,7 @@ export default function App() {
   const [{ isOnline }, {}] = global;
 
   useEffect(() => {
-    if (!isOnline) return;
+    if (isOnline) return;
 
     ws.connect(global);
   }, [isOnline]);
