@@ -30,7 +30,7 @@ export default function App() {
   }, [isOnline]);
 
   return (
-    <Router>
+    <Router basename="/pg-web">
       <div className={cx('app', { 'is-online': isOnline })}>
         <VersionHolder />
         <Status />
