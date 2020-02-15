@@ -8,14 +8,33 @@
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.7);
   border-radius: 5px;
-  background: #bdb58e;
+  /* todo: extract to var? */
 
+  background-color: #bdb58e;
+  color: var(--color-text-b1);
+  box-shadow: var(--shadow-0);
+
+  font-family: var(--font-main);
   text-transform: capitalize;
   cursor: pointer;
+  outline: none;
+}
+
+.button:focus:not([disabled]) {
+  outline: gold;
+}
+.button:hover:not([disabled]) {
+  background-color: #d4cda4;
+  box-shadow: var(--shadow-1);
+}
+
+.button:active:not([disabled]) {
+  background-color: #9b9473;
+  box-shadow: var(--shadow-0);
 }
 
 .button[disabled] {
-  color: #555;
+  color: inherit;
   cursor: not-allowed;
   filter: grayscale(1);
 }
