@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function NewRoom() {
   return (
     <div className="form flex-column p-2">
-      <h1 className="flex-row m-2">
+      <h1 className="flex-row mx-2">
         <span className="fill-left">create room</span>
       </h1>
 

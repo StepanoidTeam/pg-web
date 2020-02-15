@@ -29,7 +29,7 @@ export default function RoomList() {
 
   return (
     <div className="rooms form flex-column p-2">
-      <h1 className="m-2">rooms</h1>
+      <h1 className="mx-2">rooms</h1>
       <ul className="room-list list flex-column p-1 m-2">
         {rooms
           //[...rooms, ...rooms, ...rooms]

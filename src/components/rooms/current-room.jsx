@@ -58,7 +58,7 @@ export default function CurrentRoom() {
 
   return (
     <div className="form flex-column p-2">
-      <h1 className="flex-row m-2">
+      <h1 className="flex-row mx-2">
         <span className="fill-left">{currentRoom.Name}</span>
 
         <div className="flex-row align-center">
