@@ -99,7 +99,7 @@ const actions = {
       //defaults that izya zajopilsya prislat'
       EntityType: 'PlayerBoard',
       Color: 0,
-      IsDone: false,
+      IsDone: true, // todo(vmyshko): this is shit, server remembers is done for left users
       Money: 0,
     };
 
