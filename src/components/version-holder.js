@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useGlobal } from "../use-global";
-import { getApiVersion } from "../services/version.service";
-import "./version-holder.css";
+import { useGlobal } from '../use-global';
+import { getApiVersion } from '../services/version.service';
+import './version-holder.css';
 
-const { version: webVersion } = require("../../package.json");
+const { version: webVersion } = require('../../package.json');
 
 export default function VersionHolder() {
-  const [{ apiVersion }, { setApiVersion, setOnline }] = useGlobal();
+  const [{ apiVersion }, { setApiVersion }] = useGlobal();
 
   useEffect(() => {
     getApiVersion().then(apiVersion => {
       setApiVersion(apiVersion);
-      setOnline(true);
     });
   }, []);
 
