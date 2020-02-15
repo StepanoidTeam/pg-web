@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+
+import { sortBy } from 'lodash';
 
 import {
   getGameStatus,
   changeColor,
-  toggleReady
-} from "../../services/game.service";
-import { useGlobal } from "../../use-global";
-import { leaveRoom } from "../../services/room.service";
+  toggleReady,
+} from '../../services/game.service';
+import { useGlobal } from '../../use-global';
+import { leaveRoom } from '../../services/room.service';
 
 export default function CurrentRoom() {
   const { _roomId } = useParams();
@@ -29,7 +31,7 @@ export default function CurrentRoom() {
 
   const onLeave = () => {
     leaveRoom(authToken).then(() => {
-      history.push("/rooms");
+      history.push('/rooms');
     });
   };
 
@@ -51,6 +53,8 @@ export default function CurrentRoom() {
   const onAddBot = () => {};
   const onKick = playerId => {};
 
+  const boardsSorted = sortBy(playerBoards, 'Id');
+
   return (
     <div className="form flex-column p-2">
       <h1 className="flex-row m-2">
@@ -63,7 +67,7 @@ export default function CurrentRoom() {
       </h1>
 
       <ul className="player-list list flex-column p-1 m-2">
-        {playerBoards.map(board => (
+        {boardsSorted.map(board => (
           <li
             className="list-item flex-row align-center p-2 m-1"
             key={board.Id}
@@ -86,7 +90,7 @@ export default function CurrentRoom() {
               className="material-icons cursor-pointer mx-1"
               onClick={() => onToggleReady(board.Id)}
             >
-              {board.IsDone ? "thumb_up" : "thumb_down"}
+              {board.IsDone ? 'thumb_up' : 'thumb_down'}
             </i>
           </li>
         ))}
