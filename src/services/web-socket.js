@@ -66,8 +66,10 @@ class PgWebSocket {
           break;
         }
         case 'open': {
-          setOnline(true);
+          this.ws.addEventListener('close', wsOnEvent);
+          this.ws.addEventListener('message', wsOnEvent);
 
+          setOnline(true);
           this.send({
             AuthToken: authToken,
             Type: 'AUTHSTATUS',
@@ -75,6 +77,8 @@ class PgWebSocket {
           break;
         }
         case 'close': {
+          this.ws.removeEventListener('open', wsOnEvent);
+          this.ws.removeEventListener('message', wsOnEvent);
           setOnline(false);
           break;
         }
@@ -86,8 +90,6 @@ class PgWebSocket {
     this.ws = new WebSocket(wsUrl);
 
     this.ws.addEventListener('open', wsOnEvent);
-    this.ws.addEventListener('message', wsOnEvent);
-    this.ws.addEventListener('close', wsOnEvent);
   }
 
   send(data) {
