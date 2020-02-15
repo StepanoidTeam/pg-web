@@ -62,7 +62,7 @@ export default function CurrentRoom() {
 
         <div className="flex-row align-center">
           <i className="material-icons">group</i>
-          <span className="px-1">{currentRoom.UserCount}</span>
+          <span className="px-1">{boardsSorted.length}</span>
         </div>
       </h1>
 
