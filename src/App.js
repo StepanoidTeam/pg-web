@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -30,7 +30,7 @@ export default function App() {
   }, [isOnline]);
 
   return (
-    <Router basename="/pg-web">
+    <Router>
       <div className={cx('app', { 'is-online': isOnline })}>
         <VersionHolder />
         <Status />
