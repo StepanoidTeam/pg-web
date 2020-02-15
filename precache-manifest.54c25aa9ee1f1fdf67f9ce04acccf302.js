@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f87269b21fbd2552e819410b334cd63c",
+    "revision": "cd8193f45baf11bfadc2bb4f7508e821",
     "url": "/pg-web/index.html"
   },
   {
-    "revision": "2c2b9482c1ddede5ad89",
-    "url": "/pg-web/static/css/main.dc4b82f5.chunk.css"
+    "revision": "00f73df8d74796664073",
+    "url": "/pg-web/static/css/main.393a47fc.chunk.css"
   },
   {
-    "revision": "147dfd96a8f3d016cc63",
-    "url": "/pg-web/static/js/2.3c5484e5.chunk.js"
+    "revision": "c7dae2d52bf07c865cb9",
+    "url": "/pg-web/static/js/2.872ff9e6.chunk.js"
   },
   {
-    "revision": "86afaa925e0f432774bf95b19b6933fb",
-    "url": "/pg-web/static/js/2.3c5484e5.chunk.js.LICENSE"
+    "revision": "fb08aec389ff1d0e3b63dd26ad5ac153",
+    "url": "/pg-web/static/js/2.872ff9e6.chunk.js.LICENSE"
   },
   {
-    "revision": "2c2b9482c1ddede5ad89",
-    "url": "/pg-web/static/js/main.414b1c5d.chunk.js"
+    "revision": "00f73df8d74796664073",
+    "url": "/pg-web/static/js/main.62e2cf28.chunk.js"
   },
   {
     "revision": "17da32c55a812f2b138d",
