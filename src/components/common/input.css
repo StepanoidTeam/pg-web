@@ -42,7 +42,6 @@
 }
 
 .input-value {
-  font-family: var(--font-main);
   font-size: 16px;
   color: var(--color-default);
   border: none;

@@ -1,5 +1,8 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
 @import url('https://fonts.googleapis.com/css?family=Walter+Turncoat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Atomic+Age&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Squada+One&display=swap');
 
 @import './reset.css';
 @import './flex.css';
@@ -11,18 +14,20 @@
 
 :root {
   --font-main: 'Walter Turncoat', cursive;
+  --font-number: 'Atomic Age', cursive;
+  --font-caption: 'Squada One', cursive;
 
   --color-text-b0: #000000;
   --color-text-b1: #000000cc;
-  --color-text-b2: #00000070;
+  --color-text-b2: #00000070; /* text/dark */
 
   --shadow-0: 0px 0px 0 0 rgba(0, 0, 0, 0.15);
   --shadow-1: 2px 2px 0 0 rgba(0, 0, 0, 0.15);
   --shadow-2: 4px 4px 0 0 rgba(0, 0, 0, 0.15);
 }
 
-body {
-  margin: 0;
+/* normalize */
+html {
   font-family: var(--font-main);
 }
 
@@ -34,6 +39,25 @@ a,
 a:visited {
   color: #72d8ff;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+
+  /* card/bg */
+  background: #645c51;
+  color: white;
+  /* input/label-bg */
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  /* card/shadow */
+  box-shadow: var(--shadow-2);
+  border-radius: 10px;
+}
+
+/* helpers */
 
 .h-100 {
   height: 100%;
@@ -57,21 +81,10 @@ a:visited {
   text-overflow: ellipsis;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
+.text-stroke {
+  --text-stroke-color: var(--color-text-b0);
 
-  padding: 20px;
-
-  /* width: 320px; */
-
-  /* card/bg */
-  background: #645c51;
-  color: white;
-  /* input/label-bg */
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  /* card/shadow */
-  box-shadow: var(--shadow-2);
-  border-radius: 10px;
+  text-shadow: -1px -1px 0 var(--text-stroke-color),
+    1px -1px 0 var(--text-stroke-color), -1px 1px 0 var(--text-stroke-color),
+    1px 1px 0 var(--text-stroke-color);
 }
