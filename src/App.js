@@ -19,7 +19,7 @@ import RoomsRouter from './components/rooms/rooms-router';
 
 import './App.css';
 import { ws } from './services/web-socket';
-import MapPreview from './components/map-preview';
+import MapPreview from './components/map/map-preview';
 
 export default function App() {
   const global = useGlobal();
@@ -50,9 +50,9 @@ export default function App() {
             <RoomsRouter />
           </AuthRoute>
           {/* maps */}
-          <AuthRoute path="/maps/:mapId">
+          <Route path="/maps/:mapId">
             <MapPreview />
-          </AuthRoute>
+          </Route>
 
           {/* GAME */}
           {/* // todo(vmyshko): add intermediate page that would define where to redirect user */}
