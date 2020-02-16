@@ -8,7 +8,7 @@ import {
   toggleReady,
 } from '../../services/game.service';
 import { useGlobal } from '../../use-global';
-import { leaveRoom } from '../../services/room.service';
+import { leaveRoom, kickPlayer } from '../../services/room.service';
 
 export default function CurrentRoom() {
   const { _roomId } = useParams();
@@ -45,12 +45,16 @@ export default function CurrentRoom() {
     //todo: just check for current
     //todo:save current state and toggle on/off
     toggleReady(authToken, isReady).then(() => {
-      //refresh
+      //refresh?
     });
   };
   const onGameStart = () => {};
   const onAddBot = () => {};
-  const onKick = playerId => {};
+  const onKick = playerId => {
+    kickPlayer(authToken, playerId).then(() => {
+      //refresh?
+    });
+  };
 
   const boardsSorted = sortBy(playerBoards, 'Id');
 
@@ -83,7 +87,7 @@ export default function CurrentRoom() {
 
             <i
               className="material-icons cursor-pointer mx-2"
-              onClick={() => onKick(board.Id)}
+              onClick={() => onKick(board.Name)} // todo(vmyshko): change to id, after api update
             >
               delete
             </i>

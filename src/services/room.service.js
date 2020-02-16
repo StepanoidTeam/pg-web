@@ -37,7 +37,8 @@ export function leaveRoom(authToken) {
 }
 
 export function kickPlayer(authToken, playerId) {
-  return apiRequest('room/kick', {
+  // todo(vmyshko): izya pes, we need common approach here - just body param, not url
+  return apiRequest(`room/kick?username=${playerId}`, {
     // todo(vmyshko): make common
     headers: {
       'Content-type': 'application/json',
