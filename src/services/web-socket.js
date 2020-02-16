@@ -38,6 +38,7 @@ class PgWebSocket {
         setUserJoin(user);
         break;
       }
+      case '/api/room/kick':
       case '/api/room/leave': {
         // todo(vmyshko): same reason same entity - different data. fuckin izya...
         if (!message.Users) return;
