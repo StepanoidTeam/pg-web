@@ -8,8 +8,8 @@ import './map.css';
 import CityCard from './city-card';
 
 import wiresSvg from '../../assets/wires-20.svg';
-// import connectionFromSvg from '../../assets/connection-from.svg';
-// import connectionToSvg from '../../assets/connection-to.svg';
+import connectionFromSvg from '../../assets/connection-from.svg';
+import connectionToSvg from '../../assets/connection-to.svg';
 
 function WiredConnection(props) {
   const { from, to } = props;
@@ -20,24 +20,50 @@ function WiredConnection(props) {
     (Math.atan2(to.CoordY - from.CoordY, to.CoordX - from.CoordX) * 180) /
     Math.PI;
 
-  const offset = { x: 0, y: -10 };
+  const wireOffset = { x: 0, y: -10 };
+  const connectionOffset = { x: -20, y: -16 };
+  const connectionSize = { width: 40, height: 30 };
 
   return (
-    <>
+    <g style={{ filter: 'url(#filter-shadow)' }}>
       <rect
-        x={from.CoordX}
-        y={from.CoordY}
         height="20"
         width={distance}
-        transform={`translate(${offset.x} ${
-          offset.y
-        }) rotate(${angle} ${from.CoordX - offset.x} ${from.CoordY -
-          offset.y})`}
+        x={from.CoordX}
+        y={from.CoordY}
+        viewBox="0 0 100 100"
+        viewTarget="0 0 100 100"
+        transform={`translate(${wireOffset.x} ${
+          wireOffset.y
+        }) rotate(${angle} ${from.CoordX - wireOffset.x} ${from.CoordY -
+          wireOffset.y})`}
         style={{
-          // stroke: '#000000',
           fill: 'url(#wires-pattern)',
-          //filter: 'url(#f1)',
         }}
+      />
+
+      <image
+        x={from.CoordX}
+        y={from.CoordY}
+        width={connectionSize.width}
+        height={connectionSize.height}
+        xlinkHref={connectionFromSvg}
+        transform={`translate(${connectionOffset.x} ${
+          connectionOffset.y
+        }) rotate(${angle} ${from.CoordX - connectionOffset.x} ${from.CoordY -
+          connectionOffset.y})`}
+      />
+
+      <image
+        x={to.CoordX}
+        y={to.CoordY}
+        width={connectionSize.width}
+        height={connectionSize.height}
+        xlinkHref={connectionToSvg}
+        transform={`translate(${connectionOffset.x} ${
+          connectionOffset.y
+        }) rotate(${angle} ${to.CoordX - connectionOffset.x} ${to.CoordY -
+          connectionOffset.y})`}
       />
 
       {/* <line
@@ -57,7 +83,7 @@ function WiredConnection(props) {
         style={{ fill: 'red' }}
       />
       <circle cx={to.CoordX} cy={to.CoordY} r="15" style={{ fill: 'red' }} /> */}
-    </>
+    </g>
   );
 }
 
@@ -126,34 +152,25 @@ export default function MapPreview() {
               />
             </pattern>
 
-            <filter id="f1" x="0" y="0" width="200%" height="200%">
-              <feOffset result="offOut" in="SourceAlpha" dx="10" dy="10" />
-              <feBlend in="SourceGraphic" mode="normal" />
+            <filter id="filter-shadow">
+              <feDropShadow
+                stdDeviation="0 0"
+                dx="2"
+                dy="2"
+                flood-color="#00000040"
+              />
+              {/* <feOffset result="offOut" in="SourceAlpha" dx="2" dy="2" />
+              <feBlend in="SourceGraphic" mode="normal" /> */}
             </filter>
           </defs>
 
-          <circle cx="0" cy="0" r="20" style={{ fill: 'black' }} />
+          {/* <circle cx="0" cy="0" r="20" style={{ fill: 'black' }} /> */}
 
-          <image x="50" y="50" width="20" height="20" xlinkHref={wiresSvg} />
+          {/* <image x="50" y="50" width="20" height="20" xlinkHref={wiresSvg} /> */}
 
           <WiredConnection from={seattle} to={billings} />
           <WiredConnection from={billings} to={sanFran} />
           <WiredConnection from={sanFran} to={seattle} />
-
-          <g
-            width="100"
-            height="100"
-            viewBox="0 0 50 50"
-            preserveAspectRatio="xMinYMin meet"
-            style={{ border: '1px solid #cccccc' }}
-          >
-            <circle
-              cx="25"
-              cy="25"
-              r="25"
-              style={{ stroke: '#000000', fill: 'none' }}
-            />
-          </g>
         </svg>
       </div>
     </div>
