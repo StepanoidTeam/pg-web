@@ -1,6 +1,33 @@
 .city-card {
   position: absolute;
-  background-color: #fff;
+  background-color: #b0afaa; /* city-card/bg */
+  border-radius: 10px;
+  /* border: inset 2px solid var(--color-text-b2); */
+
+  box-shadow: var(--shadow-border-b1), var(--shadow-1);
+}
+
+.city-name {
+  font-size: 20px;
+  font-family: var(--font-caption);
+  text-transform: uppercase;
+  color: white;
+  background-color: #e36860;
+  border: 1px solid black;
+  box-shadow: var(--shadow-1);
+  border-radius: 2px;
+}
+
+.city-slot:nth-child(1) {
+  --color: #63a36f;
+}
+
+.city-slot:nth-child(2) {
+  --color: #a1a294;
+}
+
+.city-slot:nth-child(3) {
+  --color: #8fa2a8;
 }
 
 .city-slot {
@@ -13,8 +40,8 @@
 
   color: white;
   border-radius: 3px;
-  background-color: #63a36f;
-  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
+  background-color: var(--color);
+  box-shadow: var(--shadow-border-b3);
 
   font-family: var(--font-number);
 }

@@ -4,7 +4,7 @@ import './city-card.css';
 
 function CitySlot(props) {
   const { cost } = props;
-  return <div className="city-slot text-stroke">{cost}</div>;
+  return <div className="city-slot m-1 text-stroke">{cost}</div>;
 }
 
 export default function CityCard(props) {
@@ -18,13 +18,21 @@ export default function CityCard(props) {
       }}
       className="city-card"
     >
-      <div className="city-name">{name}</div>
-      <div className="city-rows flex-column">
+      <div className="city-rows flex-column p-1">
         <div className="city-slots flex-row">
-          {[10, 15, 20].map(cost => CitySlot({ cost }))}
+          {[10, 15, 20].map(cost => (
+            <CitySlot key={cost} cost={cost} />
+          ))}
         </div>
-        <div className="city-slots flex-row">
-          {[10, 15, 20].map(cost => CitySlot({ cost }))}
+        <div className="position-relative">
+          <div className="overlay flex-row align-center justify-center">
+            <div className="city-name px-1 text-stroke">{name}</div>
+          </div>
+        </div>
+        <div className="city-slots flex-row" hidden={Math.random() * 10 > 5}>
+          {[10, 15, 20].map(cost => (
+            <CitySlot key={cost} cost={cost} />
+          ))}
         </div>
       </div>
     </div>
