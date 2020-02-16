@@ -57,7 +57,7 @@ export function createRoom(authToken, roomConfig) {
     },
     method: 'POST',
     body: JSON.stringify({
-      name: 'new room',
+      //name: 'new room',
       // setReadyMark: true,
       // gameRounds: 0,
     }),
