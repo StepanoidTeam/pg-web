@@ -5,6 +5,7 @@ import { useGlobal } from '../../use-global';
 import { getMap } from '../../services/map.service';
 
 import './map.css';
+import CityCard from './city-card';
 
 export default function MapPreview() {
   const { mapId } = useParams();
@@ -28,19 +29,7 @@ export default function MapPreview() {
       cities
       <div className="map-overlay">
         {mapData.Cities.map(c => {
-          return (
-            <div
-              key={c.Name}
-              style={{
-                position: 'absolute',
-                left: c.CoordX,
-                top: c.CoordY,
-                backgroundColor: 'white',
-              }}
-            >
-              {c.Name}
-            </div>
-          );
+          return <CityCard x={c.CoordX} y={c.CoordY} name={c.Name} />;
         })}
       </div>
     </div>
