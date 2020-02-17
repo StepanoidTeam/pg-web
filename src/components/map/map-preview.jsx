@@ -48,12 +48,14 @@ export default function MapPreview() {
           // hidden
           style={{
             position: 'absolute',
-            backgroundColor: '#ffffff60',
+            // backgroundColor: '#ffffff60',
+            boxShadow: 'inset 0 0 0 3px black',
             top: 0,
             left: 0,
+            // todo(vmyshko): calc auto
+            height: 2360,
+            width: 2470,
           }}
-          width="1500px"
-          height="1500px"
           //viewBox="-150 -150 150 150"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
