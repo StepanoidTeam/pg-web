@@ -4,7 +4,7 @@ import { getDistance } from './math-helpers';
 //init
 const cityBlockSize = { width: 190, height: 150 }; //80
 const cols = 3;
-const rows = 2;
+const rows = 1;
 
 const cityConnectorOffsets = [];
 const slotSize = {

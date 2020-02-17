@@ -11,10 +11,11 @@ import wiresSvg from '../../assets/wires-20.svg';
 import WiredConnection from './wired-connection';
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
+const modificator = { x: 2, y: 3 };
 function patchXY(item) {
   const { CoordX: x, CoordY: y } = item;
 
-  return { ...item, x: x * 1.5, y: y * 2.5 };
+  return { ...item, x: x * modificator.x, y: y * modificator.y };
 }
 
 export default function MapPreview() {
@@ -53,8 +54,8 @@ export default function MapPreview() {
             top: 0,
             left: 0,
             // todo(vmyshko): calc auto
-            height: 2360,
-            width: 2470,
+            width: 1650 * modificator.x,
+            height: 944 * modificator.y,
           }}
           //viewBox="-150 -150 150 150"
           version="1.1"

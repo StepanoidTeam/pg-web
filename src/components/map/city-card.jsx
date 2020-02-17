@@ -33,7 +33,7 @@ export default function CityCard(props) {
             </div>
             <div
               className="city-slots flex-row"
-              // hidden
+              hidden
               //hidden={Math.random() * 10 > 5}
             >
               {[10, 15, 20].map(cost => (
