@@ -2,10 +2,25 @@ import React from 'react';
 import connectionFromSvg from '../../assets/connection-from.svg';
 import connectionToSvg from '../../assets/connection-to.svg';
 import { nearestConnection } from './city-connector-offsets';
+import { getMiddlePoint } from './math-helpers';
+
+import pathCostCopperSvg from '../../assets/path-cost-copper-10.svg';
+import pathCostSilverSvg from '../../assets/path-cost-silver-20.svg';
+import pathCostGoldishSvg from '../../assets/path-cost-goldish-25.svg';
+import pathCostGoldSvg from '../../assets/path-cost-gold.svg';
+
+function getPathCostSvg(cost) {
+  if (cost < 10) return pathCostCopperSvg;
+  if (cost < 20) return pathCostSilverSvg;
+  if (cost < 25) return pathCostGoldishSvg;
+  return pathCostGoldSvg;
+}
 
 export default function WiredConnection(props) {
-  const { from, to } = props;
+  const { from, to, cost } = props;
   const [nearestFrom, nearestTo, distance] = nearestConnection(from, to);
+
+  const middlePoint = getMiddlePoint(nearestFrom, nearestTo);
 
   const angle =
     (Math.atan2(nearestTo.y - nearestFrom.y, nearestTo.x - nearestFrom.x) *
@@ -16,8 +31,12 @@ export default function WiredConnection(props) {
   const connectionOffset = { x: -60, y: -16 };
   const connectionSize = { width: 40, height: 30 };
 
+  const pathCostSizePx = 45;
+
+  const pathCostSvg = getPathCostSvg(cost);
+
   return (
-    <g style={{ filter: 'url(#filter-shadow)' }}>
+    <g className="filter-shadow-connection">
       <rect
         height="20"
         width={distance}
@@ -58,6 +77,34 @@ export default function WiredConnection(props) {
         }) rotate(${angle} ${nearestTo.x - connectionOffset.x} ${nearestTo.y -
           connectionOffset.y})`}
       />
+
+      {/* cost */}
+      {/* <circle
+        cx={middlePoint.x}
+        cy={middlePoint.y}
+        r="15"
+        style={{ fill: 'greenyellow', opacity: 0.7 }}
+      /> */}
+
+      {/* // todo(vmyshko): move to separate layer */}
+      <image
+        x={middlePoint.x - pathCostSizePx / 2}
+        y={middlePoint.y - pathCostSizePx / 2}
+        width={pathCostSizePx}
+        height={pathCostSizePx}
+        xlinkHref={pathCostSvg}
+      />
+      <foreignObject
+        x={middlePoint.x - pathCostSizePx / 2}
+        y={middlePoint.y - pathCostSizePx / 2}
+        width={pathCostSizePx}
+        height={pathCostSizePx}
+        className="filter-shadow-text"
+      >
+        <div className="flex-row align-center justify-center h-100">
+          <span className="connection-cost text-stroke">{cost}</span>
+        </div>
+      </foreignObject>
 
       {/* <line
           x1={nearestFrom.x}
