@@ -82,15 +82,21 @@ export default function MapPreview() {
               />
             </pattern>
 
-            <filter id="filter-shadow">
+            <filter id="filter-shadow-connection">
               <feDropShadow
                 stdDeviation="0 0"
                 dx="2"
                 dy="2"
                 floodColor="#00000040"
               />
-              {/* <feOffset result="offOut" in="SourceAlpha" dx="2" dy="2" />
-              <feBlend in="SourceGraphic" mode="normal" /> */}
+            </filter>
+            <filter id="filter-shadow-text">
+              <feDropShadow
+                stdDeviation="0 0"
+                dx="1"
+                dy="1"
+                floodColor="#000000cc"
+              />
             </filter>
           </defs>
 

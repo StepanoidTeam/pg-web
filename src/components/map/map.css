@@ -8,3 +8,19 @@
   width: 100vw;
   height: 100vh;
 }
+
+.connection-cost {
+  font-size: 20px;
+  font-family: var(--font-number);
+  color: white;
+  text-shadow: var(--text-shadow);
+
+  /* todo: handle text shadows */
+}
+
+.filter-shadow-connection {
+  filter: url(#filter-shadow-connection);
+}
+.filter-shadow-text {
+  filter: url(#filter-shadow-text);
+}
