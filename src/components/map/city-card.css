@@ -12,7 +12,7 @@
   font-family: var(--font-caption);
   text-transform: uppercase;
   color: white;
-  background-color: #e36860;
+
   border: 1px solid black;
   box-shadow: var(--shadow-1);
   border-radius: 2px;
@@ -44,4 +44,27 @@
   box-shadow: var(--shadow-border-b3);
 
   font-family: var(--font-number);
+}
+
+.region-red {
+  background-color: #e36860;
+}
+.region-teal {
+  background-color: rgb(56, 170, 182);
+}
+.region-brown {
+  background-color: #b07f69;
+}
+.region-yellow {
+  background-color: #e8ce66;
+}
+.region-green {
+  background-color: #5db541;
+}
+.region-violet {
+  background-color: rgb(166, 93, 233);
+}
+/* from SAR */
+.region-orange {
+  background-color: #e5ad3e;
 }

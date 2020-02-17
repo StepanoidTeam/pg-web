@@ -8,7 +8,7 @@ function CitySlot(props) {
 }
 
 export default function CityCard(props) {
-  const { x, y, name } = props;
+  const { x, y, name, region } = props;
 
   return (
     <>
@@ -28,7 +28,9 @@ export default function CityCard(props) {
             </div>
             <div className="position-relative">
               <div className="overlay w-100 h-100 flex-row align-center justify-center">
-                <div className="city-name px-1 text-stroke">{name}</div>
+                <div className={`city-name region-${region} px-1 text-stroke`}>
+                  {name}
+                </div>
               </div>
             </div>
             <div

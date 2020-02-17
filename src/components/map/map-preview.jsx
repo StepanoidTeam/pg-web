@@ -27,6 +27,7 @@ export default function MapPreview() {
   useEffect(() => {
     getMap(authToken, mapId).then(mapData => {
       console.log('🗾', mapData);
+      window.mapData = mapData;
       setMapData(mapData);
     });
   }, []);
@@ -120,6 +121,7 @@ export default function MapPreview() {
               x={patchXY(city).x}
               y={patchXY(city).y}
               name={city.Name}
+              region={city.RegionKey}
             />
           );
         })}
