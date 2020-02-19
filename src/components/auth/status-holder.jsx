@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { getStatus } from "../../services/auth.service";
+import { getStatus } from '../../services/auth.service';
+import { useGlobal } from '../../use-global';
 
-import "./status.css";
-import { useGlobal } from "../../use-global";
-import { useHistory } from "react-router-dom";
+import './status-holder.css';
 
-export default function Status() {
+export default function StatusHolder() {
   const history = useHistory();
   const [
     { authToken, isAuthenticated, user },
-    { setUserData, clearUserData }
+    { setUserData, clearUserData },
   ] = useGlobal();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Status() {
   }, []);
 
   return (
-    <div className="status flex-column align-end p-1">
+    <div className="status-holder flex-column align-end p-1 z-index-1">
       {isAuthenticated ? (
         <div className="flex-row align-center">
           <div className="flex-row align-center mx-2">

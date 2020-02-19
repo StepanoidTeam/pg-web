@@ -11,7 +11,7 @@ import { AuthRoute } from './components/auth/auth-route';
 import VersionHolder from './components/version-holder';
 import Login from './components/auth/login';
 import Register from './components/auth/register';
-import Status from './components/auth/status';
+import StatusHolder from './components/auth/status-holder';
 
 import { useGlobal } from './use-global';
 import { AnonRoute } from './components/auth/anon-route';
@@ -35,7 +35,7 @@ export default function App() {
     <Router>
       <div className={cx('app', { 'is-online': isOnline })}>
         <VersionHolder />
-        <Status />
+        <StatusHolder />
 
         <Switch>
           {/* AUTH */}
