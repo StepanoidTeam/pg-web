@@ -1,7 +1,8 @@
 .map-overlay {
   position: fixed;
   display: block;
-  overflow: scroll;
+  /* overflow: scroll; */
+  overflow: hidden;
 
   top: 0;
   left: 0;

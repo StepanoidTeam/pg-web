@@ -1,56 +1,103 @@
-// https://stackoverflow.com/a/36028053/662368
+// https://multi-touch-trackpad-gesture.stackblitz.io/
 
 const MIN_SCALE = 0.3;
-const MAX_SCALE = 2;
-let scale = MIN_SCALE;
-
-let offsetX = 0;
-let offsetY = 0;
+const MAX_SCALE = 1.5;
 
 export default function initZoom() {
-  const $content = document.querySelector('.map-content');
-  const $overlay = document.querySelector('.map-overlay');
+  let gestureStartScale = null;
+  let scale = 1;
+  let posX = 0;
+  let posY = 0;
+  let startX;
+  let startY;
 
-  const areaWidth = $overlay.getBoundingClientRect().width;
-  const areaHeight = $overlay.getBoundingClientRect().height;
+  const mapOverlay = document.querySelector('.map-overlay');
+  const mapContent = document.querySelector('.map-content');
+  const statusHolder = document.querySelector('.status-holder');
 
-  $overlay.addEventListener('wheel', event => {
-    if (event.butt) {
-      event.preventDefault();
-    }
-    const clientX = event.pageX - $overlay.getBoundingClientRect().left;
-    const clientY = event.pageY - $overlay.getBoundingClientRect().top;
+  const render = () => {
+    window.requestAnimationFrame(() => {
+      const {
+        offsetWidth: overlayWidth,
+        offsetHeight: overlayHeight,
+      } = mapOverlay;
+      const {
+        offsetWidth: contentWidth,
+        offsetHeight: contentHeight,
+      } = mapContent;
 
-    const nextScale = Math.min(
-      MAX_SCALE,
-      Math.max(MIN_SCALE, scale - event.deltaY / 100),
-    );
+      posX = Math.max(posX, overlayWidth - contentWidth);
+      posY = Math.max(posY, overlayHeight - contentHeight);
 
-    const percentXInCurrentBox = clientX / areaWidth;
-    const percentYInCurrentBox = clientY / areaHeight;
+      // posX = Math.min(posX, overlayWidth - contentWidth);
+      // posY = Math.min(posY, overlayHeight - contentHeight);
 
-    const currentBoxWidth = areaWidth / scale;
-    const currentBoxHeight = areaHeight / scale;
+      const val = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
 
-    const nextBoxWidth = areaWidth / nextScale;
-    const nextBoxHeight = areaHeight / nextScale;
+      mapContent.style.transform = val;
 
-    const deltaX =
-      (nextBoxWidth - currentBoxWidth) * (percentXInCurrentBox - 0.5);
-    const deltaY =
-      (nextBoxHeight - currentBoxHeight) * (percentYInCurrentBox - 0.5);
+      statusHolder.innerHTML = `x:${posX}, y:${posY}, scale:${scale.toFixed(
+        2,
+      )}`;
+    });
+  };
 
-    const nextOffsetX = offsetX - deltaX;
-    const nextOffsetY = offsetY - deltaY;
+  window.addEventListener(
+    'wheel',
+    e => {
+      e.preventDefault();
 
-    $content.style.transform = `scale(${nextScale})`;
-    $content.style.left = -1 * nextOffsetX * nextScale;
-    $content.style.right = nextOffsetX * nextScale;
-    $content.style.top = -1 * nextOffsetY * nextScale;
-    $content.style.bottom = nextOffsetY * nextScale;
+      if (e.ctrlKey) {
+        scale -= e.deltaY * 0.01;
+        // scale -= Math.sign(e.deltaY) * 0.01;
+        // console.log(e.deltaY);
 
-    offsetX = nextOffsetX;
-    offsetY = nextOffsetY;
-    scale = nextScale;
-  });
+        scale = Math.max(MIN_SCALE, scale);
+        scale = Math.min(MAX_SCALE, scale);
+      } else {
+        posX -= e.deltaX * 2;
+        posY -= e.deltaY * 2;
+      }
+
+      render();
+    },
+    { passive: false },
+  );
+
+  window.addEventListener(
+    'gesturestart',
+    e => {
+      e.preventDefault();
+      startX = e.pageX - posX;
+      startY = e.pageY - posY;
+
+      gestureStartScale = scale;
+    },
+    { passive: false },
+  );
+
+  window.addEventListener(
+    'gesturechange',
+    e => {
+      e.preventDefault();
+
+      scale = gestureStartScale * e.scale;
+
+      posX = e.pageX - startX;
+      posY = e.pageY - startY;
+
+      render();
+    },
+    { passive: false },
+  );
+
+  window.addEventListener(
+    'gestureend',
+    e => {
+      e.preventDefault();
+    },
+    { passive: false },
+  );
+
+  console.log('zoom init done');
 }
