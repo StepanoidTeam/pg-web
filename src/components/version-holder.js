@@ -16,7 +16,7 @@ export default function VersionHolder() {
   }, []);
 
   return (
-    <div className="version-holder flex-column m-1">
+    <div className="version-holder flex-column m-1 z-index-1">
       <span>web: {webVersion}</span>
       <span>api: {apiVersion}</span>
     </div>
