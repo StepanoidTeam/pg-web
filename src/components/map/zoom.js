@@ -1,47 +1,49 @@
 // https://stackoverflow.com/a/36028053/662368
 
-var MIN_SCALE = 0.3;
-var MAX_SCALE = 2;
-var scale = MIN_SCALE;
+const MIN_SCALE = 0.3;
+const MAX_SCALE = 2;
+let scale = MIN_SCALE;
 
-var offsetX = 0;
-var offsetY = 0;
+let offsetX = 0;
+let offsetY = 0;
 
 export default function initZoom() {
-  var $content = document.querySelector('.map-content');
-  var $overlay = document.querySelector('.map-overlay');
+  const $content = document.querySelector('.map-content');
+  const $overlay = document.querySelector('.map-overlay');
 
-  var areaWidth = $overlay.getBoundingClientRect().width;
-  var areaHeight = $overlay.getBoundingClientRect().height;
+  const areaWidth = $overlay.getBoundingClientRect().width;
+  const areaHeight = $overlay.getBoundingClientRect().height;
 
-  $overlay.addEventListener('wheel', function(event) {
-    if (event.butt) event.preventDefault();
-    var clientX = event.pageX - $overlay.getBoundingClientRect().left;
-    var clientY = event.pageY - $overlay.getBoundingClientRect().top;
+  $overlay.addEventListener('wheel', event => {
+    if (event.butt) {
+      event.preventDefault();
+    }
+    const clientX = event.pageX - $overlay.getBoundingClientRect().left;
+    const clientY = event.pageY - $overlay.getBoundingClientRect().top;
 
-    var nextScale = Math.min(
+    const nextScale = Math.min(
       MAX_SCALE,
       Math.max(MIN_SCALE, scale - event.deltaY / 100),
     );
 
-    var percentXInCurrentBox = clientX / areaWidth;
-    var percentYInCurrentBox = clientY / areaHeight;
+    const percentXInCurrentBox = clientX / areaWidth;
+    const percentYInCurrentBox = clientY / areaHeight;
 
-    var currentBoxWidth = areaWidth / scale;
-    var currentBoxHeight = areaHeight / scale;
+    const currentBoxWidth = areaWidth / scale;
+    const currentBoxHeight = areaHeight / scale;
 
-    var nextBoxWidth = areaWidth / nextScale;
-    var nextBoxHeight = areaHeight / nextScale;
+    const nextBoxWidth = areaWidth / nextScale;
+    const nextBoxHeight = areaHeight / nextScale;
 
-    var deltaX =
+    const deltaX =
       (nextBoxWidth - currentBoxWidth) * (percentXInCurrentBox - 0.5);
-    var deltaY =
+    const deltaY =
       (nextBoxHeight - currentBoxHeight) * (percentYInCurrentBox - 0.5);
 
-    var nextOffsetX = offsetX - deltaX;
-    var nextOffsetY = offsetY - deltaY;
+    const nextOffsetX = offsetX - deltaX;
+    const nextOffsetY = offsetY - deltaY;
 
-    $content.style.transform = 'scale(' + nextScale + ')';
+    $content.style.transform = `scale(${nextScale})`;
     $content.style.left = -1 * nextOffsetX * nextScale;
     $content.style.right = nextOffsetX * nextScale;
     $content.style.top = -1 * nextOffsetY * nextScale;
