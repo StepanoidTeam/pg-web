@@ -1,6 +1,6 @@
 // https://multi-touch-trackpad-gesture.stackblitz.io/
 
-const MIN_SCALE = 0.3;
+const MIN_SCALE = 0.2;
 const MAX_SCALE = 1.5;
 
 export default function initZoom() {
@@ -13,7 +13,6 @@ export default function initZoom() {
 
   const mapOverlay = document.querySelector('.map-overlay');
   const mapContent = document.querySelector('.map-content');
-  const statusHolder = document.querySelector('.status-holder');
 
   const render = () => {
     window.requestAnimationFrame(() => {
@@ -22,23 +21,24 @@ export default function initZoom() {
         offsetHeight: overlayHeight,
       } = mapOverlay;
       const {
-        offsetWidth: contentWidth,
-        offsetHeight: contentHeight,
-      } = mapContent;
+        width: contentWidth,
+        height: contentHeight,
+      } = mapContent.getBoundingClientRect();
 
-      posX = Math.max(posX, overlayWidth - contentWidth);
-      posY = Math.max(posY, overlayHeight - contentHeight);
+      posX = Math.max(posX, Math.min(0, overlayWidth - contentWidth));
+      posY = Math.max(posY, Math.min(0, overlayHeight - contentHeight));
 
-      // posX = Math.min(posX, overlayWidth - contentWidth);
-      // posY = Math.min(posY, overlayHeight - contentHeight);
+      posX = Math.min(posX, Math.max(0, overlayWidth - contentWidth));
+      posY = Math.min(posY, Math.max(0, overlayHeight - contentHeight));
 
-      const val = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
+      mapContent.style.transform = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
 
-      mapContent.style.transform = val;
-
-      statusHolder.innerHTML = `x:${posX}, y:${posY}, scale:${scale.toFixed(
-        2,
-      )}`;
+      // const statusHolder = document.querySelector('.status-holder');
+      // statusHolder.innerHTML = `x:${posX}, y:${posY}, <br/>
+      // scale:${scale.toFixed(2)}<br/>
+      // overlay:${overlayWidth.toFixed(2)},${overlayHeight.toFixed(2)}<br/>
+      // content:${contentWidth.toFixed(2)},${contentHeight.toFixed(2)}<br/>
+      // `;
     });
   };
 
