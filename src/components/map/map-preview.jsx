@@ -48,17 +48,7 @@ export default function MapPreview() {
       <div className="map-overlay">
         <div className="map-content" style={mapSize}>
           <svg
-            // hidden
-            style={{
-              position: 'absolute',
-              // backgroundColor: '#ffffff60',
-              boxShadow: 'inset 0 0 0 3px black',
-              top: 0,
-              left: 0,
-              // todo(vmyshko): calc auto
-              ...mapSize,
-            }}
-            //viewBox="-150 -150 150 150"
+            className="map-svg w-100 h-100"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
