@@ -3,14 +3,12 @@ import { useParams } from 'react-router-dom';
 
 import { useGlobal } from '../../use-global';
 import { getMap } from '../../services/map.service';
-
-import './map.css';
 import CityCard from './city-card';
-
 import wiresSvg from '../../assets/wires-20.svg';
 import WiredConnection from './wired-connection';
-
 import initZoom from './zoom';
+
+import './map.css';
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
 const modificator = { x: 2, y: 3 };
@@ -38,19 +36,17 @@ export default function MapPreview() {
 
   if (!mapData) return <div>map preview here</div>;
 
-  const [seattle, boise, billings, sanFran] = [
-    { x: 105, y: 70 },
-    { x: 270, y: 245 },
-    { x: 510, y: 180 },
-    { x: 60, y: 465 },
-  ];
+  const mapSize = {
+    width: 1650 * modificator.x,
+    height: 950 * modificator.y,
+  };
 
   return (
     <div>
       <h1>map</h1>
       cities
       <div className="map-overlay">
-        <div className="map-content">
+        <div className="map-content" style={mapSize}>
           <svg
             // hidden
             style={{
@@ -60,8 +56,7 @@ export default function MapPreview() {
               top: 0,
               left: 0,
               // todo(vmyshko): calc auto
-              width: 1650 * modificator.x,
-              height: 944 * modificator.y,
+              ...mapSize,
             }}
             //viewBox="-150 -150 150 150"
             version="1.1"
