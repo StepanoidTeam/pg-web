@@ -44,6 +44,12 @@
   box-shadow: var(--shadow-border-b3);
 
   font-family: var(--font-number);
+
+  cursor: pointer;
+}
+
+.city-slot:hover {
+  box-shadow: var(--shadow-border-b2);
 }
 
 .region-red {

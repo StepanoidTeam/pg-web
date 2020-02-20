@@ -50,62 +50,80 @@ export default function initZoom() {
     });
   };
 
-  window.addEventListener(
-    'wheel',
-    e => {
-      e.preventDefault();
+  function zoom(e) {
+    e.preventDefault();
 
-      if (e.ctrlKey) {
-        scale -= e.deltaY * 0.01;
-        // scale -= Math.sign(e.deltaY) * 0.01;
-        // console.log(e.deltaY);
+    if (e.ctrlKey) {
+      scale -= e.deltaY * 0.01;
 
-        scale = Math.max(MIN_SCALE, scale);
-        scale = Math.min(MAX_SCALE, scale);
-      } else {
-        posX -= e.deltaX * 2;
-        posY -= e.deltaY * 2;
-      }
+      scale = Math.max(MIN_SCALE, scale);
+      scale = Math.min(MAX_SCALE, scale);
+    } else {
+      posX -= e.deltaX * 2;
+      posY -= e.deltaY * 2;
+    }
 
-      render();
-    },
-    { passive: false },
-  );
+    render();
+  }
 
-  window.addEventListener(
-    'gesturestart',
-    e => {
-      e.preventDefault();
-      startX = e.pageX - posX;
-      startY = e.pageY - posY;
+  let isMoving = false;
 
-      gestureStartScale = scale;
-    },
-    { passive: false },
-  );
+  function startMove(e) {
+    e.preventDefault();
+    isMoving = true;
+    document.body.classList.add('cursor-move');
 
-  window.addEventListener(
-    'gesturechange',
-    e => {
-      e.preventDefault();
+    startX = e.pageX - posX;
+    startY = e.pageY - posY;
 
-      scale = gestureStartScale * e.scale;
+    gestureStartScale = scale;
+  }
 
-      posX = e.pageX - startX;
-      posY = e.pageY - startY;
+  function move(e) {
+    e.preventDefault();
 
-      render();
-    },
-    { passive: false },
-  );
+    if (!isMoving) return;
 
-  window.addEventListener(
-    'gestureend',
-    e => {
-      e.preventDefault();
-    },
-    { passive: false },
-  );
+    scale = gestureStartScale * (e.scale || 1);
+
+    posX = e.pageX - startX;
+    posY = e.pageY - startY;
+
+    render();
+  }
+
+  function endMove(e) {
+    e.preventDefault();
+    isMoving = false;
+    document.body.classList.remove('cursor-move');
+  }
+
+  const noop = () => 0;
+
+  //android phone touch-screen
+
+  function testEvent(e) {
+    e.preventDefault();
+    alert(JSON.stringify(e));
+  }
+  // todo(vmyshko): make mobile touch work
+  window.addEventListener('touchstart', move, { passive: false });
+  window.addEventListener('touchend', endMove, { passive: false });
+  window.addEventListener('touchcancel', endMove, { passive: false });
+  window.addEventListener('touchmove', testEvent, { passive: false });
+
+  //mouse wheel / macbook touch-pad zoom gesture
+  window.addEventListener('wheel', zoom, { passive: false });
+
+  //macbook touch-pad
+  window.addEventListener('gesturestart', startMove, { passive: false });
+  window.addEventListener('gesturechange', move, { passive: false });
+  window.addEventListener('gestureend', endMove, { passive: false });
+
+  //pc mouse events
+  window.addEventListener('mousedown', startMove, { passive: false });
+  window.addEventListener('mousemove', move, { passive: false });
+  window.addEventListener('mouseup', endMove, { passive: false });
 
   console.log('zoom init done');
 }

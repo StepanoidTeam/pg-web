@@ -84,6 +84,10 @@ a:visited {
   cursor: pointer;
 }
 
+.cursor-move {
+  cursor: move;
+}
+
 .position-relative {
   position: relative;
 }
