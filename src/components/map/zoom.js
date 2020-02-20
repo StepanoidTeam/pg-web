@@ -1,3 +1,5 @@
+import { clamp } from 'lodash';
+
 // https://multi-touch-trackpad-gesture.stackblitz.io/
 
 const MIN_SCALE = 0.2;
@@ -25,11 +27,17 @@ export default function initZoom() {
         height: contentHeight,
       } = mapContent.getBoundingClientRect();
 
-      posX = Math.max(posX, Math.min(0, overlayWidth - contentWidth));
-      posY = Math.max(posY, Math.min(0, overlayHeight - contentHeight));
+      posX = clamp(
+        posX,
+        Math.min(0, overlayWidth - contentWidth),
+        Math.max(0, overlayWidth - contentWidth),
+      );
 
-      posX = Math.min(posX, Math.max(0, overlayWidth - contentWidth));
-      posY = Math.min(posY, Math.max(0, overlayHeight - contentHeight));
+      posY = clamp(
+        posY,
+        Math.min(0, overlayHeight - contentHeight),
+        Math.max(0, overlayHeight - contentHeight),
+      );
 
       mapContent.style.transform = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
 
