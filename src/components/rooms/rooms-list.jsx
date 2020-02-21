@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import * as firebase from 'firebase/app';
 
 import { useGlobal } from '../../use-global';
 import { getRoomList, joinRoom } from '../../services/room.service';
@@ -22,6 +23,19 @@ export default function RoomList() {
   };
 
   useEffect(() => {
+    //🔥
+    firebase
+      .database()
+      .ref('/rooms')
+      .on('value', snapshot => {
+        console.log('🔥', snapshot.val());
+
+        const rooms = Object.values(snapshot.val());
+
+        setRooms(rooms); //sets state locally
+      });
+
+    return;
     getRoomList(authToken).then(rooms => {
       setRooms(rooms);
     });
