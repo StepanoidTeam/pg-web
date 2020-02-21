@@ -53,10 +53,26 @@ const actions = {
     });
   },
   //user-data
-  setUserData(store, { AuthToken: authToken, Id: id, Name: name, GameRoomId }) {
+  setUserData(
+    store,
+    {
+      AuthToken: authToken,
+      Id: id,
+      Name: name,
+      GameRoomId,
+      //🔥
+      displayName,
+      email,
+      emailVerified,
+      photoURL,
+      isAnonymous,
+      uid,
+      providerDat,
+    },
+  ) {
     store.setState({
       authToken,
-      user: { id, name },
+      user: { id, name: email },
       isAuthenticated: true,
       game: {
         ...store.state.game,

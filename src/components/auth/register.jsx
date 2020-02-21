@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation, Link } from 'react-router-dom';
+import * as firebase from 'firebase/app';
 
 import Input from '../common/input';
 import { register } from '../../services/auth.service';
@@ -16,6 +17,21 @@ export default function Register() {
   const { from } = location.state || { from: { pathname: '/' } };
 
   const onRegister = () => {
+    //🔥
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(username, password)
+      .then(data => {
+        console.log('🔥auth', data.user);
+        setUserData(data);
+        history.replace(from);
+      })
+      .catch(function(error) {
+        console.warn('🔥register failed:', error);
+        setErrorMessage(error.message);
+      });
+
+    return;
     register({ username, password })
       .then(data => {
         setUserData(data);
