@@ -38,8 +38,10 @@ export default function initZoom() {
         Math.min(0, overlayHeight - contentHeight),
         Math.max(0, overlayHeight - contentHeight),
       );
+      const transform = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
 
-      mapContent.style.transform = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
+      // console.log(transform);
+      mapContent.style.transform = transform;
 
       // const statusHolder = document.querySelector('.status-holder');
       // statusHolder.innerHTML = `x:${posX}, y:${posY}, <br/>
@@ -50,11 +52,13 @@ export default function initZoom() {
     });
   };
 
+  // todo(vmyshko): use this as common endpoint for any type of events?
   function zoom(e) {
     e.preventDefault();
 
     if (e.ctrlKey) {
       scale -= e.deltaY * 0.01;
+      // console.log(e.deltaY);
 
       scale = Math.max(MIN_SCALE, scale);
       scale = Math.min(MAX_SCALE, scale);
@@ -73,8 +77,18 @@ export default function initZoom() {
     isMoving = true;
     document.body.classList.add('cursor-move');
 
-    startX = e.pageX - posX;
-    startY = e.pageY - posY;
+    if (e instanceof TouchEvent) {
+      const [touch] = e.touches;
+
+      startX = touch.pageX - posX;
+      startY = touch.pageY - posY;
+      // console.log('start', startX, startY);
+    } else {
+      //mouse
+
+      startX = e.pageX - posX;
+      startY = e.pageY - posY;
+    }
 
     gestureStartScale = scale;
   }
@@ -84,10 +98,24 @@ export default function initZoom() {
 
     if (!isMoving) return;
 
-    scale = gestureStartScale * (e.scale || 1);
+    if (e instanceof TouchEvent) {
+      const [touch] = e.touches;
 
-    posX = e.pageX - startX;
-    posY = e.pageY - startY;
+      // todo(vmyshko): if 2 touches - get zoom gesture?
+      console.log(e.touches);
+
+      scale = gestureStartScale * (touch.scale || 1);
+
+      posX = touch.pageX - startX;
+      posY = touch.pageY - startY;
+      // console.log('move', posX, posY);
+    } else {
+      //MouseEvent
+      scale = gestureStartScale * (e.scale || 1);
+
+      posX = e.pageX - startX;
+      posY = e.pageY - startY;
+    }
 
     render();
   }
@@ -100,22 +128,18 @@ export default function initZoom() {
 
   const noop = () => 0;
 
-  //android phone touch-screen
-
-  function testEvent(e) {
-    e.preventDefault();
-    alert(JSON.stringify(e));
-  }
   // todo(vmyshko): make mobile touch work
-  window.addEventListener('touchstart', move, { passive: false });
-  window.addEventListener('touchend', endMove, { passive: false });
-  window.addEventListener('touchcancel', endMove, { passive: false });
-  window.addEventListener('touchmove', testEvent, { passive: false });
+  //android phone touch-screen
+  // window.addEventListener('touchstart', startMove, { passive: false });
+  // window.addEventListener('touchend', endMove, { passive: false });
+  // window.addEventListener('touchcancel', endMove, { passive: false });
+  // window.addEventListener('touchmove', move, { passive: false });
 
   //mouse wheel / macbook touch-pad zoom gesture
+  // mac touchpad scroll map also works just based on wheel
   window.addEventListener('wheel', zoom, { passive: false });
 
-  //macbook touch-pad
+  // mac doesn't use these at all, do we need them then?
   window.addEventListener('gesturestart', startMove, { passive: false });
   window.addEventListener('gesturechange', move, { passive: false });
   window.addEventListener('gestureend', endMove, { passive: false });
@@ -124,6 +148,47 @@ export default function initZoom() {
   window.addEventListener('mousedown', startMove, { passive: false });
   window.addEventListener('mousemove', move, { passive: false });
   window.addEventListener('mouseup', endMove, { passive: false });
+
+  // scale approoach for mobile
+  // (function onScale(el, callback) {
+  //   let hypo = undefined;
+
+  //   console.log('on scale init');
+
+  //   el.addEventListener(
+  //     'touchmove',
+  //     function(event) {
+  //       event.stopPropagation();
+  //       if (event.touches.length === 2) {
+  //         let hypo1 = Math.hypot(
+  //           event.touches[0].pageX - event.touches[1].pageX,
+  //           event.touches[0].pageY - event.touches[1].pageY,
+  //         );
+  //         if (hypo === undefined) {
+  //           hypo = hypo1;
+  //         }
+  //         callback(hypo1 / hypo);
+  //       }
+  //     },
+  //     { passive: false },
+  //   );
+
+  //   el.addEventListener(
+  //     'touchend',
+  //     function(event) {
+  //       hypo = undefined;
+  //     },
+  //     { passive: false },
+  //   );
+  // })(window, delta => {
+  //   console.log(delta);
+  //   scale -= delta * 0.1;
+
+  //   scale = Math.max(MIN_SCALE, scale);
+  //   scale = Math.min(MAX_SCALE, scale);
+
+  //   render();
+  // });
 
   console.log('zoom init done');
 }
