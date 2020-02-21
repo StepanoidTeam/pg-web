@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pg-web/static/css/main.a384cfad.chunk.css",
-    "main.js": "/pg-web/static/js/main.068622ee.chunk.js",
-    "main.js.map": "/pg-web/static/js/main.068622ee.chunk.js.map",
+    "main.js": "/pg-web/static/js/main.c2397f10.chunk.js",
+    "main.js.map": "/pg-web/static/js/main.c2397f10.chunk.js.map",
     "runtime-main.js": "/pg-web/static/js/runtime-main.677f96d2.js",
     "runtime-main.js.map": "/pg-web/static/js/runtime-main.677f96d2.js.map",
     "static/js/2.debe56d1.chunk.js": "/pg-web/static/js/2.debe56d1.chunk.js",
     "static/js/2.debe56d1.chunk.js.map": "/pg-web/static/js/2.debe56d1.chunk.js.map",
     "index.html": "/pg-web/index.html",
-    "precache-manifest.b3a178961e4a88d575bedbc0d5192952.js": "/pg-web/precache-manifest.b3a178961e4a88d575bedbc0d5192952.js",
+    "precache-manifest.a961239d7bbd7385b459e19bdbed31e3.js": "/pg-web/precache-manifest.a961239d7bbd7385b459e19bdbed31e3.js",
     "service-worker.js": "/pg-web/service-worker.js",
     "static/css/main.a384cfad.chunk.css.map": "/pg-web/static/css/main.a384cfad.chunk.css.map",
     "static/js/2.debe56d1.chunk.js.LICENSE.txt": "/pg-web/static/js/2.debe56d1.chunk.js.LICENSE.txt",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.677f96d2.js",
     "static/js/2.debe56d1.chunk.js",
     "static/css/main.a384cfad.chunk.css",
-    "static/js/main.068622ee.chunk.js"
+    "static/js/main.c2397f10.chunk.js"
   ]
 }
