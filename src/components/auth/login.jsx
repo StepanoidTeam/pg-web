@@ -8,7 +8,7 @@ import { useGlobal } from '../../use-global';
 
 export default function Login() {
   const [{}, { setUserData }] = useGlobal();
-  const [username, setUsername] = useState('kekster2000');
+  const [username, setUsername] = useState('kekster2000@example.com');
   const [password, setPassword] = useState('qwerty123');
   const [errorMessage, setErrorMessage] = useState(null);
   const history = useHistory();
