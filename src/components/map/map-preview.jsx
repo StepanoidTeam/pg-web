@@ -22,19 +22,37 @@ export default function MapPreview() {
   const { mapId } = useParams();
   const [{ authToken }, {}] = useGlobal();
 
-  const [mapData, setMapData] = useState(null);
+  const [cities, setCities] = useState([]);
+  const [connectors, setConnectors] = useState([]);
 
   useEffect(() => {
     getMap(authToken, mapId).then(mapData => {
       console.log('🗾', mapData);
       window.mapData = mapData;
-      setMapData(mapData);
+
+      setCities(mapData.Cities.map(patchXY));
+      setConnectors(mapData.Connectors);
 
       initZoom();
     });
   }, []);
 
-  if (!mapData) return <div>map preview here</div>;
+  if (!cities.length && !connectors.length) return <div>map preview here</div>;
+
+  const updateCity = ({ Id, ...props }) => {
+    const oldCity = cities.find(c => c.Id === Id);
+
+    // console.log(props);
+
+    const city = { ...oldCity, ...props };
+
+    // console.log(oldCity, city);
+
+    setCities([...cities.filter(c => c.Id !== Id), city]);
+
+    //redraw
+    setConnectors(connectors);
+  };
 
   const mapSize = {
     width: 1650 * modificator.x,
@@ -80,7 +98,7 @@ export default function MapPreview() {
                   floodColor="#00000040"
                 />
               </filter>
-              <filter id="filter-shadow-text">
+              <filter id="filter-shadow-text select-none">
                 <feDropShadow
                   stdDeviation="0 0"
                   dx="1"
@@ -92,17 +110,15 @@ export default function MapPreview() {
 
             {/* <circle cx="0" cy="0" r="20" style={{ fill: 'black' }} /> */}
 
-            {mapData.Connectors.map(conn => {
-              const from = mapData.Cities.find(
-                city => city.Id === conn.City1Key,
-              );
-              const to = mapData.Cities.find(city => city.Id === conn.City2Key);
+            {connectors.map(conn => {
+              const from = cities.find(city => city.Id === conn.City1Key);
+              const to = cities.find(city => city.Id === conn.City2Key);
 
               return (
                 <WiredConnection
                   key={conn.Id}
-                  from={patchXY(from)}
-                  to={patchXY(to)}
+                  from={from}
+                  to={to}
                   cost={conn.Cost}
                 />
               );
@@ -112,14 +128,15 @@ export default function MapPreview() {
           <WiredConnection from={sanFran} to={seattle} cost={20} /> */}
           </svg>
 
-          {mapData.Cities.map(city => {
+          {cities.map(city => {
             return (
               <CityCard
-                key={city.Name}
-                x={patchXY(city).x}
-                y={patchXY(city).y}
+                key={city.Id}
+                x={city.x}
+                y={city.y}
                 name={city.Name}
                 region={city.RegionKey}
+                onUpdateCity={props => updateCity({ Id: city.Id, ...props })}
               />
             );
           })}

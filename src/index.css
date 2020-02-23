@@ -92,6 +92,10 @@ a:visited {
   position: relative;
 }
 
+.select-none {
+  user-select: none;
+}
+
 .text-ellipsis {
   overflow: hidden;
   white-space: nowrap;
