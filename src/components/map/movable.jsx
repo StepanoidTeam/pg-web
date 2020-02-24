@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { noop } from 'lodash';
 
 export default function Movable(props) {
-  const { children, onDrag, onDrop, ...rest } = props;
-
-  const [startPos, setStartPos] = useState(null);
-  const [currentPos, setCurrentPos] = useState(null);
-  const [isMoving, setIsMoving] = useState(false);
+  const {
+    children,
+    onStart = noop,
+    onDrag = noop,
+    onDrop = noop,
+    ...rest
+  } = props;
 
   const map = window.document.querySelector('.map-content');
 
   const onMouseDown = event => {
     event.stopPropagation();
-    const { screenX, screenY } = event;
-    console.log('mouse down', screenX, screenY);
-
-    setStartPos({ x: screenX, y: screenY });
-    setIsMoving(true);
 
     map.addEventListener('mousemove', onMouseMove, {
       passive: false,
@@ -23,33 +21,31 @@ export default function Movable(props) {
     map.addEventListener('mouseup', onMouseUp, {
       passive: false,
     });
+
+    onStart(getEventPos(event));
   };
 
-  const onMouseMove = event => {
-    //if (!isMoving) return;
-
-    event.stopPropagation();
-
+  const getEventPos = event => {
     const { x: left, y: top } = map.getBoundingClientRect();
     const { x, y } = event;
 
     const ax = (x - left) / (window.scale || 1);
     const ay = (y - top) / (window.scale || 1);
 
-    setCurrentPos({ x: ax, y: ay });
-    onDrag({ x: ax, y: ay });
+    return { x: ax, y: ay };
+  };
 
-    // console.log('mouse move', isMoving, clientX, clientY);
+  const onMouseMove = event => {
+    event.stopPropagation();
+
+    onDrag(getEventPos(event));
   };
 
   const onMouseUp = event => {
     event.stopPropagation();
-    // console.log('mouse up', event);
 
-    onDrop(currentPos);
+    onDrop(getEventPos(event));
 
-    setIsMoving(false);
-    // console.log('otpiska');
     map.removeEventListener('mousemove', onMouseMove);
     map.removeEventListener('mouseup', onMouseUp);
   };
