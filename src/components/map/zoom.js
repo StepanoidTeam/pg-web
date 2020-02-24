@@ -129,11 +129,6 @@ export default function initZoom() {
     document.body.classList.remove('cursor-move');
   }
 
-  const resetZoom = () => {
-    scale = 1;
-    render();
-  };
-
   const noop = () => 0;
 
   // todo(vmyshko): make mobile touch work
@@ -199,8 +194,4 @@ export default function initZoom() {
   // });
 
   console.log('zoom init done');
-
-  return {
-    resetZoom,
-  };
 }

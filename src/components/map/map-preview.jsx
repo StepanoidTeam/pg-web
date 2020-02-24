@@ -9,7 +9,7 @@ import WiredConnection from './wired-connection';
 import initZoom from './zoom';
 
 import './map.css';
-import { modificator, mapCity, mapConnector } from './mappers';
+import { modificator, mapCity, mapConnector, regions } from './mappers';
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
 
@@ -20,8 +20,6 @@ export default function MapPreview() {
     { setConnectors, setCities },
   ] = useGlobal();
 
-  const [onResetZoom, setOnResetZoom] = useState(() => 0);
-
   useEffect(() => {
     getMap(authToken, mapId).then(mapData => {
       console.log('🗾', mapData);
@@ -31,15 +29,47 @@ export default function MapPreview() {
       const connections = mapData.Connectors.map(mapConnector);
 
       console.log(cities, connections);
-      setCities(cities);
-      setConnectors(connections);
+      //empty map
+      setCities([], cities);
+      setConnectors([], connections);
 
-      const { resetZoom } = initZoom();
-      setOnResetZoom(resetZoom);
+      initZoom();
     });
   }, []);
 
-  if (!cities.length && !connectors.length) return <div>map preview here</div>;
+  function addCity() {
+    const id = Date.now()
+      .toString()
+      .substr(-4);
+    const newCity = {
+      id,
+      x: 400,
+      y: 400,
+      name: prompt('enter name', `city ${id.substr(-4)}`),
+      region: regions[0],
+    };
+
+    setCities([...cities, newCity]);
+  }
+
+  function addConnector() {
+    const [from, to] = cities;
+
+    if (!from || !to) {
+      console.log('no cities');
+      return;
+    }
+
+    const newConnector = {
+      id: Date.now(),
+
+      from: prompt('from', from.id),
+      to: prompt('to', to.id),
+      cost: prompt('cost', 10),
+    };
+
+    setConnectors([...connectors, newConnector]);
+  }
 
   const updateCity = ({ id, ...props }) => {
     const oldCity = cities.find(c => c.id === id);
@@ -49,7 +79,7 @@ export default function MapPreview() {
     const city = { ...oldCity, ...props };
 
     console.log('city update', props, city.name);
-    if (city.name.length === 0) {
+    if (!city.name || city.name.length === 0) {
       console.log('city delete');
       //delete
       deleteConnectors(city.id);
@@ -87,9 +117,6 @@ export default function MapPreview() {
 
   return (
     <div>
-      <button onClick={onResetZoom}>reset zoom</button>
-      <h1>map</h1>
-      cities
       <div className="map-overlay">
         <div className="map-content map-bg" style={mapSize}>
           <svg
@@ -171,6 +198,15 @@ export default function MapPreview() {
             );
           })}
         </div>
+      </div>
+
+      <div className="map-tools overlay flex-row z-index-1 p-2">
+        <button className="p-2" onClick={addCity}>
+          add city
+        </button>
+        <button className="p-2 mx-2" onClick={addConnector}>
+          add connector
+        </button>
       </div>
     </div>
   );

@@ -42,3 +42,9 @@
 .filter-shadow-text {
   filter: url(#filter-shadow-text);
 }
+
+.map-tools {
+  position: absolute;
+  left: 0;
+  top: 0;
+}

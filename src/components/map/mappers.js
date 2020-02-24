@@ -1,3 +1,13 @@
+export const regions = [
+  'red ',
+  'teal',
+  'brown',
+  'yellow',
+  'green',
+  'violet',
+  'orange',
+];
+
 export const modificator = { x: 2, y: 3 };
 
 export function mapCity(city) {

@@ -33,8 +33,11 @@ export default function Movable(props) {
     const { x: left, y: top } = map.getBoundingClientRect();
     const { x, y } = event;
 
-    setCurrentPos({ x: x - left, y: y - top });
-    onDrag({ x: x - left, y: y - top });
+    const ax = (x - left) / (window.scale || 1);
+    const ay = (y - top) / (window.scale || 1);
+
+    setCurrentPos({ x: ax, y: ay });
+    onDrag({ x: ax, y: ay });
 
     // console.log('mouse move', isMoving, clientX, clientY);
   };
