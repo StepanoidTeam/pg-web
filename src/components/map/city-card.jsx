@@ -48,7 +48,7 @@ export default function CityCard(props) {
             ))}
           </div>
           <div className="position-relative">
-            <div className="overlay w-100 h-100 flex-row align-center justify-center">
+            <div className="overlay w-100 h-100 flex-row center-center">
               <div
                 className={`city-name region-${region} px-1 text-stroke select-none`}
                 onClick={changeCityName}

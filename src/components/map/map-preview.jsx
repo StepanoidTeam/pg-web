@@ -217,7 +217,7 @@ export default function MapPreview() {
           })}
 
           <div
-            className="overlay flex-row align-center justify-center"
+            className="overlay flex-row center-center"
             hidden={!toolCursorIsMoving}
             style={{
               left: toolCursorPos.x,

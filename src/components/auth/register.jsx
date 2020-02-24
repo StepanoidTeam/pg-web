@@ -62,10 +62,7 @@ export default function Register() {
         onChange={value => setPassword(value)}
       />
 
-      <button
-        className="button flex-row align-center justify-center"
-        onClick={onRegister}
-      >
+      <button className="button flex-row center-center" onClick={onRegister}>
         <span>register</span>
         <i className="material-icons">add_box</i>
       </button>

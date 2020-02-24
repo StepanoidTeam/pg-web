@@ -62,10 +62,7 @@ export default function Login() {
         onChange={value => setPassword(value)}
       />
 
-      <button
-        className="button flex-row align-center justify-center"
-        onClick={onLogIn}
-      >
+      <button className="button flex-row center-center" onClick={onLogIn}>
         <span>log in</span>
         <i className="material-icons">arrow_forward</i>
       </button>

@@ -68,7 +68,7 @@ export default function RoomList() {
       </ul>
 
       <button
-        className="button flex-row align-center justify-center m-2"
+        className="button flex-row center-center m-2"
         onClick={onRoomCreate}
       >
         <span>create new room</span>

@@ -105,7 +105,7 @@ export default function WiredConnection(props) {
           onUpdateConnector({ cost: _cost });
         }}
       >
-        <div className="flex-row align-center justify-center h-100">
+        <div className="flex-row center-center h-100">
           <span className="connection-cost text-stroke">{cost}</span>
         </div>
       </foreignObject>
