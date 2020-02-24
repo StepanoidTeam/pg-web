@@ -1,5 +1,5 @@
 export const regions = [
-  'red ',
+  'red',
   'teal',
   'brown',
   'yellow',
