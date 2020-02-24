@@ -21,9 +21,10 @@
 }
 
 .map-bg {
-  background-image: url(./../../assets/map-scroller-raw-wavy.png);
-  background-size: 100% auto;
-  background-repeat: no-repeat;
+  background-image: url(./../../assets//map-cities-contrast.png),
+    url(./../../assets/map-scroller-raw-wavy.png);
+  background-size: 100% auto, 100% auto;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .connection-cost {
