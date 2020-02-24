@@ -89,6 +89,29 @@ export default function MapPreview() {
     setConnectors([...connectors, newConnector]);
   }
 
+  function saveMap() {
+    const map = { connectors, cities };
+
+    localStorage.setItem('map', JSON.stringify(map));
+    console.log('map saved to ls');
+  }
+
+  function loadMap() {
+    const mapJson = localStorage.getItem('map');
+
+    if (!mapJson) {
+      console.log('map not found');
+      return;
+    }
+
+    const { connectors, cities } = JSON.parse(mapJson);
+
+    setCities(cities);
+    setConnectors(connectors);
+
+    console.log('map loaded');
+  }
+
   const updateCity = ({ id, ...props }) => {
     const oldCity = cities.find(c => c.id === id);
 
@@ -96,7 +119,7 @@ export default function MapPreview() {
 
     const city = { ...oldCity, ...props };
 
-    console.log('city update', props, city.name);
+    // console.log('city update', props, city.name);
     if (!city.name || city.name.length === 0) {
       console.log('city delete');
       //delete
@@ -230,6 +253,17 @@ export default function MapPreview() {
       </div>
 
       <div className="map-tools overlay flex-row z-index-1 p-2">
+        <button className="p-2 ml-2" onClick={loadMap}>
+          load map
+        </button>
+        <button className="p-2 ml-2" onClick={saveMap}>
+          save map
+        </button>
+
+        <button className="p-2 ml-2" onClick={addConnector}>
+          add connector
+        </button>
+
         <Movable
           onStart={({ x, y }) => {}}
           onDrag={pos => {
@@ -245,12 +279,8 @@ export default function MapPreview() {
             setToolCursorIsMoving(false);
           }}
         >
-          <button className="p-2">add city</button>
+          <button className="p-2 ml-2">add city</button>
         </Movable>
-
-        <button className="p-2 mx-2" onClick={addConnector}>
-          add connector
-        </button>
       </div>
     </div>
   );
