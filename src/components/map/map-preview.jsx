@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { kebabCase } from 'lodash';
 
 import { useGlobal } from '../../use-global';
 import { getMap } from '../../services/map.service';
@@ -10,6 +11,7 @@ import initZoom from './zoom';
 
 import './map.css';
 import { modificator, mapCity, mapConnector, regions } from './mappers';
+import Movable from './movable';
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
 
@@ -19,6 +21,9 @@ export default function MapPreview() {
     { authToken, connectors, cities },
     { setConnectors, setCities },
   ] = useGlobal();
+
+  const [toolCursorPos, setToolCursorPos] = useState({ x: 0, y: 0 });
+  const [toolCursorIsMoving, setToolCursorIsMoving] = useState(false);
 
   useEffect(() => {
     getMap(authToken, mapId).then(mapData => {
@@ -37,15 +42,23 @@ export default function MapPreview() {
     });
   }, []);
 
-  function addCity() {
-    const id = Date.now()
+  const getRandomId = () =>
+    Date.now()
       .toString()
       .substr(-4);
+
+  function addCity(props) {
+    const { x, y, name = '' } = props;
+
+    const cityName = name || prompt('enter name', `city ${getRandomId()}`);
+
+    if (!cityName) return;
+
     const newCity = {
-      id,
-      x: 400,
-      y: 400,
-      name: prompt('enter name', `city ${id.substr(-4)}`),
+      id: kebabCase(cityName),
+      x,
+      y,
+      name: cityName,
       region: regions[0],
     };
 
@@ -53,19 +66,24 @@ export default function MapPreview() {
   }
 
   function addConnector() {
-    const [from, to] = cities;
+    const [_from, _to] = cities;
 
-    if (!from || !to) {
+    if (!_from || !_to) {
       console.log('no cities');
       return;
     }
 
-    const newConnector = {
-      id: Date.now(),
+    const from = prompt('from', _from.id);
+    const to = prompt('to', _to.id);
+    const cost = prompt('cost', 10);
 
-      from: prompt('from', from.id),
-      to: prompt('to', to.id),
-      cost: prompt('cost', 10),
+    if (!from || !to || !isFinite(cost)) return;
+
+    const newConnector = {
+      id: `conn-${getRandomId()}`,
+      from,
+      to,
+      cost,
     };
 
     setConnectors([...connectors, newConnector]);
@@ -197,13 +215,39 @@ export default function MapPreview() {
               />
             );
           })}
+
+          <div
+            className="overlay flex-row align-center justify-center"
+            hidden={!toolCursorIsMoving}
+            style={{
+              left: toolCursorPos.x,
+              top: toolCursorPos.y,
+            }}
+          >
+            <div className="tool-cursor overlay">add here</div>
+          </div>
         </div>
       </div>
 
       <div className="map-tools overlay flex-row z-index-1 p-2">
-        <button className="p-2" onClick={addCity}>
-          add city
-        </button>
+        <Movable
+          onStart={({ x, y }) => {}}
+          onDrag={pos => {
+            setToolCursorPos(pos);
+            setToolCursorIsMoving(true);
+          }}
+          onDrop={pos => {
+            addCity({
+              ...pos,
+            });
+
+            setToolCursorPos({ x: 0, y: 0 });
+            setToolCursorIsMoving(false);
+          }}
+        >
+          <button className="p-2">add city</button>
+        </Movable>
+
         <button className="p-2 mx-2" onClick={addConnector}>
           add connector
         </button>
