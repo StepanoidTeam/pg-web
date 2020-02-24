@@ -112,6 +112,13 @@ export default function MapPreview() {
     console.log('map loaded');
   }
 
+  function clearMap() {
+    setCities([]);
+    setConnectors([]);
+
+    console.log('map cleared');
+  }
+
   const updateCity = ({ id, ...props }) => {
     const oldCity = cities.find(c => c.id === id);
 
@@ -258,6 +265,9 @@ export default function MapPreview() {
         </button>
         <button className="p-2 ml-2" onClick={saveMap}>
           save map
+        </button>
+        <button className="p-2 ml-2" onClick={clearMap}>
+          clear map
         </button>
 
         <button className="p-2 ml-2" onClick={addConnector}>
