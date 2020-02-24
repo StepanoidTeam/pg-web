@@ -21,7 +21,9 @@ export default function CityCard(props) {
   const [position, setPosition] = useState({ x, y });
 
   const changeCityName = () => {
-    setCityName(prompt('set city name', cityName));
+    const name = prompt('set city name', cityName);
+    setCityName(name);
+    onUpdateCity({ name });
   };
 
   return (
@@ -33,7 +35,7 @@ export default function CityCard(props) {
       }}
       onDrag={pos => {
         setPosition(pos);
-        onUpdateCity({ ...pos, Name: cityName });
+        onUpdateCity({ ...pos });
       }}
       onDrop={() => {}}
       title={`${position.x},${position.y}`}

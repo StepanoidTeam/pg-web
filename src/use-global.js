@@ -17,6 +17,8 @@ const initialState = {
     GameRoomId: null,
     playerBoards: [],
   },
+  connectors: [],
+  cities: [],
 };
 
 function _usePlayerBoard(store, { Id }) {
@@ -155,6 +157,17 @@ const actions = {
     playerBoard.IsDone = IsDone;
 
     setPlayerBoard(playerBoard);
+  },
+  //map
+  setCities(store, cities) {
+    store.setState({
+      cities,
+    });
+  },
+  setConnectors(store, connectors) {
+    store.setState({
+      connectors,
+    });
   },
 };
 

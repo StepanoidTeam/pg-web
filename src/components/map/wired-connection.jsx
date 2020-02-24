@@ -17,7 +17,7 @@ function getPathCostSvg(cost) {
 }
 
 export default function WiredConnection(props) {
-  const { from, to, cost } = props;
+  const { from, to, cost, onUpdateConnector } = props;
   const [nearestFrom, nearestTo, distance] = nearestConnection(from, to);
 
   const middlePoint = getMiddlePoint(nearestFrom, nearestTo);
@@ -100,6 +100,10 @@ export default function WiredConnection(props) {
         width={pathCostSizePx}
         height={pathCostSizePx}
         className="filter-shadow-text"
+        onClick={() => {
+          const _cost = +prompt('set new cost', cost);
+          onUpdateConnector({ cost: _cost });
+        }}
       >
         <div className="flex-row align-center justify-center h-100">
           <span className="connection-cost text-stroke">{cost}</span>

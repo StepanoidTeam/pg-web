@@ -9,49 +9,75 @@ import WiredConnection from './wired-connection';
 import initZoom from './zoom';
 
 import './map.css';
+import { modificator, mapCity, mapConnector } from './mappers';
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
-const modificator = { x: 2, y: 3 };
-function patchXY(item) {
-  const { CoordX: x, CoordY: y } = item;
-
-  return { ...item, x: x * modificator.x, y: y * modificator.y };
-}
 
 export default function MapPreview() {
   const { mapId } = useParams();
-  const [{ authToken }, {}] = useGlobal();
+  const [
+    { authToken, connectors, cities },
+    { setConnectors, setCities },
+  ] = useGlobal();
 
-  const [cities, setCities] = useState([]);
-  const [connectors, setConnectors] = useState([]);
+  const [onResetZoom, setOnResetZoom] = useState(() => 0);
 
   useEffect(() => {
     getMap(authToken, mapId).then(mapData => {
       console.log('🗾', mapData);
       window.mapData = mapData;
 
-      setCities(mapData.Cities.map(patchXY));
-      setConnectors(mapData.Connectors);
+      const cities = mapData.Cities.map(mapCity);
+      const connections = mapData.Connectors.map(mapConnector);
 
-      initZoom();
+      console.log(cities, connections);
+      setCities(cities);
+      setConnectors(connections);
+
+      const { resetZoom } = initZoom();
+      setOnResetZoom(resetZoom);
     });
   }, []);
 
   if (!cities.length && !connectors.length) return <div>map preview here</div>;
 
-  const updateCity = ({ Id, ...props }) => {
-    const oldCity = cities.find(c => c.Id === Id);
+  const updateCity = ({ id, ...props }) => {
+    const oldCity = cities.find(c => c.id === id);
 
     // console.log(props);
 
     const city = { ...oldCity, ...props };
 
-    // console.log(oldCity, city);
+    console.log('city update', props, city.name);
+    if (city.name.length === 0) {
+      console.log('city delete');
+      //delete
+      deleteConnectors(city.id);
+      setCities(cities.filter(c => c.id !== id));
+    } else {
+      //update
 
-    setCities([...cities.filter(c => c.Id !== Id), city]);
+      setCities([...cities.filter(c => c.id !== id), city]);
 
-    //redraw
-    setConnectors(connectors);
+      setConnectors(connectors);
+    }
+  };
+
+  const deleteConnectors = cityId => {
+    setConnectors(connectors.filter(c => ![c.from, c.to].includes(cityId)));
+  };
+
+  const updateConnector = ({ id, ...props }) => {
+    const oldConnector = connectors.find(c => c.id === id);
+    const connector = { ...oldConnector, ...props };
+
+    if (!isFinite(connector.cost)) {
+      //delete
+      setConnectors(connectors.filter(c => c.id !== id));
+    } else {
+      // update
+      setConnectors([...connectors.filter(c => c.id !== id), connector]);
+    }
   };
 
   const mapSize = {
@@ -61,10 +87,11 @@ export default function MapPreview() {
 
   return (
     <div>
+      <button onClick={onResetZoom}>reset zoom</button>
       <h1>map</h1>
       cities
       <div className="map-overlay">
-        <div className="map-content" style={mapSize}>
+        <div className="map-content map-bg" style={mapSize}>
           <svg
             className="map-svg w-100 h-100"
             version="1.1"
@@ -111,15 +138,18 @@ export default function MapPreview() {
             {/* <circle cx="0" cy="0" r="20" style={{ fill: 'black' }} /> */}
 
             {connectors.map(conn => {
-              const from = cities.find(city => city.Id === conn.City1Key);
-              const to = cities.find(city => city.Id === conn.City2Key);
+              const from = cities.find(city => city.id === conn.from);
+              const to = cities.find(city => city.id === conn.to);
 
               return (
                 <WiredConnection
-                  key={conn.Id}
+                  key={conn.id}
                   from={from}
                   to={to}
-                  cost={conn.Cost}
+                  cost={conn.cost}
+                  onUpdateConnector={props =>
+                    updateConnector({ id: conn.id, ...props })
+                  }
                 />
               );
             })}
@@ -131,12 +161,12 @@ export default function MapPreview() {
           {cities.map(city => {
             return (
               <CityCard
-                key={city.Id}
+                key={city.id}
                 x={city.x}
                 y={city.y}
-                name={city.Name}
-                region={city.RegionKey}
-                onUpdateCity={props => updateCity({ Id: city.Id, ...props })}
+                name={city.name}
+                region={city.region}
+                onUpdateCity={props => updateCity({ id: city.id, ...props })}
               />
             );
           })}
