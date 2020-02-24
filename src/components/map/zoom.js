@@ -40,6 +40,7 @@ export default function initZoom() {
       );
       const transform = `translate3D(${posX}px, ${posY}px, 0px) scale(${scale})`;
 
+      window.scale = scale;
       // console.log(transform);
       mapContent.style.transform = transform;
 
@@ -50,6 +51,8 @@ export default function initZoom() {
       // content:${contentWidth.toFixed(2)},${contentHeight.toFixed(2)}<br/>
       // `;
     });
+
+    document.title = `${scale}`;
   };
 
   // todo(vmyshko): use this as common endpoint for any type of events?
@@ -126,6 +129,11 @@ export default function initZoom() {
     document.body.classList.remove('cursor-move');
   }
 
+  const resetZoom = () => {
+    scale = 1;
+    render();
+  };
+
   const noop = () => 0;
 
   // todo(vmyshko): make mobile touch work
@@ -191,4 +199,8 @@ export default function initZoom() {
   // });
 
   console.log('zoom init done');
+
+  return {
+    resetZoom,
+  };
 }
