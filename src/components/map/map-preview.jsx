@@ -242,6 +242,7 @@ export default function MapPreview() {
                 y={city.y}
                 name={city.name}
                 region={city.region}
+                isCapital={city.isCapital}
                 onUpdateCity={props => updateCity({ id: city.id, ...props })}
               />
             );

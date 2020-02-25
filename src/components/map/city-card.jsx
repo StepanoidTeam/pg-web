@@ -14,7 +14,7 @@ function CitySlot({ cost, onClick }) {
 }
 
 export default function CityCard(props) {
-  const { x, y, name, region, onUpdateCity } = props;
+  const { x, y, name, region, isCapital = false, onUpdateCity } = props;
 
   const [position, setPosition] = useState({ x, y });
 
@@ -43,6 +43,8 @@ export default function CityCard(props) {
         break;
       }
       case 20: {
+        onUpdateCity({ isCapital: !isCapital });
+
         break;
       }
     }
@@ -69,7 +71,6 @@ export default function CityCard(props) {
                 cost={cost}
                 onClick={event => {
                   event.stopPropagation();
-                  console.log('click');
                   onSlotClick(cost);
                 }}
               />
@@ -85,18 +86,13 @@ export default function CityCard(props) {
               </div>
             </div>
           </div>
-          <div
-            className="city-slots flex-row"
-            hidden
-            //hidden={Math.random() * 10 > 5}
-          >
+          <div className="city-slots flex-row" hidden={!isCapital}>
             {[10, 15, 20].map(cost => (
               <CitySlot
                 key={cost}
                 cost={cost}
                 onClick={event => {
                   event.stopPropagation();
-                  console.log('click');
                   onSlotClick(cost);
                 }}
               />

@@ -2,7 +2,6 @@
   "connectors": [
     { "id": "conn-1610", "from": "mbombela", "to": "germiston", "cost": 13 },
     { "id": "conn-5363", "from": "pretoria", "to": "mbombela", "cost": 13 },
-    { "id": "conn-8586", "from": "johannesburg", "to": "germiston", "cost": 1 },
     { "id": "conn-3378", "from": "pretoria", "to": "johannesburg", "cost": 2 },
     { "id": "conn-5665", "from": "pretoria", "to": "polokwane", "cost": 11 },
     { "id": "conn-8656", "from": "musina", "to": "polokwane", "cost": 8 },
@@ -120,7 +119,8 @@
       "to": "east-london",
       "cost": 22
     },
-    { "id": "conn-0563", "from": "polokwane", "to": "mbombela", "cost": 10 }
+    { "id": "conn-0563", "from": "polokwane", "to": "mbombela", "cost": 10 },
+    { "id": "conn-8586", "from": "johannesburg", "to": "germiston", "cost": 1 }
   ],
   "cities": [
     {
@@ -136,13 +136,6 @@
       "x": 1281,
       "y": 1726,
       "name": "beaufort west",
-      "region": "red"
-    },
-    {
-      "id": "cape-town",
-      "x": 771,
-      "y": 1925,
-      "name": "cape town",
       "region": "red"
     },
     { "id": "george", "x": 1309, "y": 2002, "name": "george", "region": "red" },
@@ -203,13 +196,6 @@
       "region": "orange"
     },
     {
-      "id": "pretoria",
-      "x": 2138,
-      "y": 576,
-      "name": "pretoria",
-      "region": "orange"
-    },
-    {
       "id": "polokwane",
       "x": 2254,
       "y": 390,
@@ -228,20 +214,6 @@
       "x": 2478,
       "y": 615,
       "name": "mbombela",
-      "region": "green"
-    },
-    {
-      "id": "germiston",
-      "x": 2348,
-      "y": 813,
-      "name": "germiston",
-      "region": "green"
-    },
-    {
-      "id": "johannesburg",
-      "x": 2123,
-      "y": 787,
-      "name": "johannesburg",
       "region": "green"
     },
     {
@@ -266,13 +238,6 @@
       "region": "yellow"
     },
     {
-      "id": "durban",
-      "x": 2482,
-      "y": 1357,
-      "name": "durban",
-      "region": "yellow"
-    },
-    {
       "id": "bloemfontein",
       "x": 1872,
       "y": 1215,
@@ -285,6 +250,45 @@
       "y": 1618,
       "name": "mthatha",
       "region": "yellow"
+    },
+    {
+      "id": "cape-town",
+      "x": 772,
+      "y": 1943,
+      "name": "cape town",
+      "region": "red",
+      "isCapital": true
+    },
+    {
+      "id": "durban",
+      "x": 2480,
+      "y": 1392,
+      "name": "durban",
+      "region": "yellow",
+      "isCapital": true
+    },
+    {
+      "id": "johannesburg",
+      "x": 2123,
+      "y": 815,
+      "name": "johannesburg",
+      "region": "green",
+      "isCapital": true
+    },
+    {
+      "id": "pretoria",
+      "x": 2139,
+      "y": 609,
+      "name": "pretoria",
+      "region": "orange",
+      "isCapital": true
+    },
+    {
+      "id": "germiston",
+      "x": 2350,
+      "y": 812,
+      "name": "germiston",
+      "region": "green"
     }
   ]
 }
