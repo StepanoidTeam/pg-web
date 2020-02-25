@@ -29,7 +29,10 @@
     "extends": "react-app",
     "rules": {
       "no-empty-pattern": "off",
-      "react-hooks/exhaustive-deps": "off"
+      "react-hooks/exhaustive-deps": "off",
+      "no-unused-vars": "off",
+      "no-unreachable": "off",
+      "jsx-a11y/accessible-emoji": "off"
     }
   },
   "browserslist": {
