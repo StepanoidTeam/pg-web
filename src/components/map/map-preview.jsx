@@ -13,6 +13,8 @@ import './map.css';
 import { mapCity, mapConnector, regions } from './mappers';
 import Movable from './movable';
 
+import africaMap from './africa.map.json';
+
 // todo(vmyshko): force izya to update all namings to lowecase etc.
 
 export default function MapPreview() {
@@ -26,20 +28,17 @@ export default function MapPreview() {
   const [toolCursorIsMoving, setToolCursorIsMoving] = useState(false);
 
   useEffect(() => {
-    getMap(authToken, mapId).then(mapData => {
-      console.log('🗾', mapData);
-      window.mapData = mapData;
+    const mapData = africaMap;
 
-      const cities = mapData.Cities.map(mapCity);
-      const connections = mapData.Connectors.map(mapConnector);
+    console.log('🗾', mapData);
+    window.mapData = mapData;
 
-      console.log(cities, connections);
-      //empty map
-      setCities([], cities);
-      setConnectors([], connections);
+    const { cities, connectors } = mapData;
 
-      initZoom();
-    });
+    setCities(cities);
+    setConnectors(connectors);
+
+    initZoom();
   }, []);
 
   const getRandomId = () =>
