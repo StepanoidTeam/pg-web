@@ -10,7 +10,7 @@ import WiredConnection from './wired-connection';
 import initZoom from './zoom';
 
 import './map.css';
-import { modificator, mapCity, mapConnector, regions } from './mappers';
+import { mapCity, mapConnector, regions } from './mappers';
 import Movable from './movable';
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
@@ -66,7 +66,7 @@ export default function MapPreview() {
   }
 
   function addConnector() {
-    const [_from, _to] = cities;
+    const [_from, _to] = cities.reverse();
 
     if (!_from || !_to) {
       console.log('no cities');
@@ -78,6 +78,8 @@ export default function MapPreview() {
     const cost = prompt('cost', 10);
 
     if (!from || !to || !isFinite(cost)) return;
+
+    if (!cities.some(c => [from, to].includes(c.id))) return;
 
     const newConnector = {
       id: `conn-${getRandomId()}`,
@@ -159,8 +161,8 @@ export default function MapPreview() {
   };
 
   const mapSize = {
-    width: 1650 * modificator.x,
-    height: 950 * modificator.y,
+    width: 3500,
+    height: 2400,
   };
 
   return (
