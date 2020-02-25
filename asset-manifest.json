@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/pg-web/static/css/main.a384cfad.chunk.css",
-    "main.js": "/pg-web/static/js/main.c2397f10.chunk.js",
-    "main.js.map": "/pg-web/static/js/main.c2397f10.chunk.js.map",
+    "main.css": "/pg-web/static/css/main.4b704656.chunk.css",
+    "main.js": "/pg-web/static/js/main.4f50a56d.chunk.js",
+    "main.js.map": "/pg-web/static/js/main.4f50a56d.chunk.js.map",
     "runtime-main.js": "/pg-web/static/js/runtime-main.677f96d2.js",
     "runtime-main.js.map": "/pg-web/static/js/runtime-main.677f96d2.js.map",
-    "static/js/2.debe56d1.chunk.js": "/pg-web/static/js/2.debe56d1.chunk.js",
-    "static/js/2.debe56d1.chunk.js.map": "/pg-web/static/js/2.debe56d1.chunk.js.map",
+    "static/js/2.a16fb16f.chunk.js": "/pg-web/static/js/2.a16fb16f.chunk.js",
+    "static/js/2.a16fb16f.chunk.js.map": "/pg-web/static/js/2.a16fb16f.chunk.js.map",
     "index.html": "/pg-web/index.html",
-    "precache-manifest.a961239d7bbd7385b459e19bdbed31e3.js": "/pg-web/precache-manifest.a961239d7bbd7385b459e19bdbed31e3.js",
+    "precache-manifest.b22948d267ad3f33ba8255c04c3612df.js": "/pg-web/precache-manifest.b22948d267ad3f33ba8255c04c3612df.js",
     "service-worker.js": "/pg-web/service-worker.js",
-    "static/css/main.a384cfad.chunk.css.map": "/pg-web/static/css/main.a384cfad.chunk.css.map",
-    "static/js/2.debe56d1.chunk.js.LICENSE.txt": "/pg-web/static/js/2.debe56d1.chunk.js.LICENSE.txt",
+    "static/css/main.4b704656.chunk.css.map": "/pg-web/static/css/main.4b704656.chunk.css.map",
+    "static/js/2.a16fb16f.chunk.js.LICENSE.txt": "/pg-web/static/js/2.a16fb16f.chunk.js.LICENSE.txt",
     "static/media/index.css": "/pg-web/static/media/city-icons_64.cc5bddbc.png",
     "static/media/connection-from.svg": "/pg-web/static/media/connection-from.e75d5b32.svg",
     "static/media/connection-to.svg": "/pg-web/static/media/connection-to.93da9075.svg",
+    "static/media/map.css": "/pg-web/static/media/map-scroller-raw-wavy.5641dea6.png",
     "static/media/path-cost-copper-10.svg": "/pg-web/static/media/path-cost-copper-10.e168a73f.svg",
     "static/media/path-cost-gold.svg": "/pg-web/static/media/path-cost-gold.f70c738a.svg",
     "static/media/path-cost-goldish-25.svg": "/pg-web/static/media/path-cost-goldish-25.eebca72f.svg",
@@ -24,8 +25,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.677f96d2.js",
-    "static/js/2.debe56d1.chunk.js",
-    "static/css/main.a384cfad.chunk.css",
-    "static/js/main.c2397f10.chunk.js"
+    "static/js/2.a16fb16f.chunk.js",
+    "static/css/main.4b704656.chunk.css",
+    "static/js/main.4f50a56d.chunk.js"
   ]
 }
