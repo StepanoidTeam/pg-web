@@ -75,7 +75,7 @@ export default function MapPreview() {
 
     const from = prompt('from', _from.id);
     const to = prompt('to', _to.id);
-    const cost = prompt('cost', 10);
+    const cost = +prompt('cost', 10);
 
     if (!from || !to || !isFinite(cost)) return;
 
