@@ -44,7 +44,7 @@ export default function MapPreview() {
   const getRandomId = () =>
     Date.now()
       .toString()
-      .substr(-4);
+      .substr(-6);
 
   function addCity(props) {
     const { x, y, name = '' } = props;
