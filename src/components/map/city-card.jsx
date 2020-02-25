@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import Movable from './movable';
 
 import './city-card.css';
+import { regions } from './mappers';
 
-function CitySlot(props) {
-  const { cost } = props;
+function CitySlot({ cost, onClick }) {
   return (
-    <div className="city-slot m-1 text-stroke">
+    <div className="city-slot m-1 text-stroke" onClick={onClick}>
       <span className="select-none">{cost}</span>
     </div>
   );
@@ -16,14 +16,36 @@ function CitySlot(props) {
 export default function CityCard(props) {
   const { x, y, name, region, onUpdateCity } = props;
 
-  const [cityName, setCityName] = useState(name);
-
   const [position, setPosition] = useState({ x, y });
 
   const changeCityName = () => {
-    const name = prompt('set city name', cityName);
-    setCityName(name);
-    onUpdateCity({ name });
+    const cityName = prompt('set city name', name);
+    if (!cityName || cityName === name) return;
+
+    //setCityName(name);
+    onUpdateCity({ name: cityName });
+  };
+
+  const onSlotClick = cost => {
+    const getNextRegion = item => {
+      const i = regions.indexOf(item) + 1;
+      const n = regions.length;
+
+      return regions[((i % n) + n) % n];
+    };
+
+    switch (cost) {
+      case 10: {
+        onUpdateCity({ region: getNextRegion(region) });
+        break;
+      }
+      case 15: {
+        break;
+      }
+      case 20: {
+        break;
+      }
+    }
   };
 
   return (
@@ -37,14 +59,20 @@ export default function CityCard(props) {
         setPosition(pos);
         onUpdateCity({ ...pos });
       }}
-      onDrop={() => {}}
-      title={`${position.x},${position.y}`}
     >
       <div className="city-card">
         <div className="city-rows flex-column p-1">
           <div className="city-slots flex-row">
             {[10, 15, 20].map(cost => (
-              <CitySlot key={cost} cost={cost} />
+              <CitySlot
+                key={cost}
+                cost={cost}
+                onClick={event => {
+                  event.stopPropagation();
+                  console.log('click');
+                  onSlotClick(cost);
+                }}
+              />
             ))}
           </div>
           <div className="position-relative">
@@ -53,7 +81,7 @@ export default function CityCard(props) {
                 className={`city-name region-${region} px-1 text-stroke select-none`}
                 onClick={changeCityName}
               >
-                {cityName}
+                {name}
               </div>
             </div>
           </div>
@@ -63,7 +91,15 @@ export default function CityCard(props) {
             //hidden={Math.random() * 10 > 5}
           >
             {[10, 15, 20].map(cost => (
-              <CitySlot key={cost} cost={cost} />
+              <CitySlot
+                key={cost}
+                cost={cost}
+                onClick={event => {
+                  event.stopPropagation();
+                  console.log('click');
+                  onSlotClick(cost);
+                }}
+              />
             ))}
           </div>
         </div>
