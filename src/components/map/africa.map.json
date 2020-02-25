@@ -2,27 +2,12 @@
   "connectors": [
     { "id": "conn-1610", "from": "mbombela", "to": "germiston", "cost": 13 },
     { "id": "conn-5363", "from": "pretoria", "to": "mbombela", "cost": 13 },
-    {
-      "id": "conn-8586",
-      "from": "johannesburg",
-      "to": "germiston",
-      "cost": 1
-    },
-    {
-      "id": "conn-3377",
-      "from": "pretoria",
-      "to": "johannesburg",
-      "cost": 2
-    },
+    { "id": "conn-8586", "from": "johannesburg", "to": "germiston", "cost": 1 },
+    { "id": "conn-3378", "from": "pretoria", "to": "johannesburg", "cost": 2 },
     { "id": "conn-5665", "from": "pretoria", "to": "polokwane", "cost": 11 },
     { "id": "conn-8656", "from": "musina", "to": "polokwane", "cost": 8 },
     { "id": "conn-9144", "from": "musina", "to": "mbombela", "cost": 15 },
-    {
-      "id": "conn-6191",
-      "from": "johannesburg",
-      "to": "mbombela",
-      "cost": 13
-    },
+    { "id": "conn-6191", "from": "johannesburg", "to": "mbombela", "cost": 13 },
     {
       "id": "conn-1607",
       "from": "rustenburg",
@@ -96,26 +81,11 @@
       "cost": 22
     },
     { "id": "conn-6624", "from": "george", "to": "de-aar", "cost": 17 },
-    {
-      "id": "conn-6136",
-      "from": "beaufort-west",
-      "to": "de-aar",
-      "cost": 10
-    },
+    { "id": "conn-6136", "from": "beaufort-west", "to": "de-aar", "cost": 10 },
     { "id": "conn-7455", "from": "beaufort-west", "to": "george", "cost": 8 },
     { "id": "conn-7327", "from": "cape-town", "to": "george", "cost": 16 },
-    {
-      "id": "conn-0896",
-      "from": "port-elizabeth",
-      "to": "george",
-      "cost": 12
-    },
-    {
-      "id": "conn-0661",
-      "from": "port-elizabeth",
-      "to": "de-aar",
-      "cost": 18
-    },
+    { "id": "conn-0896", "from": "port-elizabeth", "to": "george", "cost": 12 },
+    { "id": "conn-0661", "from": "port-elizabeth", "to": "de-aar", "cost": 18 },
     {
       "id": "conn-0182",
       "from": "port-elizabeth",
@@ -129,12 +99,7 @@
     { "id": "conn-8091", "from": "kimberley", "to": "de-aar", "cost": 10 },
     { "id": "conn-6803", "from": "upington", "to": "de-aar", "cost": 16 },
     { "id": "conn-3770", "from": "bloemfontein", "to": "welkom", "cost": 6 },
-    {
-      "id": "conn-4009",
-      "from": "bloemfontein",
-      "to": "kimberley",
-      "cost": 6
-    },
+    { "id": "conn-4009", "from": "bloemfontein", "to": "kimberley", "cost": 6 },
     {
       "id": "conn-7856",
       "from": "bloemfontein",
@@ -147,12 +112,7 @@
       "to": "johannesburg",
       "cost": 16
     },
-    {
-      "id": "conn-9774",
-      "from": "bloemfontein",
-      "to": "mthatha",
-      "cost": 18
-    },
+    { "id": "conn-9774", "from": "bloemfontein", "to": "mthatha", "cost": 18 },
     { "id": "conn-5157", "from": "bloemfontein", "to": "de-aar", "cost": 13 },
     {
       "id": "conn-4206",
@@ -164,24 +124,10 @@
   ],
   "cities": [
     {
-      "id": "upington",
-      "x": 1155,
-      "y": 1075,
-      "name": "upington",
-      "region": "red"
-    },
-    {
       "id": "port-elizabeth",
       "x": 1726,
       "y": 1998,
       "name": "port elizabeth",
-      "region": "red"
-    },
-    {
-      "id": "springbok",
-      "x": 717,
-      "y": 1273,
-      "name": "springbok",
       "region": "red"
     },
     { "id": "de-aar", "x": 1567, "y": 1620, "name": "de aar", "region": "red" },
@@ -207,106 +153,138 @@
       "name": "east london",
       "region": "red"
     },
-    { "id": "durban", "x": 2482, "y": 1357, "name": "durban", "region": "red" },
     {
-      "id": "mthatha",
-      "x": 2217,
-      "y": 1618,
-      "name": "mthatha",
-      "region": "red"
+      "id": "springbok",
+      "x": 717,
+      "y": 1273,
+      "name": "springbok",
+      "region": "brown"
     },
     {
-      "id": "pietermaritzburg",
-      "x": 2380,
-      "y": 1222,
-      "name": "pietermaritzburg",
-      "region": "red"
+      "id": "upington",
+      "x": 1152,
+      "y": 1072,
+      "name": "upington",
+      "region": "brown"
     },
     {
       "id": "kuruman",
-      "x": 1462,
-      "y": 901,
+      "x": 1467,
+      "y": 898,
       "name": "kuruman",
-      "region": "red"
-    },
-    { "id": "musina", "x": 2442, "y": 246, "name": "musina", "region": "red" },
-    {
-      "id": "mbombela",
-      "x": 2478,
-      "y": 615,
-      "name": "mbombela",
-      "region": "red"
-    },
-    {
-      "id": "polokwane",
-      "x": 2254,
-      "y": 390,
-      "name": "polokwane",
-      "region": "red"
-    },
-    {
-      "id": "pretoria",
-      "x": 2138,
-      "y": 576,
-      "name": "pretoria",
-      "region": "red"
-    },
-    {
-      "id": "germiston",
-      "x": 2348,
-      "y": 813,
-      "name": "germiston",
-      "region": "red"
-    },
-    {
-      "id": "johannesburg",
-      "x": 2123,
-      "y": 787,
-      "name": "johannesburg",
-      "region": "red"
-    },
-    {
-      "id": "rustenburg",
-      "x": 1895,
-      "y": 706,
-      "name": "rustenburg",
-      "region": "red"
-    },
-    {
-      "id": "klerksdorp",
-      "x": 1879,
-      "y": 835,
-      "name": "klerksdorp",
-      "region": "red"
-    },
-    {
-      "id": "ladysmith",
-      "x": 2315,
-      "y": 1087,
-      "name": "ladysmith",
-      "region": "red"
-    },
-    { "id": "welkom", "x": 1861, "y": 1017, "name": "welkom", "region": "red" },
-    {
-      "id": "richards-bay",
-      "x": 2649,
-      "y": 1137,
-      "name": "richards-bay",
-      "region": "red"
+      "region": "brown"
     },
     {
       "id": "kimberley",
       "x": 1628,
       "y": 1183,
       "name": "kimberley",
-      "region": "red"
+      "region": "brown"
+    },
+    {
+      "id": "welkom",
+      "x": 1861,
+      "y": 1017,
+      "name": "welkom",
+      "region": "brown"
+    },
+    {
+      "id": "klerksdorp",
+      "x": 1879,
+      "y": 835,
+      "name": "klerksdorp",
+      "region": "brown"
+    },
+    {
+      "id": "rustenburg",
+      "x": 1895,
+      "y": 706,
+      "name": "rustenburg",
+      "region": "orange"
+    },
+    {
+      "id": "pretoria",
+      "x": 2138,
+      "y": 576,
+      "name": "pretoria",
+      "region": "orange"
+    },
+    {
+      "id": "polokwane",
+      "x": 2254,
+      "y": 390,
+      "name": "polokwane",
+      "region": "orange"
+    },
+    {
+      "id": "musina",
+      "x": 2442,
+      "y": 246,
+      "name": "musina",
+      "region": "orange"
+    },
+    {
+      "id": "mbombela",
+      "x": 2478,
+      "y": 615,
+      "name": "mbombela",
+      "region": "green"
+    },
+    {
+      "id": "germiston",
+      "x": 2348,
+      "y": 813,
+      "name": "germiston",
+      "region": "green"
+    },
+    {
+      "id": "johannesburg",
+      "x": 2123,
+      "y": 787,
+      "name": "johannesburg",
+      "region": "green"
+    },
+    {
+      "id": "ladysmith",
+      "x": 2315,
+      "y": 1087,
+      "name": "ladysmith",
+      "region": "green"
+    },
+    {
+      "id": "richards-bay",
+      "x": 2649,
+      "y": 1137,
+      "name": "richards-bay",
+      "region": "yellow"
+    },
+    {
+      "id": "pietermaritzburg",
+      "x": 2380,
+      "y": 1222,
+      "name": "pietermaritzburg",
+      "region": "yellow"
+    },
+    {
+      "id": "durban",
+      "x": 2482,
+      "y": 1357,
+      "name": "durban",
+      "region": "yellow"
     },
     {
       "id": "bloemfontein",
       "x": 1872,
       "y": 1215,
       "name": "bloemfontein",
-      "region": "red"
+      "region": "yellow"
+    },
+    {
+      "id": "mthatha",
+      "x": 2217,
+      "y": 1618,
+      "name": "mthatha",
+      "region": "yellow"
     }
   ]
 }
