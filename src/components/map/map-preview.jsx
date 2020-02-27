@@ -14,6 +14,9 @@ import { mapCity, mapConnector, regions } from './mappers';
 import Movable from './movable';
 
 import africaMap from './africa.map.json';
+import usaMap from './usa.map.json';
+
+const currentMap = usaMap;
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
 
@@ -28,7 +31,7 @@ export default function MapPreview() {
   const [toolCursorIsMoving, setToolCursorIsMoving] = useState(false);
 
   useEffect(() => {
-    const mapData = africaMap;
+    const mapData = currentMap;
 
     console.log('🗾', mapData);
     window.mapData = mapData;
@@ -53,12 +56,14 @@ export default function MapPreview() {
 
     if (!cityName) return;
 
+    const lastCity = cities[cities.length - 1] || { region: regions[0] };
+
     const newCity = {
       id: kebabCase(cityName),
       x,
       y,
       name: cityName,
-      region: regions[0],
+      region: lastCity.region,
     };
 
     setCities([...cities, newCity]);
@@ -72,13 +77,16 @@ export default function MapPreview() {
       return;
     }
 
-    const from = prompt('from', _from.id);
-    const to = prompt('to', _to.id);
+    const fromQuery = prompt('from', _from.id);
+    const toQuery = prompt('to', _to.id);
     const cost = +prompt('cost', 10);
 
-    if (!from || !to || !isFinite(cost)) return;
+    if (!fromQuery || !toQuery || !isFinite(cost)) return;
 
-    if (!cities.some(c => [from, to].includes(c.id))) return;
+    const { id: from } = cities.find(c => c.name.startsWith(fromQuery)) || {};
+    const { id: to } = cities.find(c => c.name.startsWith(toQuery)) || {};
+
+    if (!from || !to) return;
 
     const newConnector = {
       id: `conn-${getRandomId()}`,
