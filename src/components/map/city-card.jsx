@@ -4,6 +4,7 @@ import Movable from './movable';
 
 import './city-card.css';
 import { regions } from './mappers';
+import { city1row_co, city2row_co } from './city-connector-offsets';
 
 function CitySlot({ cost, onClick }) {
   return (
@@ -17,6 +18,18 @@ export default function CityCard(props) {
   const { x, y, name, region, isCapital = false, onUpdateCity } = props;
 
   const [position, setPosition] = useState({ x, y });
+
+  const debugPoints = (isCapital ? city2row_co : city1row_co).map(
+    ({ x, y }, index) => (
+      <div
+        key={index}
+        className="overlay flex-row center-center"
+        style={{ left: x, top: y }}
+      >
+        <div className="overlay debug-point">{index}</div>
+      </div>
+    ),
+  );
 
   const changeCityName = () => {
     const cityName = prompt('set city name', name);
@@ -100,6 +113,7 @@ export default function CityCard(props) {
           </div>
         </div>
       </div>
+      {window.debug && debugPoints}
     </Movable>
   );
 }
