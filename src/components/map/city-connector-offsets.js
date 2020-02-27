@@ -21,7 +21,7 @@ function generateConnectorOffsets(cols = 3, rows = 1) {
     }
   }
 
-  console.log(rows, 'co', JSON.stringify(resultConnectorOffsets));
+  // console.log(rows, 'co', JSON.stringify(resultConnectorOffsets));
 
   return resultConnectorOffsets;
 }
