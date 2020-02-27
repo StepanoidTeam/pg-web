@@ -1,0 +1,486 @@
+{
+  "connectors": [
+    { "id": "conn-721305", "from": "seattle", "to": "portland", "cost": 3 },
+    { "id": "conn-735416", "from": "seattle", "to": "billings", "cost": 9 },
+    { "id": "conn-744999", "from": "portland", "to": "boise", "cost": 13 },
+    { "id": "conn-753967", "from": "seattle", "to": "boise", "cost": 12 },
+    { "id": "conn-774406", "from": "boise", "to": "billings", "cost": 12 },
+    {
+      "id": "conn-809845",
+      "from": "portland",
+      "to": "san-francisco",
+      "cost": 24
+    },
+    { "id": "conn-887923", "from": "boise", "to": "san-francisco", "cost": 23 },
+    { "id": "conn-898379", "from": "boise", "to": "salt-lake-city", "cost": 8 },
+    {
+      "id": "conn-911834",
+      "from": "san-francisco",
+      "to": "salt-lake-city",
+      "cost": 27
+    },
+    {
+      "id": "conn-951000",
+      "from": "salt-lake-city",
+      "to": "las-vegas",
+      "cost": 18
+    },
+    {
+      "id": "conn-962400",
+      "from": "san-francisco",
+      "to": "las-vegas",
+      "cost": 14
+    },
+    {
+      "id": "conn-997462",
+      "from": "san-francisco",
+      "to": "los-angeles",
+      "cost": 9
+    },
+    {
+      "id": "conn-008238",
+      "from": "san-diego",
+      "to": "los-angeles",
+      "cost": 3
+    },
+    { "id": "conn-017574", "from": "san-diego", "to": "phoenix", "cost": 14 },
+    { "id": "conn-027158", "from": "san-diego", "to": "las-vegas", "cost": 9 },
+    {
+      "id": "conn-037526",
+      "from": "los-angeles",
+      "to": "las-vegas",
+      "cost": 9
+    },
+    { "id": "conn-069420", "from": "las-vegas", "to": "phoenix", "cost": 15 },
+    { "id": "conn-078612", "from": "phoenix", "to": "santa-fe", "cost": 18 },
+    { "id": "conn-097515", "from": "las-vegas", "to": "santa-fe", "cost": 27 },
+    {
+      "id": "conn-107819",
+      "from": "salt-lake-city",
+      "to": "santa-fe",
+      "cost": 28
+    },
+    {
+      "id": "conn-115506",
+      "from": "salt-lake-city",
+      "to": "denver",
+      "cost": 21
+    },
+    { "id": "conn-132026", "from": "denver", "to": "santa-fe", "cost": 13 },
+    { "id": "conn-146402", "from": "cheyenne", "to": "denver", "cost": 0 },
+    { "id": "conn-167073", "from": "billings", "to": "cheyenne", "cost": 9 },
+    { "id": "conn-202840", "from": "santa-fe", "to": "houston", "cost": 21 },
+    { "id": "conn-215455", "from": "santa-fe", "to": "dallas", "cost": 16 },
+    {
+      "id": "conn-225623",
+      "from": "santa-fe",
+      "to": "oklahoma-city",
+      "cost": 15
+    },
+    {
+      "id": "conn-234918",
+      "from": "santa-fe",
+      "to": "kansas-city",
+      "cost": 16
+    },
+    { "id": "conn-256902", "from": "houston", "to": "dallas", "cost": 5 },
+    { "id": "conn-262180", "from": "houston", "to": "new-orleans", "cost": 8 },
+    { "id": "conn-281324", "from": "dallas", "to": "new-orleans", "cost": 12 },
+    { "id": "conn-291445", "from": "dallas", "to": "oklahoma-city", "cost": 3 },
+    {
+      "id": "conn-303788",
+      "from": "oklahoma-city",
+      "to": "memphis",
+      "cost": 14
+    },
+    { "id": "conn-312491", "from": "memphis", "to": "birmingham", "cost": 6 },
+    {
+      "id": "conn-324947",
+      "from": "new-orleans",
+      "to": "birmingham",
+      "cost": 11
+    },
+    {
+      "id": "conn-333426",
+      "from": "new-orleans",
+      "to": "jacksonville",
+      "cost": 16
+    },
+    { "id": "conn-341514", "from": "jacksonville", "to": "tampa", "cost": 4 },
+    { "id": "conn-348202", "from": "tampa", "to": "miami", "cost": 4 },
+    {
+      "id": "conn-357490",
+      "from": "jacksonville",
+      "to": "savannah",
+      "cost": 0
+    },
+    { "id": "conn-374089", "from": "savannah", "to": "atlanta", "cost": 7 },
+    { "id": "conn-392601", "from": "birmingham", "to": "atlanta", "cost": 3 },
+    {
+      "id": "conn-416640",
+      "from": "birmingham",
+      "to": "jacksonville",
+      "cost": 9
+    },
+    { "id": "conn-433719", "from": "new-orleans", "to": "memphis", "cost": 7 },
+    { "id": "conn-468942", "from": "atlanta", "to": "raleich", "cost": 7 },
+    { "id": "conn-477622", "from": "savannah", "to": "raleich", "cost": 7 },
+    { "id": "conn-485230", "from": "raleich", "to": "norfolk", "cost": 3 },
+    { "id": "conn-504805", "from": "knoxwille", "to": "atlanta", "cost": 5 },
+    { "id": "conn-516613", "from": "atlanta", "to": "st-louis", "cost": 12 },
+    { "id": "conn-530756", "from": "knoxwille", "to": "cincinati", "cost": 6 },
+    { "id": "conn-539948", "from": "cincinati", "to": "st-louis", "cost": 12 },
+    { "id": "conn-552468", "from": "cincinati", "to": "raleich", "cost": 15 },
+    { "id": "conn-563034", "from": "raleich", "to": "pittsburgh", "cost": 7 },
+    { "id": "conn-577738", "from": "memphis", "to": "st-louis", "cost": 7 },
+    { "id": "conn-585378", "from": "memphis", "to": "kansas-city", "cost": 12 },
+    { "id": "conn-612889", "from": "memphis", "to": "dallas", "cost": 12 },
+    { "id": "conn-778627", "from": "boise", "to": "cheyenne", "cost": 24 },
+    { "id": "conn-798874", "from": "billings", "to": "fargo", "cost": 17 },
+    {
+      "id": "conn-804178",
+      "from": "billings",
+      "to": "minneapolis",
+      "cost": 18
+    },
+    { "id": "conn-853968", "from": "denver", "to": "kansas-city", "cost": 16 },
+    {
+      "id": "conn-905263",
+      "from": "oklahoma-city",
+      "to": "kansas-city",
+      "cost": 8
+    },
+    { "id": "conn-990451", "from": "norfolk", "to": "washington", "cost": 5 },
+    { "id": "conn-033930", "from": "cheyenne", "to": "omaha", "cost": 14 },
+    {
+      "id": "conn-038986",
+      "from": "cheyenne",
+      "to": "minneapolis",
+      "cost": 18
+    },
+    { "id": "conn-056961", "from": "fargo", "to": "duluth", "cost": 6 },
+    { "id": "conn-076712", "from": "fargo", "to": "minneapolis", "cost": 6 },
+    { "id": "conn-095240", "from": "duluth", "to": "minneapolis", "cost": 5 },
+    { "id": "conn-104584", "from": "duluth", "to": "detroit", "cost": 15 },
+    { "id": "conn-115615", "from": "duluth", "to": "chicago", "cost": 12 },
+    { "id": "conn-150661", "from": "minneapolis", "to": "omaha", "cost": 8 },
+    { "id": "conn-154742", "from": "minneapolis", "to": "chicago", "cost": 8 },
+    { "id": "conn-167246", "from": "omaha", "to": "chicago", "cost": 13 },
+    { "id": "conn-200276", "from": "kansas-city", "to": "omaha", "cost": 5 },
+    { "id": "conn-217587", "from": "kansas-city", "to": "chicago", "cost": 8 },
+    { "id": "conn-221804", "from": "kansas-city", "to": "st-louis", "cost": 6 },
+    { "id": "conn-278249", "from": "st-louis", "to": "chicago", "cost": 10 },
+    { "id": "conn-302993", "from": "chicago", "to": "detroit", "cost": 7 },
+    { "id": "conn-308009", "from": "chicago", "to": "cincinati", "cost": 7 },
+    { "id": "conn-337095", "from": "detroit", "to": "buffalo", "cost": 7 },
+    { "id": "conn-343430", "from": "detroit", "to": "pittsburgh", "cost": 6 },
+    { "id": "conn-347719", "from": "detroit", "to": "cincinati", "cost": 4 },
+    { "id": "conn-368934", "from": "cincinati", "to": "pittsburgh", "cost": 7 },
+    { "id": "conn-394452", "from": "boston", "to": "new-york", "cost": 3 },
+    {
+      "id": "conn-405341",
+      "from": "new-york",
+      "to": "philadelphia",
+      "cost": 0
+    },
+    {
+      "id": "conn-427332",
+      "from": "washington",
+      "to": "philadelphia",
+      "cost": 3
+    },
+    { "id": "conn-466715", "from": "new-york", "to": "buffalo", "cost": 8 },
+    { "id": "conn-480570", "from": "buffalo", "to": "pittsburgh", "cost": 7 },
+    { "id": "conn-504809", "from": "washington", "to": "pittsburgh", "cost": 6 }
+  ],
+  "cities": [
+    {
+      "id": "new-york",
+      "x": 3216.295274225374,
+      "y": 903.1272415670027,
+      "name": "new york",
+      "region": "brown"
+    },
+    {
+      "id": "washington",
+      "x": 2944.4114187798104,
+      "y": 1113.5417036074823,
+      "name": "washington",
+      "region": "brown"
+    },
+    {
+      "id": "savannah",
+      "x": 2719.943920684121,
+      "y": 1586.2378824688465,
+      "name": "savannah",
+      "region": "green"
+    },
+    {
+      "id": "san-diego",
+      "x": 576.214231507285,
+      "y": 1569.7423911256956,
+      "name": "san diego",
+      "region": "teal"
+    },
+    {
+      "id": "seattle",
+      "x": 232,
+      "y": 405,
+      "name": "seattle",
+      "region": "violet"
+    },
+    {
+      "id": "portland",
+      "x": 213,
+      "y": 585,
+      "name": "portland",
+      "region": "violet"
+    },
+    { "id": "boise", "x": 589, "y": 718, "name": "boise", "region": "violet" },
+    {
+      "id": "billings",
+      "x": 1071.3981927908535,
+      "y": 524.8256370639905,
+      "name": "billings",
+      "region": "violet"
+    },
+    {
+      "id": "cheyenne",
+      "x": 1283.0682011094793,
+      "y": 846.6800332745039,
+      "name": "cheyenne",
+      "region": "violet"
+    },
+    {
+      "id": "denver",
+      "x": 1275.8192282218552,
+      "y": 1027.9043554651084,
+      "name": "denver",
+      "region": "violet"
+    },
+    {
+      "id": "omaha",
+      "x": 1828.1909622588175,
+      "y": 881.4751031351,
+      "name": "omaha",
+      "region": "violet"
+    },
+    {
+      "id": "salt-lake-city",
+      "x": 849.5796224295536,
+      "y": 958.3142157439163,
+      "name": "salt lake city",
+      "region": "teal"
+    },
+    {
+      "id": "san-francisco",
+      "x": 250.81446191179654,
+      "y": 1196.0805264579892,
+      "name": "san francisco",
+      "region": "teal"
+    },
+    {
+      "id": "las-vegas",
+      "x": 655.3071490412257,
+      "y": 1313.513887237501,
+      "name": "las vegas",
+      "region": "teal"
+    },
+    {
+      "id": "phoenix",
+      "x": 859.7281844722274,
+      "y": 1474.4410853427578,
+      "name": "phoenix",
+      "region": "teal"
+    },
+    {
+      "id": "los-angeles",
+      "x": 481.33179973824537,
+      "y": 1446.8949883697858,
+      "name": "los angeles",
+      "region": "teal"
+    },
+    {
+      "id": "santa-fe",
+      "x": 1212.0282668107625,
+      "y": 1333.8110113228486,
+      "name": "santa fe",
+      "region": "teal"
+    },
+    {
+      "id": "kansas-city",
+      "x": 1874.5843887396122,
+      "y": 1094.5949060312507,
+      "name": "kansas city",
+      "region": "red"
+    },
+    {
+      "id": "oklahoma-city",
+      "x": 1745.552671339902,
+      "y": 1358.457519140771,
+      "name": "oklahoma city",
+      "region": "red"
+    },
+    {
+      "id": "dallas",
+      "x": 1768.7493845802992,
+      "y": 1558.529170839198,
+      "name": "dallas",
+      "region": "red"
+    },
+    {
+      "id": "houston",
+      "x": 1847.0382917666404,
+      "y": 1775.9983574679234,
+      "name": "houston",
+      "region": "red"
+    },
+    {
+      "id": "memphis",
+      "x": 2168.892687977154,
+      "y": 1367.1562866059198,
+      "name": "memphis",
+      "region": "red"
+    },
+    {
+      "id": "new-orleans",
+      "x": 2163.4271260047794,
+      "y": 1705.7588936233706,
+      "name": "new orleans",
+      "region": "red"
+    },
+    {
+      "id": "miami",
+      "x": 2725.58633437351,
+      "y": 2034.4515390913743,
+      "name": "miami",
+      "region": "green"
+    },
+    {
+      "id": "tampa",
+      "x": 2612.06660954456,
+      "y": 1891.9954138158296,
+      "name": "tampa",
+      "region": "green"
+    },
+    {
+      "id": "jacksonville",
+      "x": 2695.5369954481994,
+      "y": 1723.9417035298354,
+      "name": "jacksonville",
+      "region": "green"
+    },
+    {
+      "id": "norfolk",
+      "x": 2993.8045077438715,
+      "y": 1235.361711373865,
+      "name": "norfolk",
+      "region": "green"
+    },
+    {
+      "id": "philadelphia",
+      "x": 3120.6794943174036,
+      "y": 1013.27858759249,
+      "name": "philadelphia",
+      "region": "brown"
+    },
+    {
+      "id": "boston",
+      "x": 3313.217851135132,
+      "y": 773.9968146687233,
+      "name": "boston",
+      "region": "brown"
+    },
+    {
+      "id": "buffalo",
+      "x": 2875.833029000061,
+      "y": 775.1097531474385,
+      "name": "buffalo",
+      "region": "brown"
+    },
+    {
+      "id": "detroit",
+      "x": 2583.130209097965,
+      "y": 837.4343079554894,
+      "name": "detroit",
+      "region": "brown"
+    },
+    {
+      "id": "pittsburgh",
+      "x": 2782.346196787985,
+      "y": 958.7446021354456,
+      "name": "pittsburgh",
+      "region": "brown"
+    },
+    {
+      "id": "chicago",
+      "x": 2307.121466376597,
+      "y": 890.8553549338187,
+      "name": "chicago",
+      "region": "yellow"
+    },
+    {
+      "id": "cincinati",
+      "x": 2504.1115771091863,
+      "y": 1084.5066502302625,
+      "name": "cincinati",
+      "region": "yellow"
+    },
+    {
+      "id": "knoxwille",
+      "x": 2527.4832851622054,
+      "y": 1304.868469015871,
+      "name": "knoxwille",
+      "region": "yellow"
+    },
+    {
+      "id": "st-louis",
+      "x": 2151.31007935647,
+      "y": 1104.5395428471359,
+      "name": "st. louis",
+      "region": "yellow"
+    },
+    {
+      "id": "minneapolis",
+      "x": 1983.2563690704756,
+      "y": 622.637181563457,
+      "name": "minneapolis",
+      "region": "yellow"
+    },
+    {
+      "id": "duluth",
+      "x": 2044.4679853998111,
+      "y": 447.90584040517155,
+      "name": "duluth",
+      "region": "yellow"
+    },
+    {
+      "id": "fargo",
+      "x": 1771.7980581145887,
+      "y": 424.5341323521525,
+      "name": "fargo",
+      "region": "yellow"
+    },
+    {
+      "id": "birmingham",
+      "x": 2302.6299925729954,
+      "y": 1493.1447754286721,
+      "name": "birmingham",
+      "region": "red"
+    },
+    {
+      "id": "atlanta",
+      "x": 2541.7829744520636,
+      "y": 1459.4386504658505,
+      "name": "atlanta",
+      "region": "green"
+    },
+    {
+      "id": "raleich",
+      "x": 2818.3378328972326,
+      "y": 1343.008167778512,
+      "name": "raleich",
+      "region": "green"
+    }
+  ]
+}

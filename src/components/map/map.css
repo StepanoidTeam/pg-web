@@ -23,6 +23,9 @@
 .map-bg {
   background-image: url(./../../assets//map-cities-contrast.png),
     url(./../../assets/map-scroller-raw-wavy.png);
+
+  background-image: url(./../../assets/map-usa-w-city-labels.png);
+
   background-size: 100% auto, 100% auto;
   background-repeat: no-repeat, no-repeat;
 }
@@ -56,4 +59,12 @@
   color: white;
   background-color: #9c27b0;
   box-shadow: 0 0 0 6px #f44336;
+}
+
+.debug-point {
+  width: 30px;
+  height: 30px;
+
+  background-color: lime;
+  border-radius: 50px;
 }
