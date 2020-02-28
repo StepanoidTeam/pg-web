@@ -3,11 +3,13 @@ import globalHook from 'use-global-hook';
 
 import CookieService from './services/cookie.service';
 
+const AUTH_TOKEN_NAME = 'AUTH_TOKEN';
+
 const initialState = {
   isOnline: false,
   apiVersion: null,
   //todo: get token from cookie?
-  authToken: CookieService.get('authToken'),
+  authToken: CookieService.get(AUTH_TOKEN_NAME),
   isAuthenticated: false,
   user: null,
   counter: 0,
@@ -82,7 +84,7 @@ const actions = {
       },
     });
 
-    CookieService.set('authToken', authToken);
+    CookieService.set(AUTH_TOKEN_NAME, authToken);
   },
   clearUserData(store) {
     store.setState({
@@ -90,7 +92,7 @@ const actions = {
       user: null,
       isAuthenticated: false,
     });
-    CookieService.delete('authToken');
+    CookieService.delete(AUTH_TOKEN_NAME);
   },
   //rooms
   setRooms(store, rooms) {
