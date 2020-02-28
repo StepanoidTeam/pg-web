@@ -23,13 +23,9 @@ export default function RoomList() {
   };
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection('rooms')
-      .onSnapshot(querySnapshot => {
-        const rooms = querySnapshot.docs.map(doc => doc.data());
-        setRooms(rooms);
-      });
+    return getRoomList().onUpdate(rooms => setRooms(rooms));
+
+    // getRoomList().get(rooms => console.log('🔥', rooms));
   }, []);
 
   return (
@@ -42,7 +38,7 @@ export default function RoomList() {
           .map(room => (
             <li
               className="list-item flex-row align-center p-2 m-1"
-              key={room.Id}
+              key={room.id}
             >
               <span className="room-name fill-left">{room.Name}</span>
 

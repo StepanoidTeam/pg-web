@@ -1,15 +1,17 @@
+import * as firebase from 'firebase/app';
+
 import { apiRequest } from './api-request';
 
-export function getRoomList(authToken) {
-  return apiRequest('room/list', {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-      authToken,
-    },
-    method: 'GET',
-    //body: JSON.stringify({ username, password })
-  });
+export function getRoomList() {
+  const roomsRef = firebase.firestore().collection('rooms');
+  // todo(vmyshko): make common approach & move to api?
+
+  const snapFn = callback => snap => callback(snap.docs.map(doc => doc.data()));
+
+  return {
+    get: callback => roomsRef.get().then(snapFn(callback)),
+    onUpdate: callback => roomsRef.onSnapshot(snapFn(callback)),
+  };
 }
 
 export function joinRoom(authToken, roomId) {
