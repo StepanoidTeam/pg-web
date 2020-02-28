@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation, Link } from 'react-router-dom';
-import * as firebase from 'firebase/app';
 
 import Input from '../common/input';
 import { logIn } from '../../services/auth.service';
@@ -17,10 +16,7 @@ export default function Login() {
   const { from } = location.state || { from: { pathname: '/' } };
 
   const onLogIn = () => {
-    //🔥
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(username, password)
+    logIn({ username, password })
       .then(data => {
         console.debug('🔥login ok', data);
         setUserData(data.user);
@@ -28,18 +24,6 @@ export default function Login() {
       })
       .catch(function(error) {
         console.warn('🔥login failed', error);
-        setErrorMessage(error.message);
-      });
-
-    return;
-    logIn({ username, password })
-      .then(data => {
-        setUserData(data);
-        console.debug('login ok', data);
-        history.replace(from);
-      })
-      .catch(error => {
-        console.warn('login failed', error);
         setErrorMessage(error.message);
       });
   };

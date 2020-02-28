@@ -1,25 +1,13 @@
+import * as firebase from 'firebase/app';
+
 import { apiRequest } from './api-request';
 
 export function logIn({ username, password }) {
-  return apiRequest('auth/login', {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({ username, password }),
-  });
+  return firebase.auth().signInWithEmailAndPassword(username, password);
 }
 
 export function register({ username, password }) {
-  return apiRequest('auth/register', {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({ username, password }),
-  });
+  return firebase.auth().createUserWithEmailAndPassword(username, password);
 }
 
 export function getStatus(authToken) {
