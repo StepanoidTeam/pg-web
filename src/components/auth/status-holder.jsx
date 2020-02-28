@@ -6,11 +6,11 @@ import { useGlobal } from '../../use-global';
 import './status-holder.css';
 
 export default function StatusHolder() {
-  const [{ isAuthenticated, user }, {}] = useGlobal();
+  const [{ user }, {}] = useGlobal();
 
   return (
     <div className="status-holder flex-column align-end p-1 z-index-1">
-      {isAuthenticated ? (
+      {user ? (
         <div className="flex-row align-center">
           <div className="flex-row align-center mx-2">
             <i className="material-icons px-1">face</i>

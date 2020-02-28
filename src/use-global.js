@@ -10,7 +10,6 @@ const initialState = {
   apiVersion: null,
   //todo: get token from cookie?
   authToken: CookieService.get(AUTH_TOKEN_NAME),
-  isAuthenticated: false,
   user: null,
   counter: 0,
   rooms: [],
@@ -77,7 +76,6 @@ const actions = {
     store.setState({
       authToken,
       user: { id, name: email },
-      isAuthenticated: true,
       isOnline: true,
       game: {
         ...store.state.game,
@@ -91,7 +89,6 @@ const actions = {
     store.setState({
       authToken: null,
       user: null,
-      isAuthenticated: false,
     });
     CookieService.delete(AUTH_TOKEN_NAME);
   },

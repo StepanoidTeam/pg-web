@@ -23,8 +23,7 @@ import './App.css';
 import MapPreview from './components/map/map-preview';
 
 export default function App() {
-  const global = useGlobal();
-  const [{ isOnline }, { setUserData, clearUserData }] = global;
+  const [{ user }, { setUserData, clearUserData }] = useGlobal();
 
   useEffect(() => {
     return firebase.auth().onAuthStateChanged(user => {
@@ -34,11 +33,11 @@ export default function App() {
         clearUserData();
       }
     });
-  }, [isOnline]);
+  }, []);
 
   return (
     <Router>
-      <div className={cx('app', { 'is-online': isOnline })}>
+      <div className={cx('app', { 'is-online': user })}>
         <VersionHolder />
         <StatusHolder />
 
