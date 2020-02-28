@@ -10,25 +10,10 @@ export function register({ username, password }) {
   return firebase.auth().createUserWithEmailAndPassword(username, password);
 }
 
+export function logOut() {
+  return firebase.auth().signOut();
+}
+
 export function getStatus(authToken) {
-  return (
-    apiRequest('auth/status', {
-      // todo(vmyshko): make common
-      headers: {
-        'Content-type': 'application/json',
-        authToken,
-      },
-      method: 'POST',
-      body: JSON.stringify({
-        gameRoomId: true,
-        lastActivityTime: true,
-        isOnline: true,
-        authToken: true,
-        id: true,
-        name: true,
-      }),
-    })
-      // todo(vmyshko): izya to fix this data.data
-      .then(data => data.data)
-  );
+  return firebase.auth().currentUser;
 }
