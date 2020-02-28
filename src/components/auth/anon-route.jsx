@@ -1,15 +1,12 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
-import { useGlobal } from "../../use-global";
+import { useGlobal } from '../../use-global';
 
 export function AnonRoute({ children, ...rest }) {
-  const [{ isAuthenticated }] = useGlobal();
+  const [{ user }] = useGlobal();
 
   return (
-    <Route
-      {...rest}
-      render={() => (!isAuthenticated ? children : <Redirect to="/" />)}
-    />
+    <Route {...rest} render={() => (!user ? children : <Redirect to="/" />)} />
   );
 }
