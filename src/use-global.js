@@ -78,6 +78,7 @@ const actions = {
       authToken,
       user: { id, name: email },
       isAuthenticated: true,
+      isOnline: true,
       game: {
         ...store.state.game,
         GameRoomId,

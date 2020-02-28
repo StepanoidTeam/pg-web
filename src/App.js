@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import cx from 'classnames';
 
+import * as firebase from 'firebase/app';
+
 import { AuthRoute } from './components/auth/auth-route';
 import VersionHolder from './components/version-holder';
 import Login from './components/auth/login';
@@ -18,17 +20,20 @@ import { AnonRoute } from './components/auth/anon-route';
 import RoomsRouter from './components/rooms/rooms-router';
 
 import './App.css';
-import { ws } from './services/web-socket';
 import MapPreview from './components/map/map-preview';
 
 export default function App() {
   const global = useGlobal();
-  const [{ isOnline }, {}] = global;
+  const [{ isOnline }, { setUserData, clearUserData }] = global;
 
   useEffect(() => {
-    if (isOnline) return;
-
-    ws.connect(global);
+    return firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUserData(user);
+      } else {
+        clearUserData();
+      }
+    });
   }, [isOnline]);
 
   return (
