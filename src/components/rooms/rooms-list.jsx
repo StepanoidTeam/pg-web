@@ -23,22 +23,13 @@ export default function RoomList() {
   };
 
   useEffect(() => {
-    //🔥
     firebase
-      .database()
-      .ref('/rooms')
-      .on('value', snapshot => {
-        console.log('🔥', snapshot.val());
-
-        const rooms = Object.values(snapshot.val());
-
-        setRooms(rooms); //sets state locally
+      .firestore()
+      .collection('rooms')
+      .onSnapshot(querySnapshot => {
+        const rooms = querySnapshot.docs.map(doc => doc.data());
+        setRooms(rooms);
       });
-
-    return;
-    getRoomList(authToken).then(rooms => {
-      setRooms(rooms);
-    });
   }, []);
 
   return (
