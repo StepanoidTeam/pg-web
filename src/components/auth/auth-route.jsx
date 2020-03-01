@@ -1,16 +1,12 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { useGlobal } from '../../use-global';
-
-export function AuthRoute({ children, ...rest }) {
-  const [{ user }] = useGlobal();
-
+export function AuthRoute({ children, isAuthenticated, ...rest }) {
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        user ? (
+        isAuthenticated ? (
           children
         ) : (
           <Redirect

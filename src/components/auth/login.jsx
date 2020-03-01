@@ -19,7 +19,6 @@ export default function Login() {
     logIn({ username, password })
       .then(user => {
         console.debug('🔥login ok', user);
-        setUserData(user);
         history.replace(from);
       })
       .catch(function(error) {

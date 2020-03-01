@@ -19,7 +19,6 @@ export default function Register() {
     register({ username, password })
       .then(data => {
         console.log('🔥auth', data.user);
-        setUserData(data);
         history.replace(from);
       })
       .catch(function(error) {

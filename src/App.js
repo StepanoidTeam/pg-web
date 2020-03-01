@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HashRouter as Router,
   Switch,
@@ -23,47 +23,56 @@ import './App.css';
 import MapPreview from './components/map/map-preview';
 
 export default function App() {
-  const [{ user }, { setUserData, clearUserData }] = useGlobal();
+  const [{}, { setUserData, clearUserData }] = useGlobal();
+
+  const [isAuth, setIsAuth] = useState(null);
 
   useEffect(() => {
     return firebase.auth().onAuthStateChanged(user => {
       if (user) {
         setUserData(user);
+        setIsAuth(true);
       } else {
         clearUserData();
+        setIsAuth(false);
       }
     });
   }, []);
 
   return (
     <Router>
-      <div className={cx('app', { 'is-online': user })}>
-        <VersionHolder />
-        <StatusHolder />
+      <div className={cx('app', { 'is-online': isAuth })}>
+        {typeof isAuth !== 'boolean' ? (
+          <div>loading...</div>
+        ) : (
+          <>
+            <VersionHolder />
+            <StatusHolder />
+            <Switch>
+              {/* AUTH */}
+              <AnonRoute path="/login" isAuthenticated={isAuth}>
+                <Login />
+              </AnonRoute>
+              <AnonRoute path="/register" isAuthenticated={isAuth}>
+                <Register />
+              </AnonRoute>
+              {/* ROOMS */}
+              <AuthRoute path="/rooms" isAuthenticated={isAuth}>
+                <RoomsRouter />
+              </AuthRoute>
+              {/* maps */}
+              <Route path="/maps/:mapId">
+                <MapPreview />
+              </Route>
 
-        <Switch>
-          {/* AUTH */}
-          <AnonRoute path="/login">
-            <Login />
-          </AnonRoute>
-          <AnonRoute path="/register">
-            <Register />
-          </AnonRoute>
-          {/* ROOMS */}
-          <AuthRoute path="/rooms">
-            <RoomsRouter />
-          </AuthRoute>
-          {/* maps */}
-          <Route path="/maps/:mapId">
-            <MapPreview />
-          </Route>
-
-          {/* GAME */}
-          {/* // todo(vmyshko): add intermediate page that would define where to redirect user */}
-          <Route path="/">
-            <Redirect to="/rooms" />
-          </Route>
-        </Switch>
+              {/* GAME */}
+              {/* // todo(vmyshko): add intermediate page that would define where to redirect user */}
+              <Route path="/">
+                <Redirect to="/rooms" />
+              </Route>
+            </Switch>
+          </>
+        )}
       </div>
     </Router>
   );
