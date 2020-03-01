@@ -1,29 +1,37 @@
-import React from "react";
-import cx from "classnames";
+import React from 'react';
+import cx from 'classnames';
 
-import "./input.css";
+import './input.css';
 
 export default class Input extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isFocused: false
+      isFocused: false,
     };
   }
 
   render() {
-    const { label, value, helperText, icon, errorText, onChange } = this.props;
+    const {
+      label,
+      value,
+      helperText,
+      icon,
+      errorText,
+      onChange,
+      ...rest
+    } = this.props;
     const { isFocused } = this.state;
     const isEmpty = value.length === 0;
     const hasError = !!errorText;
 
     return (
       <label
-        className={cx("input cursor-pointer", {
-          "is-focused": isFocused,
-          "is-empty": isEmpty,
-          "has-error": hasError
+        className={cx('input cursor-pointer', {
+          'is-focused': isFocused,
+          'is-empty': isEmpty,
+          'has-error': hasError,
         })}
       >
         <div className="input-body flex-row justify-between">
@@ -34,6 +42,7 @@ export default class Input extends React.Component {
               className="input-value w-100"
               type="text"
               value={value}
+              {...rest}
               onChange={event => onChange(event.target.value)}
               onFocus={() => this.setState({ isFocused: true })}
               onBlur={() => this.setState({ isFocused: false })}

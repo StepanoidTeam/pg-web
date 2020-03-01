@@ -35,13 +35,16 @@ export default function Login() {
         helperText="username should be strong enough"
         errorText={errorMessage}
         icon="face"
+        autoComplete="username"
         onChange={value => setUsername(value)}
       />
       <Input
+        type="password"
         label="password"
         value={password}
         helperText="keep password simple"
         icon="lock"
+        autoComplete="current-password"
         onChange={value => setPassword(value)}
       />
 
