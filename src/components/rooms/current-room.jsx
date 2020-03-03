@@ -1,35 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { sortBy } from 'lodash';
 
+import { changeColor, toggleReady } from '../../services/game.service';
 import {
-  getGameStatus,
-  changeColor,
-  toggleReady,
-} from '../../services/game.service';
-import { useGlobal } from '../../use-global';
-import { leaveRoom, kickPlayer } from '../../services/room.service';
+  leaveRoom,
+  kickPlayer,
+  roomDoc,
+  playersList,
+} from '../../services/room.service';
 
 export default function CurrentRoom() {
   const { _roomId } = useParams();
   const history = useHistory();
-  const roomId = decodeURIComponent(_roomId);
 
-  const [{ authToken, rooms, game }, { setPlayerBoards }] = useGlobal();
-  const { playerBoards } = game;
+  const [currentRoom, setCurrentRoom] = useState(null);
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    getGameStatus(authToken).then(data => {
-      setPlayerBoards(data.PlayerBoards);
-    });
+    roomDoc(_roomId).onUpdate(setCurrentRoom);
+    // todo(vmyshko): where to get colors etc?
+    playersList(_roomId).onUpdate(setPlayers);
   }, []);
-
-  const currentRoom = rooms.find(r => r.Id === roomId);
 
   if (!currentRoom) return null;
 
   const onLeave = () => {
-    leaveRoom(authToken).then(() => {
+    leaveRoom().then(() => {
       history.push('/rooms');
     });
   };
@@ -37,37 +34,38 @@ export default function CurrentRoom() {
   const onChangeColor = userId => {
     //change for yourself or for another if admin?
     //seems it always change mine, no matter what userid was sent
-    changeColor(authToken, userId).then(() => {
+    changeColor(userId).then(() => {
       //refresh
     });
   };
   const onToggleReady = (userId, isReady = true) => {
     //todo: just check for current
     //todo:save current state and toggle on/off
-    toggleReady(authToken, isReady).then(() => {
+    toggleReady(isReady).then(() => {
       //refresh?
     });
   };
   const onGameStart = () => {};
   const onAddBot = () => {};
   const onKick = playerId => {
-    kickPlayer(authToken, playerId).then(() => {
+    kickPlayer(playerId).then(() => {
       //refresh?
     });
   };
 
-  const boardsSorted = sortBy(playerBoards, 'Id');
+  const boardsSorted = sortBy(players, 'id');
+  console.log(currentRoom, players);
 
   const allReady = boardsSorted.every(b => b.IsDone);
 
   return (
     <div className="form flex-column p-2">
       <h1 className="flex-row mx-2">
-        <span className="fill-left">{currentRoom.Name}</span>
+        <span className="fill-left">{currentRoom.name}</span>
 
         <div className="flex-row align-center">
           <i className="material-icons">group</i>
-          <span className="px-1">{boardsSorted.length}</span>
+          <span className="px-1">{currentRoom.playerCount}</span>
         </div>
       </h1>
 
