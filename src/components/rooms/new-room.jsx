@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { createRoom } from '../../services/room.service';
-import { getMapList } from '../../services/map.service';
-import { useGlobal } from '../../use-global';
+import { mapList } from '../../services/map.service';
 
 export default function NewRoom() {
-  const [mapList, setMapList] = useState([]);
+  const [maps, setMaps] = useState([]);
   const history = useHistory();
 
-  const [{ authToken }, {}] = useGlobal();
-
   useEffect(() => {
-    getMapList().then(maps => {
-      setMapList(maps);
+    mapList().get(maps => {
+      console.log(maps);
+      setMaps(maps);
     });
   }, []);
 
   const onCreateRoom = () => {
-    createRoom(authToken).then(() => {
+    createRoom({
+      name: 'new room name here',
+      maxPlayers: 10,
+      map: 'africa',
+    }).then(() => {
       //navigate?
     });
   };
@@ -33,10 +35,13 @@ export default function NewRoom() {
       </h1>
 
       <ul className="map-list list flex-column p-1 m-2" style={{ width: 320 }}>
-        {mapList.map(map => (
-          <li className="list-item flex-row align-center p-2 m-1" key={map}>
-            <span className="fill-left">{map}</span>
-            <button className="button" onClick={() => onPreviewMap(map)}>
+        {maps.map(map => (
+          <li
+            className="list-item flex-row align-center p-2 m-1"
+            key={map.name}
+          >
+            <span className="fill-left">{map.name}</span>
+            <button className="button" onClick={() => onPreviewMap(map.name)}>
               preview
             </button>
           </li>
@@ -45,7 +50,7 @@ export default function NewRoom() {
 
       <div className="flex-row align-center">
         <Link to="/rooms">
-          <button className="button mx-1">quit</button>
+          <button className="button mx-1">back</button>
         </Link>
         <div className="fill-left"></div>
 
