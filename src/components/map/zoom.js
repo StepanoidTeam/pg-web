@@ -138,6 +138,9 @@ export default function initZoom() {
   // window.addEventListener('touchcancel', endMove, { passive: false });
   // window.addEventListener('touchmove', move, { passive: false });
 
+  // todo(vmyshko): remove event listeners from window after page closes
+  // since they pollute other pages
+
   //mouse wheel / macbook touch-pad zoom gesture
   // mac touchpad scroll map also works just based on wheel
   window.addEventListener('wheel', zoom, { passive: false });
