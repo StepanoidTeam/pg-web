@@ -21,10 +21,14 @@
   box-shadow: inset 0 0 0 7px rgba(0, 0, 0, 0.4);
 }
 
-.map-bg {
+.map-africa {
   background-image: url(./../../assets/map-africa.png);
+}
+.map-usa {
   background-image: url(./../../assets/map-usa.png);
+}
 
+.map-bg {
   background-size: 100% auto;
   background-repeat: no-repeat;
 }

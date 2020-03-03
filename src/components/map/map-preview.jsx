@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import cx from 'classnames';
 import { kebabCase } from 'lodash';
 
-import { useGlobal } from '../../use-global';
 import { getMap } from '../../services/map.service';
 import CityCard from './city-card';
 import wiresSvg from '../../assets/wires-20.svg';
@@ -16,28 +16,35 @@ import Movable from './movable';
 import africaMap from './africa.map.json';
 import usaMap from './usa.map.json';
 
-const currentMap = usaMap;
+const maps = {
+  africa: { data: africaMap, className: 'map-africa' },
+  usa: { data: usaMap, className: 'map-usa' },
+};
 
 // todo(vmyshko): force izya to update all namings to lowecase etc.
 
 export default function MapPreview() {
   const { mapId } = useParams();
-  const [
-    { authToken, connectors, cities },
-    { setConnectors, setCities },
-  ] = useGlobal();
+
+  const [mapClass, setMapClass] = useState('');
+  const [connectors, setConnectors] = useState([]);
+  const [cities, setCities] = useState([]);
 
   const [toolCursorPos, setToolCursorPos] = useState({ x: 0, y: 0 });
   const [toolCursorIsMoving, setToolCursorIsMoving] = useState(false);
 
   useEffect(() => {
+    // const currentMap = usaMap;
+    const currentMap = maps[mapId];
+
     const mapData = currentMap;
 
     console.log('🗾', mapData);
     window.mapData = mapData;
 
-    const { cities, connectors } = mapData;
+    const { cities, connectors } = mapData.data;
 
+    setMapClass(mapData.className);
     setCities(cities);
     setConnectors(connectors);
 
@@ -175,7 +182,7 @@ export default function MapPreview() {
   return (
     <div>
       <div className="map-overlay">
-        <div className="map-content map-bg" style={mapSize}>
+        <div className={cx('map-content map-bg', mapClass)} style={mapSize}>
           <svg
             className="map-svg w-100 h-100"
             version="1.1"
