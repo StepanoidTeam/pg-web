@@ -1,67 +1,40 @@
-import * as firebase from 'firebase/app';
+import { apiRequest, dbCollection, dbDoc } from './api-request';
 
-import { apiRequest } from './api-request';
-
-export function getRoomList() {
-  const roomsRef = firebase.firestore().collection('rooms');
-  // todo(vmyshko): make common approach & move to api?
-
-  const snapFn = callback => snap => callback(snap.docs.map(doc => doc.data()));
-
-  return {
-    get: callback => roomsRef.get().then(snapFn(callback)),
-    onUpdate: callback => roomsRef.onSnapshot(snapFn(callback)),
-  };
+export function roomList() {
+  return dbCollection('rooms');
 }
 
-export function joinRoom(authToken, roomId) {
+export function roomDoc(roomId) {
+  return dbDoc('rooms', roomId);
+}
+
+export function playersList(roomId) {
+  return dbCollection(`room/${roomId}/players`);
+}
+
+export function joinRoom(roomId) {
   return apiRequest('room/join', {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-      authToken,
-    },
     method: 'POST',
     body: JSON.stringify({ roomId }),
   });
 }
 
-export function leaveRoom(authToken) {
+export function leaveRoom() {
   return apiRequest('room/leave', {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-      authToken,
-    },
     method: 'POST',
-    //body: JSON.stringify({ roomId })
   });
 }
 
-export function kickPlayer(authToken, playerId) {
+export function kickPlayer(playerId) {
   // todo(vmyshko): izya pes, we need common approach here - just body param, not url
   return apiRequest(`room/kick?username=${playerId}`, {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-      authToken,
-    },
     method: 'POST',
     body: JSON.stringify({ username: playerId }),
   });
 }
-export function createRoom(authToken, roomConfig) {
+export function createRoom(roomConfig) {
   return apiRequest('room/create', {
-    // todo(vmyshko): make common
-    headers: {
-      'Content-type': 'application/json',
-      authToken,
-    },
     method: 'POST',
-    body: JSON.stringify({
-      //name: 'new room',
-      // setReadyMark: true,
-      // gameRounds: 0,
-    }),
+    body: JSON.stringify(roomConfig),
   });
 }
