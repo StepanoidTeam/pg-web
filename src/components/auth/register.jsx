@@ -18,7 +18,7 @@ export default function Register() {
   const onRegister = () => {
     register({ username, password })
       .then(data => {
-        console.log('🔥auth', data.user);
+        console.log('🔥auth', data.user.toJSON());
         history.replace(from);
       })
       .catch(function(error) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/firestore';
@@ -10,9 +9,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import './index.css';
-import { firebaseConfig } from './config';
-
-firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
